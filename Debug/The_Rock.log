@@ -1,5 +1,86 @@
-﻿Build started 10/5/2015 10:24:45 PM.
+﻿Build started 10/5/2015 10:28:32 PM.
+     1>Project "C:\Users\Marco_Laptop\Documents\GitHub\The_Rock_Lives\The_Rock.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Marco_Laptop\Documents\GitHub\The_Rock_Lives\\SFML-2.3.1\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Bullet.cpp Clock.cpp Event.cpp EventCollision.cpp EventKeyboard.cpp EventMouse.cpp EventNuke.cpp EventOut.cpp EventStep.cpp Explosion.cpp game.cpp GameOver.cpp GraphicsManager.cpp Hero.cpp InputManger.cpp ObjectList.cpp Reticle.cpp RockLives\EventTurn.cpp RockLives\InventoryView.cpp RockLives\Monster.cpp RockLives\rocklives.cpp RockLives\StatsView.cpp Saucer.cpp Star.cpp Test.cpp GameManager.cpp LogManager.cpp Main.cpp Manager.cpp Object.cpp ObjectListIterator.cpp Position.cpp TestObject.cpp Utility.cpp WorldManager.cpp
+         WorldManager.cpp
+         Utility.cpp
+         TestObject.cpp
+         Position.cpp
+         ObjectListIterator.cpp
+         Object.cpp
+         Manager.cpp
+         Main.cpp
+         LogManager.cpp
+         GameManager.cpp
+         Test.cpp
+     1>c:\users\marco_laptop\documents\github\the_rock_lives\test.cpp(248): warning C4305: 'argument' : truncation from 'double' to 'float'
+         Star.cpp
+         Saucer.cpp
+         StatsView.cpp
+         rocklives.cpp
+         Monster.cpp
+         InventoryView.cpp
+         EventTurn.cpp
+         Reticle.cpp
+         ObjectList.cpp
+         Generating Code...
+         Compiling...
+         InputManger.cpp
+         Hero.cpp
+         GraphicsManager.cpp
+         GameOver.cpp
+         game.cpp
+         Explosion.cpp
+         EventStep.cpp
+         EventOut.cpp
+         EventNuke.cpp
+         EventMouse.cpp
+         EventKeyboard.cpp
+         EventCollision.cpp
+         Event.cpp
+         Clock.cpp
+         Bullet.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Marco_Laptop\Documents\GitHub\The_Rock_Lives\Debug\The_Rock.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\Marco_Laptop\Documents\GitHub\The_Rock_Lives\\SFML-2.3.1\lib" "sfml-system-d.lib" "sfml-window-d.lib" "sfml-graphics-d.lib" "sfml-main-d.lib" "sfml-audio-d.lib" "sfml-network-d.lib" Winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Marco_Laptop\Documents\GitHub\The_Rock_Lives\Debug\The_Rock.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Marco_Laptop\Documents\GitHub\The_Rock_Lives\Debug\The_Rock.lib" /MACHINE:X86 Debug\Bullet.obj
+         Debug\Clock.obj
+         Debug\Event.obj
+         Debug\EventCollision.obj
+         Debug\EventKeyboard.obj
+         Debug\EventMouse.obj
+         Debug\EventNuke.obj
+         Debug\EventOut.obj
+         Debug\EventStep.obj
+         Debug\Explosion.obj
+         Debug\game.obj
+         Debug\GameOver.obj
+         Debug\GraphicsManager.obj
+         Debug\Hero.obj
+         Debug\InputManger.obj
+         Debug\ObjectList.obj
+         Debug\Reticle.obj
+         Debug\EventTurn.obj
+         Debug\InventoryView.obj
+         Debug\Monster.obj
+         Debug\rocklives.obj
+         Debug\StatsView.obj
+         Debug\Saucer.obj
+         Debug\Star.obj
+         Debug\Test.obj
+         Debug\GameManager.obj
+         Debug\LogManager.obj
+         Debug\Main.obj
+         Debug\Manager.obj
+         Debug\Object.obj
+         Debug\ObjectListIterator.obj
+         Debug\Position.obj
+         Debug\TestObject.obj
+         Debug\Utility.obj
+         Debug\WorldManager.obj
+     1>sfml-main-d.lib(MainWin32.cpp.obj) : warning LNK4204: 'C:\Users\Marco_Laptop\Documents\GitHub\The_Rock_Lives\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
+         The_Rock.vcxproj -> C:\Users\Marco_Laptop\Documents\GitHub\The_Rock_Lives\Debug\The_Rock.exe
+     1>Done Building Project "C:\Users\Marco_Laptop\Documents\GitHub\The_Rock_Lives\The_Rock.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.02
+Time Elapsed 00:00:19.60

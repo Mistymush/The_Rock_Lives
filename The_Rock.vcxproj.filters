@@ -153,6 +153,9 @@
     <ClInclude Include="RockLives\EventTurn.h">
       <Filter>RockLives\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RockLives\A_Star.h">
+      <Filter>RockLives\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test.cpp">

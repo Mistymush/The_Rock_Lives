@@ -41,6 +41,7 @@
     <ClInclude Include="ObjectListIterator.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="Reticle.h" />
+    <ClInclude Include="RockLives\A_Star.h" />
     <ClInclude Include="RockLives\EventTurn.h" />
     <ClInclude Include="RockLives\InventoryView.h" />
     <ClInclude Include="RockLives\Monster.h" />
