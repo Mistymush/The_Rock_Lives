@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Clock.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="EventCollision.h" />
+    <ClInclude Include="EventKeyboard.h" />
+    <ClInclude Include="EventMouse.h" />
+    <ClInclude Include="EventNuke.h" />
+    <ClInclude Include="EventOut.h" />
+    <ClInclude Include="EventStep.h" />
+    <ClInclude Include="Explosion.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="GameOver.h" />
+    <ClInclude Include="GraphicsManager.h" />
+    <ClInclude Include="Hero.h" />
+    <ClInclude Include="InputManager.h" />
+    <ClInclude Include="LogManager.h" />
+    <ClInclude Include="Manager.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectList.h" />
+    <ClInclude Include="ObjectListIterator.h" />
+    <ClInclude Include="Position.h" />
+    <ClInclude Include="Reticle.h" />
+    <ClInclude Include="RockLives\InventoryView.h" />
+    <ClInclude Include="RockLives\Monster.h" />
+    <ClInclude Include="RockLives\StatsView.h" />
+    <ClInclude Include="Saucer.h" />
+    <ClInclude Include="Star.h" />
+    <ClInclude Include="Test.h" />
+    <ClInclude Include="TestObject.h" />
+    <ClInclude Include="Utility.h" />
+    <ClInclude Include="WorldManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Clock.cpp" />
+    <ClCompile Include="Event.cpp" />
+    <ClCompile Include="EventCollision.cpp" />
+    <ClCompile Include="EventKeyboard.cpp" />
+    <ClCompile Include="EventMouse.cpp" />
+    <ClCompile Include="EventNuke.cpp" />
+    <ClCompile Include="EventOut.cpp" />
+    <ClCompile Include="EventStep.cpp" />
+    <ClCompile Include="Explosion.cpp" />
+    <ClCompile Include="game.cpp" />
+    <ClCompile Include="GameOver.cpp" />
+    <ClCompile Include="GraphicsManager.cpp" />
+    <ClCompile Include="Hero.cpp" />
+    <ClCompile Include="InputManger.cpp" />
+    <ClCompile Include="ObjectList.cpp" />
+    <ClCompile Include="Reticle.cpp" />
+    <ClCompile Include="RockLives\InventoryView.cpp" />
+    <ClCompile Include="RockLives\Monster.cpp" />
+    <ClCompile Include="RockLives\rocklives.cpp" />
+    <ClCompile Include="RockLives\StatsView.cpp" />
+    <ClCompile Include="Saucer.cpp" />
+    <ClCompile Include="Star.cpp" />
+    <ClCompile Include="Test.cpp" />
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="LogManager.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Manager.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ObjectListIterator.cpp" />
+    <ClCompile Include="Position.cpp" />
+    <ClCompile Include="TestObject.cpp" />
+    <ClCompile Include="Utility.cpp" />
+    <ClCompile Include="WorldManager.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F7384CBE-77E2-474B-B788-DD587D16272E}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>The_Rock</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(ProjectDir);$(ProjectDir)\RockLives;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(ProjectDir)\SFML-2.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(ProjectDir)\SFML-2.3\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-system-d.lib;sfml-window-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;sfml-audio-d.lib;sfml-network-d.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Link>
+      <AdditionalDependencies>Winmm.lib;sfml-system-d.lib;sfml-window-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;sfml-audio-d.lib;sfml-network-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\August\Documents\Visual Studio 2013\Projects\SFML-2.3\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\August\Documents\Visual Studio 2013\Projects\SFML-2.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
