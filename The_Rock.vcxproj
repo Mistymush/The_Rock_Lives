@@ -41,6 +41,7 @@
     <ClInclude Include="ObjectListIterator.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="Reticle.h" />
+    <ClInclude Include="RockLives\EventTurn.h" />
     <ClInclude Include="RockLives\InventoryView.h" />
     <ClInclude Include="RockLives\Monster.h" />
     <ClInclude Include="RockLives\StatsView.h" />
@@ -69,6 +70,7 @@
     <ClCompile Include="InputManger.cpp" />
     <ClCompile Include="ObjectList.cpp" />
     <ClCompile Include="Reticle.cpp" />
+    <ClCompile Include="RockLives\EventTurn.cpp" />
     <ClCompile Include="RockLives\InventoryView.cpp" />
     <ClCompile Include="RockLives\Monster.cpp" />
     <ClCompile Include="RockLives\rocklives.cpp" />

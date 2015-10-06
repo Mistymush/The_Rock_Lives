@@ -150,6 +150,9 @@
     <ClInclude Include="RockLives\StatsView.h">
       <Filter>RockLives\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RockLives\EventTurn.h">
+      <Filter>RockLives\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test.cpp">
@@ -252,6 +255,9 @@
       <Filter>RockLives\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RockLives\StatsView.cpp">
+      <Filter>RockLives\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RockLives\EventTurn.cpp">
       <Filter>RockLives\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
