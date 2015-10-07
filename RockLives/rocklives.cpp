@@ -13,6 +13,7 @@ File whic contains main entry funtion of rock lives
 #include "Wanderer.h"
 #include "OutputView.h"
 #include "Level.h"
+#include "Weapon.h"
 
 
 
@@ -59,6 +60,9 @@ void populateGameWorld(){
 
 	new StatsView;
 	//new Level;
+	new Weapon(30);
+	new Weapon(31);
+
 	
 
 }

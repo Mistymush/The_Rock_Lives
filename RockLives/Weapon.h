@@ -1,10 +1,12 @@
 /*
 Header file which defines a weapon object
+Author: August Beers
 */
 
 
-#ifndef _Weapon_
-#define _Weapon_
+#ifndef _WEAPON_
+#define _WEAPON_
+
 
 #include "Item.h"
 
@@ -15,13 +17,11 @@ private:
 	int range;
 
 public:
-	Weapon();
+	//Initialize weapon with its inventory tag
+	Weapon(int y);
 
 	~Weapon();
 
-	void move();
-	int eventHandler(const df::Event *p_e);
-	void draw();
 };
 
 #endif // !_Weapon_

@@ -8,15 +8,19 @@ Author: August Beers
 #define _ITEM_
 
 #include "Object.h"
+#include "EventCollision.h"
+#include "WorldManager.h"
 
 class Item : public df::Object {
 
 private:
 	//Graphical representation of this Item
 	char icon;
+	//color of the icon
+	df::Color color;
+
 	//A short description of this item, (17 char max)
 	std::string description;
-
 
 public:
 
@@ -30,7 +34,13 @@ public:
 
 	void move();
 	int eventHandler(const df::Event *p_e);
-	void draw();
+	void draw(); 
+
+	void setIcon(char x);
+	void setDescription(std::string tag);
+	void setColor(df::Color new_color);
+
+	void pickUp(const df::EventCollision *p_collision_event);
 };
 
 #endif // !_ITEM_
