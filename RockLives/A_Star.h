@@ -17,3 +17,37 @@ const int dir = 4; //number of possible directions the monster can go from anywh
 static int dx[dir] = { 1, 0, -1, 0 };
 static int dy[dir] = { 0, 1, 0 - 1 };
 
+class node{
+	
+	private:
+		//Current position 
+		df::Position pos;
+		//total distance traveled to reach node
+		int dist_traveled;
+		//priority level
+		int priority;
+
+	public:
+		node(df::Position pos, int dist, int pri);
+
+		//getters
+		//Position 
+		df::Position getPosition();
+		//Distance
+		int getDistance();
+		//Priority
+		int getPriority();
+
+		//end getters
+
+		//Method to update the priority
+		void updatePriority(const df::Position &new_pos);
+
+		//Give more priority to going straight
+		void changeDist(const int &i);
+
+		//Estimation function for the remaining distance to goal
+		const int &estimate(const df::Position &new_pos) const;
+
+};
+
