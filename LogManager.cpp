@@ -75,7 +75,7 @@ void df::LogManager::WriteMessage(const char *fmt, ...){
 Method which starts up a LogManager
 */
 int df::LogManager::startUp(){
-	log = fopen("log.txt", "w");
+	log = fopen("dragonfly.log", "w");
 	WriteMessage("rock.log");
 	fflush(log);
 	
