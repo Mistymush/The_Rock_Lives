@@ -7,7 +7,7 @@ Author: August Beers
 #include "Color.h"
 
 /*
-Constructor of inventory view object
+Constructor of inventory vieww object
 */
 InventoryView::InventoryView(){
 	setType("InventoryView");
