@@ -19,7 +19,7 @@ InventoryView::InventoryView(){
 
 
 /*
-Destructor of inventory veiw
+Destructor of inventory view
 */
 InventoryView::~InventoryView(){
 
