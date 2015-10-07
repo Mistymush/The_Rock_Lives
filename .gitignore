@@ -44,12 +44,12 @@ Temporary Items
 *.opensdf
 
 #Log Files
-.log
+*.log
 
 #Solution files
-.sln
-.v12.suo
-.vcxproj
-.vcxproj.filters
-.vcxproj.user
-.sdf
+*.sln
+*.v12.suo
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sdf
