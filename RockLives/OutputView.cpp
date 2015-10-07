@@ -6,15 +6,15 @@
 OutputView::OutputView() {
 	setType("OutputView");
 
-	setPosition(df::Position(10, 10));
+	setPosition(df::Position(0, 19));
 
-	setWidth(50);
-	setHeight(5);
+	setWidth(114);
+	setHeight(4);
 
 	setHorizontalMargin(1);
 	setVerticalMargin(0);
 
-	setColor(df::YELLOW);
+	setColor(df::RED);
 
 	setOutput("This is a long long long long long long long long long loooooong test output. This is a long random series of sentances made to get the input box to it's limit point, which should be 5 lines, I believe. This is also a test. I'm just trying to get this to stop printing.");
 }

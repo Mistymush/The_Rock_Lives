@@ -92,6 +92,28 @@ void Wanderer::kbd(const df::EventKeyboard *p_keyboard_event) {
 			//output_view.setOutput("The Wanderer swings their weapon!");
 		}
 		break;
+	case df::Keyboard::LEFTARROW:  //move left with arrow key
+		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
+			move(-1, 0);
+		}
+		break;
+	case df::Keyboard::RIGHTARROW: //move right with arrow key
+		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
+			move(1, 0);
+		}
+		break;
+	case df::Keyboard::UPARROW:  //move up with arrow key
+		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
+			move(0, -1);
+		}
+		break;
+	case df::Keyboard::DOWNARROW:  //move down with arrow key
+		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
+			move(0, 1);
+		}
+		break;
+
+
 	case df::Keyboard::Q: //quit
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			df::WorldManager &world_manager = df::WorldManager::getInstance();

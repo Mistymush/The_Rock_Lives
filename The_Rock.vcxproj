@@ -45,6 +45,7 @@
     <ClInclude Include="RockLives\A_Star.h" />
     <ClInclude Include="RockLives\EventTurn.h" />
     <ClInclude Include="RockLives\InventoryView.h" />
+    <ClInclude Include="RockLives\Item.h" />
     <ClInclude Include="RockLives\Level.h" />
     <ClInclude Include="RockLives\Monster.h" />
     <ClInclude Include="RockLives\Mountain.h" />
@@ -52,6 +53,7 @@
     <ClInclude Include="RockLives\StatsView.h" />
     <ClInclude Include="RockLives\Wall.h" />
     <ClInclude Include="RockLives\Wanderer.h" />
+    <ClInclude Include="RockLives\Weapon.h" />
     <ClInclude Include="Saucer.h" />
     <ClInclude Include="Star.h" />
     <ClInclude Include="Test.h" />
@@ -79,6 +81,7 @@
     <ClCompile Include="Reticle.cpp" />
     <ClCompile Include="RockLives\EventTurn.cpp" />
     <ClCompile Include="RockLives\InventoryView.cpp" />
+    <ClCompile Include="RockLives\Item.cpp" />
     <ClCompile Include="RockLives\Level.cpp" />
     <ClCompile Include="RockLives\Monster.cpp" />
     <ClCompile Include="RockLives\Mountain.cpp" />
@@ -87,6 +90,7 @@
     <ClCompile Include="RockLives\StatsView.cpp" />
     <ClCompile Include="RockLives\Wall.cpp" />
     <ClCompile Include="RockLives\Wanderer.cpp" />
+    <ClCompile Include="RockLives\Weapon.cpp" />
     <ClCompile Include="Saucer.cpp" />
     <ClCompile Include="Star.cpp" />
     <ClCompile Include="Test.cpp" />

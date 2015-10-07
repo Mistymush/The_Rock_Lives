@@ -1,5 +1,6 @@
 /*
 header file which defines the InventoryView class
+Author: August Beers
 */
 
 #ifndef _Inventory_View_

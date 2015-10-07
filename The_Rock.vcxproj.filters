@@ -55,6 +55,12 @@
     <Filter Include="RockLives\Source Files">
       <UniqueIdentifier>{a113c810-b16c-485e-a532-838942505623}</UniqueIdentifier>
     </Filter>
+    <Filter Include="RockLives\Header Files\Items">
+      <UniqueIdentifier>{ae5fe4ea-a058-4b41-bad7-b6f55985d92c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RockLives\Source Files\Items">
+      <UniqueIdentifier>{f0bc974b-6b79-412a-b66f-9aba51c29ab0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Test.h">
@@ -173,6 +179,12 @@
     </ClInclude>
     <ClInclude Include="Color.h">
       <Filter>Engine\Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="RockLives\Item.h">
+      <Filter>RockLives\Header Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="RockLives\Weapon.h">
+      <Filter>RockLives\Header Files\Items</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +307,12 @@
     </ClCompile>
     <ClCompile Include="RockLives\Wanderer.cpp">
       <Filter>RockLives\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RockLives\Item.cpp">
+      <Filter>RockLives\Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="RockLives\Weapon.cpp">
+      <Filter>RockLives\Source Files\Items</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
