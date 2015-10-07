@@ -1,8 +1,8 @@
 //A_star header file
 //Author: Marco Duran
 //System includes
-#include <queue>
-#include <string>
+#include <queue.h>
+#include <string.h>
 //Engine includes
 #include "Position.h"
 #include "Object.h"
@@ -17,7 +17,7 @@ const int dir = 4; //number of possible directions the monster can go from anywh
 static int dx[dir] = { 1, 0, -1, 0 };
 static int dy[dir] = { 0, 1, 0 - 1 };
 
-class node{
+class Node{
 	
 	private:
 		//Current position 
@@ -28,7 +28,8 @@ class node{
 		int priority;
 
 	public:
-		node(df::Position pos, int dist, int pri);
+		//constructor
+		Node(df::Position pos, int dist, int pri);
 
 		//getters
 		//Position 

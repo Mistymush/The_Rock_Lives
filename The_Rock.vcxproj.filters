@@ -159,9 +159,6 @@
     <ClInclude Include="RockLives\EventTurn.h">
       <Filter>RockLives\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RockLives\A_Star.h">
-      <Filter>RockLives\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="RockLives\Level.h">
       <Filter>RockLives\Header Files</Filter>
     </ClInclude>
@@ -185,6 +182,9 @@
     </ClInclude>
     <ClInclude Include="RockLives\Weapon.h">
       <Filter>RockLives\Header Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="RockLives\Node.h">
+      <Filter>RockLives\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -313,6 +313,9 @@
     </ClCompile>
     <ClCompile Include="RockLives\Weapon.cpp">
       <Filter>RockLives\Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="RockLives\Node.cpp">
+      <Filter>RockLives\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

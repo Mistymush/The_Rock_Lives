@@ -1,5 +1,56 @@
-﻿Build started 10/6/2015 9:58:01 PM.
+﻿Build started 10/7/2015 7:53:43 PM.
+     1>Project "C:\Users\Marco_Laptop\Documents\GitHub\The_Rock_Lives\The_Rock.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Marco_Laptop\Documents\GitHub\The_Rock_Lives\\SFML-2.3.1\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt RockLives\Node.cpp
+         Node.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Marco_Laptop\Documents\GitHub\The_Rock_Lives\Debug\The_Rock.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\Marco_Laptop\Documents\GitHub\The_Rock_Lives\\SFML-2.3.1\lib" "sfml-system-d.lib" "sfml-window-d.lib" "sfml-graphics-d.lib" "sfml-main-d.lib" "sfml-audio-d.lib" "sfml-network-d.lib" Winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Marco_Laptop\Documents\GitHub\The_Rock_Lives\Debug\The_Rock.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Marco_Laptop\Documents\GitHub\The_Rock_Lives\Debug\The_Rock.lib" /MACHINE:X86 Debug\Bullet.obj
+         Debug\Clock.obj
+         Debug\Event.obj
+         Debug\EventCollision.obj
+         Debug\EventKeyboard.obj
+         Debug\EventMouse.obj
+         Debug\EventNuke.obj
+         Debug\EventOut.obj
+         Debug\EventStep.obj
+         Debug\Explosion.obj
+         Debug\game.obj
+         Debug\GameOver.obj
+         Debug\GraphicsManager.obj
+         Debug\Hero.obj
+         Debug\InputManger.obj
+         Debug\ObjectList.obj
+         Debug\Reticle.obj
+         Debug\Node.obj
+         Debug\EventTurn.obj
+         Debug\InventoryView.obj
+         Debug\Item.obj
+         Debug\Level.obj
+         Debug\Monster.obj
+         Debug\Mountain.obj
+         Debug\OutputView.obj
+         Debug\rocklives.obj
+         Debug\StatsView.obj
+         Debug\Wall.obj
+         Debug\Wanderer.obj
+         Debug\Weapon.obj
+         Debug\Saucer.obj
+         Debug\Star.obj
+         Debug\Test.obj
+         Debug\GameManager.obj
+         Debug\LogManager.obj
+         Debug\Main.obj
+         Debug\Manager.obj
+         Debug\Object.obj
+         Debug\ObjectListIterator.obj
+         Debug\Position.obj
+         Debug\TestObject.obj
+         Debug\Utility.obj
+         Debug\WorldManager.obj
+     1>sfml-main-d.lib(MainWin32.cpp.obj) : warning LNK4204: 'C:\Users\Marco_Laptop\Documents\GitHub\The_Rock_Lives\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
+         The_Rock.vcxproj -> C:\Users\Marco_Laptop\Documents\GitHub\The_Rock_Lives\Debug\The_Rock.exe
+     1>Done Building Project "C:\Users\Marco_Laptop\Documents\GitHub\The_Rock_Lives\The_Rock.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.02
+Time Elapsed 00:00:03.03
