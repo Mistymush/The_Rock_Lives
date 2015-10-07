@@ -156,6 +156,24 @@
     <ClInclude Include="RockLives\A_Star.h">
       <Filter>RockLives\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RockLives\Level.h">
+      <Filter>RockLives\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RockLives\Mountain.h">
+      <Filter>RockLives\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RockLives\OutputView.h">
+      <Filter>RockLives\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RockLives\Wall.h">
+      <Filter>RockLives\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RockLives\Wanderer.h">
+      <Filter>RockLives\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Engine\Header Files\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test.cpp">
@@ -261,6 +279,21 @@
       <Filter>RockLives\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RockLives\EventTurn.cpp">
+      <Filter>RockLives\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RockLives\Level.cpp">
+      <Filter>RockLives\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RockLives\Mountain.cpp">
+      <Filter>RockLives\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RockLives\OutputView.cpp">
+      <Filter>RockLives\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RockLives\Wall.cpp">
+      <Filter>RockLives\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RockLives\Wanderer.cpp">
       <Filter>RockLives\Source Files</Filter>
     </ClCompile>
   </ItemGroup>

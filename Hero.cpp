@@ -8,6 +8,7 @@
 #include "GraphicsManager.h"
 #include "LogManager.h"
 #include "WorldManager.h"
+#include "Color.h"
 
 // Game includes.
 #include "Bullet.h"

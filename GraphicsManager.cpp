@@ -3,6 +3,7 @@ File which defines the memeber funtions of the GraphicsManager class
 */
 
 #include "GraphicsManager.h"
+#include "Color.h"
 
 using namespace df;
 

@@ -10,6 +10,7 @@ Header file which defines the graphics manager class
 #include "Manager.h"
 #include "Position.h"
 #include "LogManager.h"
+#include "Color.h"
 
 namespace df{
 
@@ -18,18 +19,6 @@ namespace df{
 		LEFT_JUSTIFIED,
 		CENTER_JUSTIFIED,
 		RIGHT_JUSTIFIED,
-	};
-
-	// color enumeration
-	enum Color {
-		BLACK = 0,
-		RED,
-		GREEN,
-		YELLOW,
-		BLUE,
-		MAGENTA,
-		CYAN,
-		WHITE,
 	};
 
 

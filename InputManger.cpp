@@ -561,6 +561,36 @@ df::Keyboard::Key InputManager::convertSFMLkeyValue(sf::Keyboard::Key key){
 
 		break;
 
+	case sf::Keyboard::Key::Numpad0:
+		return Keyboard::Key::NUMPAD0;
+		break;
+	case sf::Keyboard::Key::Numpad1:
+		return Keyboard::Key::NUMPAD1;
+		break;
+	case sf::Keyboard::Key::Numpad2:
+		return Keyboard::Key::NUMPAD2;
+		break;
+	case sf::Keyboard::Key::Numpad3:
+		return Keyboard::Key::NUMPAD3;
+		break;
+	case sf::Keyboard::Key::Numpad4:
+		return Keyboard::Key::NUMPAD4;
+		break;
+	case sf::Keyboard::Key::Numpad5:
+		return Keyboard::Key::NUMPAD5;
+		break;
+	case sf::Keyboard::Key::Numpad6:
+		return Keyboard::Key::NUMPAD6;
+		break;
+	case sf::Keyboard::Key::Numpad7:
+		return Keyboard::Key::NUMPAD7;
+		break;
+	case sf::Keyboard::Key::Numpad8:
+		return Keyboard::Key::NUMPAD8;
+		break;
+	case sf::Keyboard::Key::Numpad9:
+		return Keyboard::Key::NUMPAD9;
+		break;
 	default:
 
 		return Keyboard::Key::UNDEFINED_KEY;

@@ -11,6 +11,7 @@ header file which defines the InventoryView class
 #include "GraphicsManager.h"
 #include "WorldManager.h"
 #include "Position.h"
+#include "EventKeyboard.h"
 
 class InventoryView : public df::Object{
 
@@ -30,6 +31,10 @@ public:
 
 	void draw();
 	
+	void keyHandle(const df::EventKeyboard *p_keyboard_event);
+
+	// Move up or down.
+	void move(int dy);
 
 };
 

@@ -5,6 +5,7 @@ File which defines the methods of the object class
 #include "Object.h"
 #include "WorldManager.h"
 #include "LogManager.h"
+#include "Color.h"
 
 using namespace df;
 

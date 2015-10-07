@@ -13,6 +13,7 @@ header file which defines the game object class
 #include "Event.h"
 #include "math.h"
 #include "GraphicsManager.h"
+#include "Color.h"
 
 
 namespace df{

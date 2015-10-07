@@ -4,6 +4,7 @@
 
 #include "Object.h"
 
+
 class Explosion : public df::Object {
 
  private:

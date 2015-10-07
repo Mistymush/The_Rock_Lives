@@ -9,6 +9,10 @@ File whic contains main entry funtion of rock lives
 #include "LogManager.h"
 #include "InventoryView.h"
 #include "Monster.h"
+#include "StatsView.h"
+#include "Wanderer.h"
+#include "OutputView.h"
+#include "Level.h"
 
 
 
@@ -16,6 +20,7 @@ void populateGameWorld();
 
 int main(int argc, char *argv[]) {
 	df::LogManager &log_manager = df::LogManager::getInstance();
+	
 
 	//comment this out after development
 	log_manager.setFlush(true);
@@ -42,11 +47,18 @@ int main(int argc, char *argv[]) {
 
 
 void populateGameWorld(){
+	OutputView &ov = OutputView::getInstance();
 	//create an inventory view
 	new InventoryView;
 	//create a new monster
 	Monster *p_m = new Monster();
 	p_m->setPosition(df::Position(10, 10));
 	p_m->draw();
+
+	new Wanderer;
+
+	new StatsView;
+	new Level;
+	
 
 }

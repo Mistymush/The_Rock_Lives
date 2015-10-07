@@ -1,5 +1,6 @@
 /*
 header file which defines the StatsView class
+author: August Beers
 */
 
 #ifndef _STATS_VIEW_
@@ -8,6 +9,8 @@ header file which defines the StatsView class
 #include "Object.h"
 #include "ObjectList.h"
 #include "ObjectListIterator.h"
+#include "Position.h"
+
 
 class StatsView : public df::Object{
 
