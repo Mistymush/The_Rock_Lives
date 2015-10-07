@@ -58,7 +58,7 @@ void populateGameWorld(){
 	new Wanderer;
 
 	new StatsView;
-	new Level;
+	//new Level;
 	
 
 }
