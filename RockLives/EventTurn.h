@@ -6,15 +6,15 @@
 #include "Event.h"
 #include "Object.h"
 
-namespace df{
+
 	const std::string TURN_EVENT = "df::turn";
 
-	class EventTurn : public Event{
+	class EventTurn : public df::Event{
 		private:
 			
 		public:
 			
 			EventTurn();
 	};
-}
+
 #endif

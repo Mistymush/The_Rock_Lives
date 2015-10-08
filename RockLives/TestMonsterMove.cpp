@@ -17,11 +17,11 @@ File whic contains main entry funtion of rock lives
 
 
 
-void populateGameWorld();
+void populateMonsterMove();
 /*
 int main(int argc, char *argv[]) {
 	df::LogManager &log_manager = df::LogManager::getInstance();
-	
+
 
 	//comment this out after development
 	log_manager.setFlush(true);
@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
 
 
 	//Instantiate objects
-	populateGameWorld();
+	populateMonsterMove();
 
 	//Run the game
 	game_manager.run();
@@ -45,36 +45,22 @@ int main(int argc, char *argv[]) {
 	//Shut down the game
 	game_manager.shutDown();
 }
-*/
 
-void populateGameWorld(){
+*/
+void populateMonsterMove(){
 	OutputView &ov = OutputView::getInstance();
-	
-	
-	//create a new monster
-	Monster *p_m = new Monster();
-	p_m->setPosition(df::Position(10, 10));
-	p_m->draw();
 
 	Wanderer *wanderer = new Wanderer;
 	//create an inventory view
 	new InventoryView(wanderer);
 	new StatsView;
-	//new Level;
-	new Weapon(30);
-	new Weapon(31);
 
-	new Weapon(33);
-	new Weapon(34);
-	new Weapon(35);
-	new Weapon(36);
-	new Weapon(37);
-	new Weapon(38);
-	new Weapon(38);
-	new Weapon(39);
-	new Weapon(40);
-	new Weapon(41);
+	//create a new monster
+	Monster *p_m = new Monster();
+	p_m->setPosition(df::Position(wanderer->getPosition().getX() + 15, wanderer->getPosition().getY()));
+	//p_m->draw();
 	
-	
+
+
 
 }

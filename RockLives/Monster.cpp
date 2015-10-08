@@ -8,6 +8,8 @@ Author: @Marco Duran
 #include "EventTurn.h"
 #include "EventCollision.h"
 #include "Utility.h"
+#include "ObjectList.h"
+#include "ObjectListIterator.h"
 //Game includes
 #include "Monster.h"
 #include "Node.h"
@@ -79,6 +81,7 @@ void Monster::setPosition(df::Position new_position){
 
 void Monster::move(int new_dir){
 	df::WorldManager &world_manager = df::WorldManager::getInstance();
+	df::GraphicsManager &graphics_manager = df::GraphicsManager::getInstance();
 	//Create all the possible positions to move the monster
 	df::Position right = df::Position(1, 0);
 	df::Position upRight = df::Position(1, 1);
@@ -88,43 +91,88 @@ void Monster::move(int new_dir){
 	df::Position downLeft = df::Position(-1, -1);
 	df::Position down = df::Position(0, -1);
 	df::Position downRight = df::Position(1, -1);
+	df::Position newPosition;
+	
 
+	
+	
 	//make a switch case for the direction recived from the pathfind string
-	int direction = new_dir;
-	switch (direction){
+	switch (new_dir){
 	case Direction::RIGHT :
-		world_manager.moveObject(this, df::Position((getPosition().getX() + right.getX()), (getPosition().getY() + right.getY())));
+		//if the monster is within the game world, allow move
+		newPosition = df::Position(getPosition().getX() + right.getX(), getPosition().getY() + right.getY());
+		if ((newPosition.getY() >= 0) && (newPosition.getY() < graphics_manager.getVertical() - 5)
+			&& (newPosition.getX() >= 22) && (newPosition.getX() < graphics_manager.getHorizontal() + 7))
+			if (world_manager.moveObject(this, newPosition) == 0)
+				setPosition(newPosition);
 		break;
 	case Direction::UPRIGHT:
-		world_manager.moveObject(this, df::Position((getPosition().getX() + upRight.getX()), (getPosition().getY() + upRight.getY())));
+		//if the monster is within the game world, allow move
+		newPosition = df::Position(getPosition().getX() + upRight.getX(), getPosition().getY() + upRight.getY());
+		if ((newPosition.getY() >= 0) && (newPosition.getY() < graphics_manager.getVertical() - 5)
+			&& (newPosition.getX() >= 22) && (newPosition.getX() < graphics_manager.getHorizontal() + 7))
+			if (world_manager.moveObject(this, newPosition) == 0)
+				setPosition(newPosition);
 		break;
 	case Direction::UP:
-		world_manager.moveObject(this, df::Position((getPosition().getX() + up.getX()), (getPosition().getY() + up.getY())));
+		//if the monster is within the game world, allow move
+		newPosition = df::Position(getPosition().getX() + up.getX(), getPosition().getY() + up.getY());
+		if ((newPosition.getY() >= 0) && (newPosition.getY() < graphics_manager.getVertical() - 5)
+			&& (newPosition.getX() >= 22) && (newPosition.getX() < graphics_manager.getHorizontal() + 7))
+			if (world_manager.moveObject(this, newPosition) == 0)
+				setPosition(newPosition);
 		break;
 	case Direction::UPLEFT:
-		world_manager.moveObject(this, df::Position((getPosition().getX() + upLeft.getX()), (getPosition().getY() + upLeft.getY())));
+		//if the monster is within the game world, allow move
+		newPosition = df::Position(getPosition().getX() + upLeft.getX(), getPosition().getY() + upLeft.getY());
+		if ((newPosition.getY() >= 0) && (newPosition.getY() < graphics_manager.getVertical() - 5)
+			&& (newPosition.getX() >= 22) && (newPosition.getX() < graphics_manager.getHorizontal() + 7))
+			if (world_manager.moveObject(this, newPosition) == 0)
+				setPosition(newPosition);
 		break;
 	case Direction::LEFT:
-		world_manager.moveObject(this, df::Position((getPosition().getX() + left.getX()), (getPosition().getY() + left.getY())));
+		//if the monster is within the game world, allow move
+		newPosition = df::Position(getPosition().getX() + left.getX(), getPosition().getY() + left.getY());
+		if ((newPosition.getY() >= 0) && (newPosition.getY() < graphics_manager.getVertical() - 5)
+			&& (newPosition.getX() >= 22) && (newPosition.getX() < graphics_manager.getHorizontal() + 7)){
+			if(world_manager.moveObject(this, newPosition) == 0)
+				setPosition(newPosition);
+		}
+		
 		break;
 	case Direction::DOWNLEFT:
-		world_manager.moveObject(this, df::Position((getPosition().getX() + downLeft.getX()), (getPosition().getY() + downLeft.getY())));
+		//if the monster is within the game world, allow move
+		newPosition = df::Position(getPosition().getX() + downLeft.getX(), getPosition().getY() + downLeft.getY());
+		if ((newPosition.getY() >= 0) && (newPosition.getY() < graphics_manager.getVertical() - 5)
+			&& (newPosition.getX() >= 22) && (newPosition.getX() < graphics_manager.getHorizontal() + 7))
+			if (world_manager.moveObject(this, newPosition) == 0)
+				setPosition(newPosition);
 		break;
 	case Direction::DOWN:
-		world_manager.moveObject(this, df::Position((getPosition().getX() + down.getX()), (getPosition().getY() + down.getY())));
+		//if the monster is within the game world, allow move
+		newPosition = df::Position(getPosition().getX() + down.getX(), getPosition().getY() + down.getY());
+		if ((newPosition.getY() >= 0) && (newPosition.getY() < graphics_manager.getVertical() - 5)
+			&& (newPosition.getX() >= 22) && (newPosition.getX() < graphics_manager.getHorizontal() + 7))
+			if (world_manager.moveObject(this, newPosition) == 0)
+				setPosition(newPosition);
 		break;
 	case Direction::DOWNRIGHT:
-		world_manager.moveObject(this, df::Position((getPosition().getX() + downRight.getX()), (getPosition().getY() + downRight.getY())));
-		break;
-	default:
+		//if the monster is within the game world, allow move
+		newPosition = df::Position(getPosition().getX() + downRight.getX(), getPosition().getY() + downRight.getY());
+		if ((newPosition.getY() >= 0) && (newPosition.getY() < graphics_manager.getVertical() - 5)
+			&& (newPosition.getX() >= 22) && (newPosition.getX() < graphics_manager.getHorizontal() + 7))
+			if (world_manager.moveObject(this, newPosition) == 0)
+				setPosition(newPosition);
 		break;
 	}
 }
 //handles the monster event
 int Monster::eventHandler(const df::Event *p_e){
 	df::LogManager & log_manager = df::LogManager::getInstance();
+	df::WorldManager &world_manager = df::WorldManager::getInstance();
 	log_manager.WriteMessage(p_e->getType().c_str());
 	df::Utility u;
+	int dir = 0;
 	
 	
 
@@ -133,10 +181,18 @@ int Monster::eventHandler(const df::Event *p_e){
 		hit(p_collision_event);
 		return 1;
 	}
-	if (p_e->getType() == df::TURN_EVENT){
-		const df::EventTurn *p_turn_event = dynamic_cast<const df::EventTurn *>(p_e);
-		wanderer_pos = wanderer->getPosition();
-		int dir = atoi((u.pathFind(pos, wanderer_pos).substr(0)).c_str());
+	if (p_e->getType() == TURN_EVENT){
+		const EventTurn *p_turn_event = dynamic_cast<const EventTurn *>(p_e);
+		df::ObjectList allObjects = world_manager.getAllobjects();
+		df::ObjectListIterator *li = new df::ObjectListIterator(&allObjects);
+		while (!li->isDone()){
+			if (li->currentObject()->getType() == "Wanderer"){
+				wanderer_pos = li->currentObject()->getPosition();
+			}
+			li->next();
+		}
+		dir = atoi((u.pathFind(pos, wanderer_pos).substr(0,1)).c_str());
+		//dir = atoi((u.pathFind(pos, wanderer_pos)).c_str());
 		move(dir);
 		return 1;
 	}

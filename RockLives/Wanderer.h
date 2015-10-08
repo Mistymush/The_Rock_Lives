@@ -23,6 +23,7 @@ private:
 
 	void kbd(const df::EventKeyboard *p_keyboard_event);
 	void move(int dx, int dy);
+	void turn();
 
 public:
 	Wanderer();

@@ -1,5 +1,8 @@
+//Game includes
+#include "EventTurn.h"
 #include "Wanderer.h"
 #include "OutputView.h"
+//Engine includes
 #include "WorldManager.h"
 #include "GraphicsManager.h"
 #include "GameManager.h"
@@ -132,7 +135,14 @@ void Wanderer::move(int dx, int dy) {
 	if ((new_pos.getY() >= 0) && (new_pos.getY() < graphics_manager.getVertical() - 5)
 		&& (new_pos.getX() >= 22) && (new_pos.getX() < graphics_manager.getHorizontal() + 7)) {
 		world_manager.moveObject(this, new_pos);
+		turn();//execute a turn after you have moved
 	}
+}
+
+void Wanderer::turn(){
+	df::WorldManager &world_manager = df::WorldManager::getInstance();
+	EventTurn turn;
+	world_manager.onEvent(&turn);//sends a turn event to the world so the monsters can move
 }
 
 void Wanderer::setStrength(int new_strength) {

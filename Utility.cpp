@@ -104,7 +104,7 @@ std::string df::Utility::pathFind(const df::Position &posStart, const df::Positi
 			std::string path = "";
 			while (!(x == posStart.getX() && y == posStart.getY())){
 				j = dir_node_map[x][y];
-				c = '0' + ((j + dir / 2) % dir) + ',';
+				c = '0' + (j + dir / 2) % dir;
 				path = c + path;
 				x += dpos[j].getX();
 				y += dpos[j].getY();

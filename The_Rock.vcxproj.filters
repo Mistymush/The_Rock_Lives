@@ -61,6 +61,9 @@
     <Filter Include="RockLives\Source Files\Items">
       <UniqueIdentifier>{f0bc974b-6b79-412a-b66f-9aba51c29ab0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="RockLives\Source Files\TEST">
+      <UniqueIdentifier>{7aebf977-2eb6-4d00-848a-09f21b0750d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Test.h">
@@ -184,6 +187,9 @@
       <Filter>RockLives\Header Files\Items</Filter>
     </ClInclude>
     <ClInclude Include="RockLives\Node.h">
+      <Filter>RockLives\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RockLives\DropEvent.h">
       <Filter>RockLives\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -316,6 +322,12 @@
     </ClCompile>
     <ClCompile Include="RockLives\Node.cpp">
       <Filter>RockLives\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RockLives\DropEvent.cpp">
+      <Filter>RockLives\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RockLives\TestMonsterMove.cpp">
+      <Filter>RockLives\Source Files\TEST</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
