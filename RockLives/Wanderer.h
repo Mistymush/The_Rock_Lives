@@ -26,6 +26,7 @@ private:
 	//Armor armor; // The current armor the Wanderer has equipped
 	int exp; // The Wanderer's current amount of experience
 	int level; // The Wanderer's current level
+	int sight_radius;
 
 	void kbd(const df::EventKeyboard *p_keyboard_event);
 	void move(int dx, int dy);
@@ -56,7 +57,10 @@ public:
 	df::ObjectList getInventory();
 	char getIcon();
 	int eventHandler(const df::Event *p_e);
+	void setSightRadius(int new_sight_radius);
+	int getSightRadius();
 	void draw();
+	void setVisibleArea();
 	~Wanderer();
 
 };

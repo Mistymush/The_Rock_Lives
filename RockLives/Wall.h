@@ -9,6 +9,7 @@ class Wall : public df::Object {
 
 private:
 	char icon;
+	bool seen;
 	df::Color color;
 
 public:
@@ -16,6 +17,8 @@ public:
 	void setIcon(char new_icon);
 	char getIcon();
 	void setColor(df::Color new_color);
+	void setSeen(bool is_seen);
+	bool getSeen();
 	df::Color getColor();
 	void draw();
 };

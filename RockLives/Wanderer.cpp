@@ -1,11 +1,14 @@
 //Game includes
 #include "EventTurn.h"
 #include "Wanderer.h"
+#include "Wall.h"
 #include "OutputView.h"
 //Engine includes
 #include "WorldManager.h"
 #include "GraphicsManager.h"
 #include "GameManager.h"
+#include "ObjectList.h"
+#include "ObjectListIterator.h"
 
 Wanderer::Wanderer() {
 
@@ -28,6 +31,8 @@ Wanderer::Wanderer() {
 
 	setExp(0);
 	setLevel(1);
+	setSightRadius(50);
+	setVisibleArea();
 }
 
 int Wanderer::eventHandler(const df::Event *p_e) {
@@ -46,48 +51,56 @@ void Wanderer::kbd(const df::EventKeyboard *p_keyboard_event) {
 	case df::Keyboard::NUMPAD1: //down-left
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			move(-1, 1);
+			setVisibleArea();
 			//output_view.setOutput("");
 		}
 		break;
 	case df::Keyboard::NUMPAD2: //down
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			move(0, 1);
+			setVisibleArea();
 			//output_view.setOutput("");
 		}
 		break;
 	case df::Keyboard::NUMPAD3: //down-right
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			move(1, 1);
+			setVisibleArea();
 			//output_view.setOutput("");
 		}
 		break;
 	case df::Keyboard::NUMPAD4: //left
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			move(-1, 0);
+			setVisibleArea();
 			//output_view.setOutput("");
 		}
 		break;
 	case df::Keyboard::NUMPAD6: //right
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			move(1, 0);
+			setVisibleArea();
 			//output_view.setOutput("");
 		}
 		break;
 	case df::Keyboard::NUMPAD7: //up-left
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			move(-1, -1);
+			setVisibleArea();
 			//output_view.setOutput("");
 		}
 		break;
 	case df::Keyboard::NUMPAD8: //up
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			move(0, -1);
+			setVisibleArea();
 			//output_view.setOutput("");
 		}
 		break;
 	case df::Keyboard::NUMPAD9: //up-right
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			move(1, -1);
+			setVisibleArea();
 			//output_view.setOutput("");
 		}
 		break;
@@ -99,21 +112,25 @@ void Wanderer::kbd(const df::EventKeyboard *p_keyboard_event) {
 	case df::Keyboard::LEFTARROW:  //move left with arrow key
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			move(-1, 0);
+			setVisibleArea();
 		}
 		break;
 	case df::Keyboard::RIGHTARROW: //move right with arrow key
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			move(1, 0);
+			setVisibleArea();
 		}
 		break;
 	case df::Keyboard::UPARROW:  //move up with arrow key
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			move(0, -1);
+			setVisibleArea();
 		}
 		break;
 	case df::Keyboard::DOWNARROW:  //move down with arrow key
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			move(0, 1);
+			setVisibleArea();
 		}
 		break;
 
@@ -177,6 +194,20 @@ void Wanderer::feed(int new_hunger) {
 	}
 	else{
 		current_hunger = max_hunger;
+	}
+}
+
+void Wanderer::setVisibleArea() {
+	df::WorldManager &world_manager = df::WorldManager::getInstance();
+	df::ObjectList ol = world_manager.getAllobjects();
+	df::ObjectListIterator li(&ol);
+	for (li.first(); !li.isDone(); li.next()) {
+		if (li.currentObject()->getType() == "Mountain") {
+			if ((pow(li.currentObject()->getPosition().getX() - getPosition().getX(), 2) + pow(li.currentObject()->getPosition().getY() - getPosition().getY(), 2)) <= (sight_radius ^ 2)) {
+				Wall *p_w = dynamic_cast <Wall *> (li.currentObject());
+				p_w->setSeen(true);
+			}
+		}
 	}
 }
 
@@ -244,6 +275,14 @@ df::ObjectList Wanderer::getInventory() {
 
 char Wanderer::getIcon() {
 	return icon;
+}
+
+void Wanderer::setSightRadius(int new_sight_radius) {
+	sight_radius = new_sight_radius;
+}
+
+int Wanderer::getSightRadius() {
+	return sight_radius;
 }
 
 void Wanderer::draw() {
