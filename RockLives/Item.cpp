@@ -53,6 +53,11 @@ int Item::eventHandler(const df::Event *p_e){
 		drop(p_drop_event);
 		return 1;
 	}
+	if (p_e->getType() == APPLY_EVENT) {
+		const ApplyEvent *p_apply_event = dynamic_cast <const ApplyEvent *> (p_e);
+		apply(p_apply_event);
+		return 1;
+	}
 	
 	return -1;
 }
@@ -117,4 +122,8 @@ void Item::drop(const DropEvent *p_drop_event){
 	Wanderer *current_wanderer = event.getCurrentWaderer();
 	df::Object::setPosition(current_wanderer->getPosition());
 		
+}
+
+void Item::apply(const ApplyEvent *p_apply_event){
+	//this shouldn not run
 }

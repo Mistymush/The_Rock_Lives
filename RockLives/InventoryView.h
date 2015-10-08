@@ -15,6 +15,7 @@ Author: August Beers
 #include "EventKeyboard.h"
 #include "Wanderer.h"
 #include "DropEvent.h"
+#include "ApplyEvent.h"
 
 class InventoryView : public df::Object{
 
@@ -40,6 +41,8 @@ public:
 	void move(int dy);
 
 	void drop();
+
+	void apply();
 
 	
 

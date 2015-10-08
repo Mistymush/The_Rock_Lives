@@ -88,6 +88,10 @@ void InventoryView::keyHandle(const df::EventKeyboard *p_keyboard_event) {
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED)
 			drop();
 		break;
+	case df::Keyboard::A:			// apply
+		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED)
+			apply();
+		break;
 	}
 }
 
@@ -106,6 +110,9 @@ void InventoryView::move(int dy) {
 }
 
 
+/*
+Select to drop an item from the inventory by pressing d
+*/
 void InventoryView::drop(){
 	df::WorldManager &world_manager = df::WorldManager::getInstance();
 
@@ -116,6 +123,24 @@ void InventoryView::drop(){
 	if (!item.isEmpty()){
 		df::ObjectListIterator item_list = df::ObjectListIterator(&item);
 		DropEvent event = DropEvent(my_wanderer);
+		item_list.currentObject()->eventHandler(&event);
+	}
+}
+
+/*
+Selt an item to apply
+*/
+void InventoryView::apply(){
+	df::WorldManager &world_manager = df::WorldManager::getInstance();
+
+	df::Position tmp = df::Object::getPosition();
+	tmp.setX(tmp.getX() + 2);
+	df::ObjectList item = world_manager.isCollision(this, tmp);
+
+	if (!item.isEmpty()){
+		df::ObjectListIterator item_list = df::ObjectListIterator(&item);
+
+		ApplyEvent event = ApplyEvent(my_wanderer);
 		item_list.currentObject()->eventHandler(&event);
 	}
 }

@@ -22,3 +22,11 @@ Weapon::~Weapon(){
 
 }
 
+/*
+apply this weapon to the wanderer
+*/
+void Weapon::apply(const ApplyEvent *p_apply_event){
+	ApplyEvent event = *p_apply_event;
+	Wanderer *current_wanderer = event.getCurrentWaderer();
+	current_wanderer->setStrength(damage);
+}

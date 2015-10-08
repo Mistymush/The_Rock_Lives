@@ -11,6 +11,7 @@ Author: August Beers
 #include "EventCollision.h"
 #include "WorldManager.h"
 #include "DropEvent.h"
+#include "ApplyEvent.h"
 
 class Item : public df::Object {
 
@@ -47,6 +48,8 @@ public:
 	void pickUp(const df::EventCollision *p_collision_event);
 
 	void drop(const DropEvent *p_drop_event);
+
+	virtual void apply(const ApplyEvent *p_apply_event);
 };
 
 #endif // !_ITEM_

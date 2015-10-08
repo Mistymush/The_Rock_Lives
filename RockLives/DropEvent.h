@@ -18,8 +18,9 @@ private:
 public:
 		DropEvent(Wanderer *wanderer);
 
+
 		Wanderer *getCurrentWaderer();
 };
 
 
-#endif //!EVENT_OUT
+#endif //!_DROP_EVENT_

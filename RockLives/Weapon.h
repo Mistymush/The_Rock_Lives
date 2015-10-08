@@ -22,6 +22,8 @@ public:
 
 	~Weapon();
 
+	void apply(const ApplyEvent *p_apply_event);
+
 };
 
 #endif // !_Weapon_
