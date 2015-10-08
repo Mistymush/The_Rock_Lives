@@ -4,9 +4,13 @@
 *******************************/
 #ifndef _MONSTER_H_
 #define _MONSTER_H_
+//System includes
+#include <string>
+
 //Engine includes
 #include "ObjectList.h"
 #include "Position.h"
+#include "Wanderer.h"
 //Game includes
 
 class Monster : public df::Object{
@@ -18,13 +22,17 @@ class Monster : public df::Object{
 		int speed;
 		int strength;
 		df::ObjectList inventory;
+		df::Position wanderer_pos;
+		Wanderer *wanderer;
+		
 
 	public:
 		Monster();
 		~Monster();
-		void move();
+		void move(int new_dir);
 		int eventHandler(const df::Event *p_e);
 		void draw();
+		void hit(const df::EventCollision *p_c);
 
 		//name
 		std::string getName(void);
@@ -44,5 +52,7 @@ class Monster : public df::Object{
 		//Position
 		df::Position getPosition();
 		void setPosition(df::Position new_position);
+
+		
 };
 #endif

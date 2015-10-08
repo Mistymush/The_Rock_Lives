@@ -8,6 +8,7 @@ Class which contsins utility functions
 //System includes
 #include <stdio.h>
 #include <time.h>
+#include <string>
 #include "Position.h"
 
 
@@ -26,7 +27,9 @@ namespace df{
 		//Return true if two positions intersect, else false
 		bool positionsIntersect(Position p1, Position p2);
 
-
+		//A-star
+		//Should return a string of direction digits
+		std::string pathFind(const df::Position &posStart, const df::Position &posFinish);
 	};
 
 

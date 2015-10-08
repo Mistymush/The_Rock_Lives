@@ -19,7 +19,7 @@ int Node::getDistance(){
 	return dist_traveled;
 }
 //Priority
-int Node::getPriority(){
+int Node::getPriority() const{
 	return priority;
 }
 
@@ -47,13 +47,3 @@ const int &Node::estimate(const df::Position &new_pos) const{
 	return(d);
 }
 
-//Determine the priority
-/*bool operator<(const Node &a, const Node &b){
-	return a.getPriority() > b.getPriority();
-}
-*/
-//A-star
-//Should return a string of direction digits
-std::string pathFind(const df::Position &posStart, const df::Position &posFinish){
-	return "";
-}
