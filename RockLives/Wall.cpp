@@ -2,6 +2,13 @@
 #include "WorldManager.h"
 #include "GraphicsManager.h"
 
+
+Wall::Wall() {
+	setType("Wall");
+	setIcon('W');
+	setColor(df::WHITE);
+}
+
 void Wall::setIcon(char new_icon) {
 	icon = new_icon;
 }

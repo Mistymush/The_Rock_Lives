@@ -8,11 +8,16 @@ class Level : public df::Object{
 private:
 	int width;
 	int height;
+	int max_path_width;
+	int min_path_width;
 	char** level_grid;
+	df::Position start_pos;
+	df::Position end_pos;
 
 public:
 	Level();
 	~Level();
+	void generateLevel();
 	void setWidth(int new_width);
 	int getWidth();
 	void setHeight(int new_height);

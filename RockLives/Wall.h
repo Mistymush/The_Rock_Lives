@@ -12,6 +12,7 @@ private:
 	df::Color color;
 
 public:
+	Wall();
 	void setIcon(char new_icon);
 	char getIcon();
 	void setColor(df::Color new_color);

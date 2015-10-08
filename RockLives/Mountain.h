@@ -7,10 +7,6 @@
 
 class Mountain : public Wall {
 
-private:
-	char icon;
-	df::Color color;
-
 public:
 	Mountain();
 };
