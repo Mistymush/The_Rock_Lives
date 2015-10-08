@@ -28,7 +28,10 @@ Monster::Monster(){
 	
 }
 
-Monster::~Monster(){}
+Monster::~Monster(){
+//Give the wanderer experience
+//If polish is done, drop item in inventory
+}
 
 //Gets the name of the monster
 std::string Monster::getName(){
@@ -207,5 +210,19 @@ void Monster::draw(){
 }
 
 void Monster::hit(const df::EventCollision *p_c){
-
+	df::LogManager &log_manager = df::LogManager::getInstance();
+	//If Monster on Monster, ignore
+	if ((p_c->getObject()->getType() == "Monster") &&
+		(p_c->getHitObject()->getType() == "Monster"))
+		return;
+	//If Monster on Item, ignore 
+	if ((p_c->getObject()->getType() == "Item") ||
+		(p_c->getHitObject()->getType() == "Item"))
+		return;
+	//If Monster on Wanderer, do damage
+	if ( (p_c->getHitObject()->getType() == "Wanderer")){
+		log_manager.WriteMessage("Wanderer was hit!");
+	}
+	
+	
 }

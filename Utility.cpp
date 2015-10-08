@@ -61,6 +61,7 @@ bool df::Utility::positionsIntersect(Position p1, Position p2){
 
 //A-star
 //Should return a string of direction digits
+//Author: Marco Duran
 std::string df::Utility::pathFind(const df::Position &posStart, const df::Position &posFinish){
 	static priority_queue<Node> pq[2];
 	static int pqi; //priority queue index
