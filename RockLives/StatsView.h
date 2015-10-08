@@ -10,6 +10,7 @@ author: August Beers
 #include "ObjectList.h"
 #include "ObjectListIterator.h"
 #include "Position.h"
+#include "Wanderer.h"
 
 
 class StatsView : public df::Object{

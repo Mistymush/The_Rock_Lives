@@ -49,20 +49,32 @@ int main(int argc, char *argv[]) {
 
 void populateGameWorld(){
 	OutputView &ov = OutputView::getInstance();
-	//create an inventory view
-	new InventoryView;
+	
+	
 	//create a new monster
 	Monster *p_m = new Monster();
 	p_m->setPosition(df::Position(10, 10));
 	p_m->draw();
 
-	new Wanderer;
-
+	Wanderer *wanderer = new Wanderer;
+	//create an inventory view
+	new InventoryView(wanderer);
 	new StatsView;
 	//new Level;
 	new Weapon(30);
 	new Weapon(31);
 
+	new Weapon(33);
+	new Weapon(34);
+	new Weapon(35);
+	new Weapon(36);
+	new Weapon(37);
+	new Weapon(38);
+	new Weapon(38);
+	new Weapon(39);
+	new Weapon(40);
+	new Weapon(41);
+	
 	
 
 }

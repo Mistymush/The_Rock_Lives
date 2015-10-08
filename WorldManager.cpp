@@ -262,9 +262,7 @@ int WorldManager::moveObject(Object *p_o, Position where){
 			if (!doMove){
 				return -1;
 			}
-			else{
-				return 0;
-			}
+	
 
 		}// end list is not empty ( no collision
 	}//Object not solid

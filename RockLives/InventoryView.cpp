@@ -9,8 +9,10 @@ Author: August Beers
 /*
 Constructor of inventory vieww object
 */
-InventoryView::InventoryView(){
+InventoryView::InventoryView(Wanderer *new_wanderer){
 	setType("InventoryView");
+
+	my_wanderer = new_wanderer;
 	//Set starting location
 	df::GraphicsManager &g_m = df::GraphicsManager::getInstance();
 	df::Position pos(0,9);
@@ -82,10 +84,14 @@ void InventoryView::keyHandle(const df::EventKeyboard *p_keyboard_event) {
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED)
 			move(+1);
 		break;
-
+	case df::Keyboard::D:			// drop
+		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED)
+			drop();
+		break;
 	}
-
 }
+
+
 
 // Move up or down.
 void InventoryView::move(int dy) {
@@ -96,5 +102,20 @@ void InventoryView::move(int dy) {
 	// If stays on screen, allow move.
 	if ((new_pos.getY() >= 9) && (new_pos.getY() < graphics_manager.getVertical() - 5)){
 		world_manager.moveObject(this, new_pos);
+	}
+}
+
+
+void InventoryView::drop(){
+	df::WorldManager &world_manager = df::WorldManager::getInstance();
+
+	df::Position tmp = df::Object::getPosition();
+	tmp.setX(tmp.getX() + 2);
+	df::ObjectList item = world_manager.isCollision(this, tmp);
+
+	if (!item.isEmpty()){
+		df::ObjectListIterator item_list = df::ObjectListIterator(&item);
+		DropEvent event = DropEvent(my_wanderer);
+		item_list.currentObject()->eventHandler(&event);
 	}
 }

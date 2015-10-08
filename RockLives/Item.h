@@ -10,6 +10,7 @@ Author: August Beers
 #include "Object.h"
 #include "EventCollision.h"
 #include "WorldManager.h"
+#include "DropEvent.h"
 
 class Item : public df::Object {
 
@@ -18,6 +19,9 @@ private:
 	char icon;
 	//color of the icon
 	df::Color color;
+
+	//is this item in the inventory
+	bool inInventory;
 
 	//A short description of this item, (17 char max)
 	std::string description;
@@ -41,6 +45,8 @@ public:
 	void setColor(df::Color new_color);
 
 	void pickUp(const df::EventCollision *p_collision_event);
+
+	void drop(const DropEvent *p_drop_event);
 };
 
 #endif // !_ITEM_

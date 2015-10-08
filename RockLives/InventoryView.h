@@ -13,19 +13,20 @@ Author: August Beers
 #include "WorldManager.h"
 #include "Position.h"
 #include "EventKeyboard.h"
-
+#include "Wanderer.h"
+#include "DropEvent.h"
 
 class InventoryView : public df::Object{
 
 private:
-
+	Wanderer *my_wanderer;
 	//Wanderer with an inventory
 	
 
 public:
 
 	//Will take a pointer to the current wanderer
-	InventoryView();
+	InventoryView(Wanderer *new_wanderer);
 
 	~InventoryView();
 
@@ -37,6 +38,10 @@ public:
 
 	// Move up or down.
 	void move(int dy);
+
+	void drop();
+
+	
 
 };
 

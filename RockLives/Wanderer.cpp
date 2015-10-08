@@ -13,6 +13,7 @@ Wanderer::Wanderer() {
 	df::GraphicsManager &graphics_manager = df::GraphicsManager::getInstance();
 	df::Position pos(graphics_manager.getHorizontal() / 2, graphics_manager.getVertical() / 2);
 	setPosition(pos);
+	setAltitude(4);
 
 	setStrength(0);
 	setHunger(5);
@@ -128,7 +129,8 @@ void Wanderer::move(int dx, int dy) {
 	df::Position new_pos(getPosition().getX() + dx, getPosition().getY() + dy);
 	df::WorldManager &world_manager = df::WorldManager::getInstance();
 	df::GraphicsManager &graphics_manager = df::GraphicsManager::getInstance();
-	if ((new_pos.getY() > 0) && (new_pos.getY() < graphics_manager.getVertical() - 1)) {
+	if ((new_pos.getY() >= 0) && (new_pos.getY() < graphics_manager.getVertical() - 5)
+		&& (new_pos.getX() >= 22) && (new_pos.getX() < graphics_manager.getHorizontal() + 7)) {
 		world_manager.moveObject(this, new_pos);
 	}
 }
