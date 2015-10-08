@@ -19,13 +19,13 @@ Wanderer::Wanderer() {
 	setAltitude(4);
 
 	setStrength(0);
-	setHunger(5);
+	feed(5);
 	setMaxHunger(5);
-	setHp(10);
+
 	setMaxHp(10);
+	current_hp = max_hp;
 	inventory = df::ObjectList();
-	//weapon
-	//armor
+
 	setExp(0);
 	setLevel(1);
 }
@@ -145,6 +145,41 @@ void Wanderer::turn(){
 	world_manager.onEvent(&turn);//sends a turn event to the world so the monsters can move
 }
 
+/*
+Function which adds health to the wanderer
+Author: August Beers
+*/
+void Wanderer::addHp(int new_hp) {
+	if (new_hp < 0){
+		return;
+	}
+
+	if (new_hp <= max_hp - current_hp){
+		current_hp = current_hp + new_hp;
+	}
+	else{
+		current_hp = max_hp;
+	}
+	
+}
+
+/*
+Function which adds hunger points to the wanderer
+Author: August Beers
+*/
+void Wanderer::feed(int new_hunger) {
+	if (new_hunger < 0){
+		return;
+	}
+
+	if (new_hunger <= max_hunger - current_hunger){
+		current_hunger = current_hunger + new_hunger;
+	}
+	else{
+		current_hunger = max_hunger;
+	}
+}
+
 void Wanderer::setStrength(int new_strength) {
 	strength = new_strength;
 }
@@ -153,9 +188,7 @@ int Wanderer::getStrength() {
 	return strength;
 }
 
-void Wanderer::setHunger(int new_hunger) {
-	current_hunger = new_hunger;
-}
+
 
 int Wanderer::getHunger() {
 	return current_hunger;
@@ -169,9 +202,6 @@ int Wanderer::getMaxHunger() {
 	return max_hunger;
 }
 
-void Wanderer::setHp(int new_hp) {
-	current_hp = new_hp;
-}
 
 int Wanderer::getHp() {
 	return current_hp;
@@ -195,6 +225,13 @@ int Wanderer::getExp() {
 
 void Wanderer::setLevel(int new_level) {
 	level = new_level;
+}
+
+void  Wanderer::setDefence(int new_defence){
+	defence = new_defence;
+}
+int  Wanderer::getDefence(){
+	return defence;
 }
 
 int Wanderer::getLevel() {

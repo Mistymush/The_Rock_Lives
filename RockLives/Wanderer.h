@@ -8,6 +8,12 @@
 class Wanderer : public df::Object {
 
 private:
+
+	//Pointer to the wanderer's equiped weapon
+
+	//the wanderer's equiped armor bonus
+	int defence;
+
 	int strength; // The Wanderer's strength stat
 	int current_hunger; // The Wanderer's current hunger level
 	int max_hunger; // The Wanderer's max hunger level (Not hungry at all)
@@ -26,14 +32,18 @@ private:
 	void turn();
 
 public:
+	//add health to the wandere
+	void addHp(int new_hp);
+	void feed(int new_hunger);
+
 	Wanderer();
 	void setStrength(int new_strength);
 	int getStrength();
-	void setHunger(int new_hunger);
+	
 	int getHunger();
 	void setMaxHunger(int new_max_hunger);
 	int getMaxHunger();
-	void setHp(int new_hp);
+	
 	int getHp();
 	void setMaxHp(int new_max_hp);
 	int getMaxHp();
@@ -41,6 +51,8 @@ public:
 	int getExp();
 	void setLevel(int new_level);
 	int getLevel();
+	void setDefence(int new_defence);
+	int getDefence();
 	df::ObjectList getInventory();
 	char getIcon();
 	int eventHandler(const df::Event *p_e);

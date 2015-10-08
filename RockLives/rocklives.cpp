@@ -14,6 +14,10 @@ File whic contains main entry funtion of rock lives
 #include "OutputView.h"
 #include "Level.h"
 #include "Weapon.h"
+#include "Armor.h"
+#include "HealthPotion.h"
+#include "StrengthPotion.h"
+#include "FoodRation.h"
 
 
 
@@ -53,7 +57,7 @@ void populateGameWorld(){
 	
 	//create a new monster
 	Monster *p_m = new Monster();
-	p_m->setPosition(df::Position(10, 10));
+	p_m->setPosition(df::Position(68, 12));
 	p_m->draw();
 
 	Wanderer *wanderer = new Wanderer();
@@ -61,19 +65,17 @@ void populateGameWorld(){
 	new InventoryView(wanderer);
 	new StatsView(wanderer);
 	new Level;
-	new Weapon(30);
-	new Weapon(31);
 
-	new Weapon(33);
-	new Weapon(34);
-	new Weapon(35);
-	new Weapon(36);
-	new Weapon(37);
-	new Weapon(38);
-	new Weapon(38);
-	new Weapon(39);
-	new Weapon(40);
-	new Weapon(41);
+	new Weapon(49);
+	new Weapon(50);
+	new Weapon(51);
+
+	new Armor(df::Position( 52, 10));
+	new HealthPotion(df::Position(53, 10));
+	new StrengthPotion(df::Position(54, 10));
+	new FoodRation(df::Position(55, 10));
+
+	
 	
 	
 

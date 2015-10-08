@@ -195,6 +195,18 @@
     <ClInclude Include="RockLives\ApplyEvent.h">
       <Filter>RockLives\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RockLives\StrengthPotion.h">
+      <Filter>RockLives\Header Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="RockLives\Armor.h">
+      <Filter>RockLives\Header Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="RockLives\HealthPotion.h">
+      <Filter>RockLives\Header Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="RockLives\FoodRation.h">
+      <Filter>RockLives\Header Files\Items</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test.cpp">
@@ -334,6 +346,18 @@
     </ClCompile>
     <ClCompile Include="RockLives\ApplyEvent.cpp">
       <Filter>RockLives\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RockLives\StrengthPotion.cpp">
+      <Filter>RockLives\Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="RockLives\Armor.cpp">
+      <Filter>RockLives\Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="RockLives\HealthPotion.cpp">
+      <Filter>RockLives\Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="RockLives\FoodRation.cpp">
+      <Filter>RockLives\Source Files\Items</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
