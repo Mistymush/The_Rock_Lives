@@ -12,17 +12,21 @@ author: August Beers
 #include "Position.h"
 #include "Wanderer.h"
 
+//engine includes
+#include <sstream>
+
 
 class StatsView : public df::Object{
 
 private:
 
 	//Wanderer with an inventory
+	Wanderer *my_wanderer;
 
 
 public:
 
-	StatsView();
+	StatsView(Wanderer *new_wanderer);
 
 	~StatsView();
 

@@ -18,7 +18,7 @@ File whic contains main entry funtion of rock lives
 
 
 void populateGameWorld();
-/*
+
 int main(int argc, char *argv[]) {
 	df::LogManager &log_manager = df::LogManager::getInstance();
 	
@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
 	//Shut down the game
 	game_manager.shutDown();
 }
-*/
+
 
 void populateGameWorld(){
 	OutputView &ov = OutputView::getInstance();
@@ -56,11 +56,11 @@ void populateGameWorld(){
 	p_m->setPosition(df::Position(10, 10));
 	p_m->draw();
 
-	Wanderer *wanderer = new Wanderer;
+	Wanderer *wanderer = new Wanderer();
 	//create an inventory view
 	new InventoryView(wanderer);
-	new StatsView;
-	//new Level;
+	new StatsView(wanderer);
+	new Level;
 	new Weapon(30);
 	new Weapon(31);
 

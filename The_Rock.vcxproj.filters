@@ -192,6 +192,9 @@
     <ClInclude Include="RockLives\DropEvent.h">
       <Filter>RockLives\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RockLives\ApplyEvent.h">
+      <Filter>RockLives\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test.cpp">
@@ -328,6 +331,9 @@
     </ClCompile>
     <ClCompile Include="RockLives\TestMonsterMove.cpp">
       <Filter>RockLives\Source Files\TEST</Filter>
+    </ClCompile>
+    <ClCompile Include="RockLives\ApplyEvent.cpp">
+      <Filter>RockLives\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

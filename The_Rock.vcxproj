@@ -42,6 +42,7 @@
     <ClInclude Include="ObjectListIterator.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="Reticle.h" />
+    <ClInclude Include="RockLives\ApplyEvent.h" />
     <ClInclude Include="RockLives\DropEvent.h" />
     <ClInclude Include="RockLives\Node.h" />
     <ClInclude Include="RockLives\EventTurn.h" />
@@ -80,6 +81,7 @@
     <ClCompile Include="InputManger.cpp" />
     <ClCompile Include="ObjectList.cpp" />
     <ClCompile Include="Reticle.cpp" />
+    <ClCompile Include="RockLives\ApplyEvent.cpp" />
     <ClCompile Include="RockLives\DropEvent.cpp" />
     <ClCompile Include="RockLives\Node.cpp" />
     <ClCompile Include="RockLives\EventTurn.cpp" />

@@ -50,14 +50,14 @@ int main(int argc, char *argv[]) {
 void populateMonsterMove(){
 	OutputView &ov = OutputView::getInstance();
 
-	Wanderer *wanderer = new Wanderer;
+	Wanderer &wanderer = Wanderer();
 	//create an inventory view
-	new InventoryView(wanderer);
-	new StatsView;
+	new InventoryView(&wanderer);
+	new StatsView(&wanderer);
 
 	//create a new monster
 	Monster *p_m = new Monster();
-	p_m->setPosition(df::Position(wanderer->getPosition().getX() + 15, wanderer->getPosition().getY()));
+	p_m->setPosition(df::Position(wanderer.getPosition().getX() + 15, wanderer.getPosition().getY()));
 	//p_m->draw();
 	
 

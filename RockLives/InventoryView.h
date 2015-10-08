@@ -20,9 +20,9 @@ Author: August Beers
 class InventoryView : public df::Object{
 
 private:
-	Wanderer *my_wanderer;
-	//Wanderer with an inventory
 	
+	//Wanderer with an inventory
+	Wanderer *my_wanderer;
 
 public:
 
