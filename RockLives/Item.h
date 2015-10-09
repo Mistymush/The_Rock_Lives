@@ -20,6 +20,8 @@ private:
 	char icon;
 	//color of the icon
 	df::Color color;
+	//is item equipped
+	bool is_equipped;
 
 	//is this item in the inventory
 	bool inInventory;
@@ -50,6 +52,8 @@ public:
 	void drop(const DropEvent *p_drop_event);
 
 	virtual void apply(const ApplyEvent *p_apply_event);
+
+	void setEquipped(bool new_value);
 };
 
 #endif // !_ITEM_

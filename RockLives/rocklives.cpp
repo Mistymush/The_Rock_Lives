@@ -3,6 +3,7 @@ File whic contains main entry funtion of rock lives
 */
 
 
+#include <math.h>
 
 
 #include "GameManager.h"
@@ -25,7 +26,7 @@ void populateGameWorld();
 
 int main(int argc, char *argv[]) {
 	df::LogManager &log_manager = df::LogManager::getInstance();
-	
+	srand(time(NULL));
 
 	//comment this out after development
 	log_manager.setFlush(true);

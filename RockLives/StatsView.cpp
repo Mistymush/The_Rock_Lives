@@ -81,19 +81,21 @@ void StatsView::draw(){
 	df::Position Stast_max_output(8, 1);
 	df::Position sign(10, 1);
 	graphics_manager.drawString(stats, "Health: ", df::LEFT_JUSTIFIED, df::RED);
-	graphics_manager.drawString(Stast_max_output, max_hp, df::LEFT_JUSTIFIED, df::RED);
+	graphics_manager.drawString(stats_output, max_hp, df::LEFT_JUSTIFIED, df::RED);
 	graphics_manager.drawString(sign, "/", df::LEFT_JUSTIFIED, df::RED);
-	graphics_manager.drawString(stats_output, hp, df::LEFT_JUSTIFIED, df::RED);
+	graphics_manager.drawString(Stast_max_output, hp, df::LEFT_JUSTIFIED, df::RED);
 
 	stats.setY(2);
 	stats_output.setY(2);
+	stats_output.setX(12);
 	Stast_max_output.setY(2);
 	sign.setY(2);
+	sign.setX(11);
 
 	graphics_manager.drawString(stats, "Hunger: ", df::LEFT_JUSTIFIED, df::RED);
-	graphics_manager.drawString(Stast_max_output, max_hunger, df::LEFT_JUSTIFIED, df::RED);
+	graphics_manager.drawString(stats_output, max_hunger, df::LEFT_JUSTIFIED, df::RED);
 	graphics_manager.drawString(sign, "/", df::LEFT_JUSTIFIED, df::RED);
-	graphics_manager.drawString(stats_output, hunger, df::LEFT_JUSTIFIED, df::RED);
+	graphics_manager.drawString(Stast_max_output, hunger, df::LEFT_JUSTIFIED, df::RED);
 
 	stats.setY(3);
 	stats_output.setXY(10, 3);

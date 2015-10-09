@@ -21,11 +21,11 @@ Monster::Monster(){
 	setType("Monster");
 	setSolidness(df::Solidness::HARD);
 	setAltitude(3);
-	name = "Monster";
-	icon = 'w';
-	curr_health = 1;
+	type = "Monster";
+	icon = 'm';
+	curr_health = 3;
 	speed = 1;
-	strength = 1;
+	strength = 3;
 	
 	
 }
@@ -36,12 +36,12 @@ Monster::~Monster(){
 }
 
 //Gets the name of the monster
-std::string Monster::getName(){
-	return name;
+std::string Monster::getType(){
+	return type;
 }
 //Sets the name of the monster
-void Monster::setName(std::string new_name){
-	name = new_name;
+void Monster::setType(std::string new_type){
+	type = new_type;
 }
 //Gets the icon of the monster
 char Monster::getIcon(){
@@ -183,7 +183,6 @@ int Monster::eventHandler(const df::Event *p_e){
 	
 
 	if (p_e->getType() == df::COLLISION_EVENT){
-		ov.setOutput("Monster begins to attack!");
 		const df::EventCollision *p_collision_event = dynamic_cast<const df::EventCollision *>(p_e);
 		hit(p_collision_event);
 		return 1;
@@ -218,33 +217,27 @@ void Monster::hit(const df::EventCollision *p_c){
 	df::WorldManager &world_manager = df::WorldManager::getInstance();
 	df::LogManager &log_manager = df::LogManager::getInstance();
 	OutputView &ov = OutputView::getInstance();
-	//If Monster on Monster, ignore
-	if ((p_c->getObject()->getType() == "Monster") &&
-		(p_c->getHitObject()->getType() == "Monster"))
-		return;
-	//If Monster on Item, ignore 
-	if ((p_c->getObject()->getType() == "Item") ||
-		(p_c->getHitObject()->getType() == "Item"))
-		return;
+	Wanderer *wanderer;
+	
 	//If Monster on Wanderer, do damage
-	if ((p_c->getHitObject()->getType() == "Wanderer") || (p_c->getObject()->getType() == "Wanderer")){
-		ov.setOutput(p_c->getHitObject()->getType() + " was hit!");
+	if ((p_c->getHitObject()->getType() == "Wanderer")){
+		wanderer = dynamic_cast<Wanderer *>(p_c->getHitObject());
+		ov.setOutput("Wanderer was hit!");
 		log_manager.WriteMessage("Wanderer was hit!");
 		//If Wanderer attacks monster, subtract weapon attack + strength
+		int weapon_damage = 0;
+		weapon_damage = wanderer->getStrength() + wanderer->getAttack() + rand()%wanderer->getRange();
 		//If the monster still has health...
+		
 		if (curr_health > 0){
-			setHealth(curr_health - 1);
-			ov.setOutput(getName() + " was hit!");
-			log_manager.WriteMessage("%s was hit!", getName().c_str());
+			setHealth(curr_health - weapon_damage);
+			ov.setOutput(getType() + " was hit!");
+			log_manager.WriteMessage("%s was hit!", getType().c_str());
 		}
 		else{
 			//Monster was defeated, had no more health
-			ov.setOutput(getName() + " was defeated!");
+			ov.setOutput(getType() + " was defeated!");
 			world_manager.markforDelete(this);
 		}
 	}
-	
-	
-	
-	
 }

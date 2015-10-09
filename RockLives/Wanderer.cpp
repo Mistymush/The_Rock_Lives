@@ -2,6 +2,8 @@
 #include "EventTurn.h"
 #include "Wanderer.h"
 #include "OutputView.h"
+#include "Wall.h"
+#include "Monster.h"
 //Engine includes
 #include "WorldManager.h"
 #include "GraphicsManager.h"
@@ -10,17 +12,18 @@
 Wanderer::Wanderer() {
 
 	icon = '@';
-	color = df::WHITE;
+	color = df::MAGENTA;
 
 	setType("Wanderer");
 	df::GraphicsManager &graphics_manager = df::GraphicsManager::getInstance();
-	df::Position pos(graphics_manager.getHorizontal() / 2, graphics_manager.getVertical() / 2);
+	df::Position pos(21, (graphics_manager.getVertical() / 2)-2);
 	setPosition(pos);
 	setAltitude(4);
 
-	setStrength(0);
-	feed(5);
-	setMaxHunger(5);
+	setStrength(2);
+	setMaxHunger(192);
+	current_hunger = 192;
+	
 
 	setMaxHp(10);
 	current_hp = max_hp;
@@ -28,6 +31,10 @@ Wanderer::Wanderer() {
 
 	setExp(0);
 	setLevel(1);
+	setSightRadius(50);
+	setVisibleArea();
+	setAttack(0);
+	setRange(0);
 }
 
 int Wanderer::eventHandler(const df::Event *p_e) {
@@ -36,6 +43,7 @@ int Wanderer::eventHandler(const df::Event *p_e) {
 		kbd(p_keyboard_event);
 		return 1;
 	}
+
 	return 0;
 }
 
@@ -46,48 +54,56 @@ void Wanderer::kbd(const df::EventKeyboard *p_keyboard_event) {
 	case df::Keyboard::NUMPAD1: //down-left
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			move(-1, 1);
+			setVisibleArea();
 			//output_view.setOutput("");
 		}
 		break;
 	case df::Keyboard::NUMPAD2: //down
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			move(0, 1);
+			setVisibleArea();
 			//output_view.setOutput("");
 		}
 		break;
 	case df::Keyboard::NUMPAD3: //down-right
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			move(1, 1);
+			setVisibleArea();
 			//output_view.setOutput("");
 		}
 		break;
 	case df::Keyboard::NUMPAD4: //left
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			move(-1, 0);
+			setVisibleArea();
 			//output_view.setOutput("");
 		}
 		break;
 	case df::Keyboard::NUMPAD6: //right
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			move(1, 0);
+			setVisibleArea();
 			//output_view.setOutput("");
 		}
 		break;
 	case df::Keyboard::NUMPAD7: //up-left
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			move(-1, -1);
+			setVisibleArea();
 			//output_view.setOutput("");
 		}
 		break;
 	case df::Keyboard::NUMPAD8: //up
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			move(0, -1);
+			setVisibleArea();
 			//output_view.setOutput("");
 		}
 		break;
 	case df::Keyboard::NUMPAD9: //up-right
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			move(1, -1);
+			setVisibleArea();
 			//output_view.setOutput("");
 		}
 		break;
@@ -99,21 +115,25 @@ void Wanderer::kbd(const df::EventKeyboard *p_keyboard_event) {
 	case df::Keyboard::LEFTARROW:  //move left with arrow key
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			move(-1, 0);
+			setVisibleArea();
 		}
 		break;
 	case df::Keyboard::RIGHTARROW: //move right with arrow key
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			move(1, 0);
+			setVisibleArea();
 		}
 		break;
 	case df::Keyboard::UPARROW:  //move up with arrow key
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			move(0, -1);
+			setVisibleArea();
 		}
 		break;
 	case df::Keyboard::DOWNARROW:  //move down with arrow key
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			move(0, 1);
+			setVisibleArea();
 		}
 		break;
 
@@ -139,10 +159,69 @@ void Wanderer::move(int dx, int dy) {
 	}
 }
 
+void Wanderer::hit(const df::EventCollision *p_c){
+	df::LogManager &log_manager = df::LogManager::getInstance();
+	OutputView &ov = OutputView::getInstance();
+	Monster *m;
+
+	//If Monster on Wanderer, do damage
+	if ((p_c->getHitObject()->getType() == "Monster")){
+		ov.setOutput("Monster was hit!");
+		log_manager.WriteMessage("Wanderer was hit!");
+		m = dynamic_cast<Monster *>(p_c->getHitObject());
+		//If Wanderer attacks monster, subtract weapon attack + strength
+		//int weapon_damage = 0;
+		//weapon_damage = wanderer->getStrength() + wanderer->getAttack() + rand() % wanderer->getRange();
+		//If the monster still has health...
+			hurt(m->getStrength());
+			ov.setOutput(m->getType() + " was hit!");
+			log_manager.WriteMessage("%s was hit!", m->getType().c_str());
+		
+	}
+}
+
+void Wanderer::setVisibleArea() {
+	df::WorldManager &world_manager = df::WorldManager::getInstance();
+	df::ObjectList ol = world_manager.getAllobjects();
+	df::ObjectListIterator li(&ol);
+	for (li.first(); !li.isDone(); li.next()) {
+		if (li.currentObject()->getType() == "Mountain") {
+			if ((pow(li.currentObject()->getPosition().getX() - getPosition().getX(), 2) + pow(li.currentObject()->getPosition().getY() - getPosition().getY(), 2)) <= (sight_radius ^ 2)) {
+				Wall *p_w = dynamic_cast <Wall *> (li.currentObject());
+				p_w->setSeen(true);
+			}
+		}
+	}
+}
+
 void Wanderer::turn(){
 	df::WorldManager &world_manager = df::WorldManager::getInstance();
+	if (current_hunger > 0){
+		current_hunger--;
+		
+	}  
+	else {
+		hurt(1);
+		
+	}
+
 	EventTurn turn;
 	world_manager.onEvent(&turn);//sends a turn event to the world so the monsters can move
+}
+
+void Wanderer::hurt(int damage){
+	OutputView &output_view = OutputView::getInstance();
+	df::WorldManager &world_manager = df::WorldManager::getInstance();
+	df::GameManager &game_manager = df::GameManager::getInstance();
+	if (damage > 0){
+		current_hp = current_hp - damage;
+		if (current_hp <= 0){
+			output_view.setOutput("Game Over! press space to quit.");
+			world_manager.markforDelete(this);
+			
+		}
+	
+	}
 }
 
 /*
@@ -246,6 +325,14 @@ char Wanderer::getIcon() {
 	return icon;
 }
 
+void Wanderer::setSightRadius(int new_sight_radius) {
+	sight_radius = new_sight_radius;
+}
+
+int Wanderer::getSightRadius() {
+	return sight_radius;
+}
+
 void Wanderer::draw() {
 	df::GraphicsManager &graphics_manager = df::GraphicsManager::getInstance();
 	graphics_manager.drawCh(getPosition(), icon, color);
@@ -254,4 +341,23 @@ void Wanderer::draw() {
 Wanderer::~Wanderer() {
 	df::GameManager &game_manager = df::GameManager::getInstance();
 	game_manager.getGameOver();
+}
+
+
+//some more getters and setters
+int Wanderer::getAttack(){
+	return weapon_attack;
+}
+void Wanderer::setAttack(int new_attack){
+	if (new_attack > 0){
+		weapon_attack = new_attack;
+	}
+}
+int Wanderer::getRange(){
+	return weapon_range;
+}
+void Wanderer::setRange(int new_range){
+	if (new_range > 0){
+		weapon_range = new_range;
+	}
 }

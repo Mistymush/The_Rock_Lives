@@ -26,7 +26,11 @@ FoodRation::~FoodRation(){
 apply potion to the wanderer
 */
 void FoodRation::apply(const ApplyEvent *p_apply_event){
+	df::WorldManager &world_manager = df::WorldManager::getInstance();
+
 	ApplyEvent event = *p_apply_event;
 	Wanderer *current_wanderer = event.getCurrentWaderer();
 	current_wanderer->feed(value);
+	world_manager.markforDelete(this);
+	
 }

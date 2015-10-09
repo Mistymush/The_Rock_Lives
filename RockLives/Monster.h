@@ -16,7 +16,7 @@
 class Monster : public df::Object{
 	private:
 		df::Position pos;
-		std::string name;
+		std::string type;
 		char icon;
 		int curr_health;
 		int speed;
@@ -35,8 +35,8 @@ class Monster : public df::Object{
 		void hit(const df::EventCollision *p_c);
 
 		//name
-		std::string getName(void);
-		void setName(std::string new_name);
+		std::string getType(void);
+		void setType(std::string new_type);
 		//icon
 		char getIcon(void);
 		void setIcon(char new_icon);

@@ -19,6 +19,7 @@ Item::Item(){
 	color = df::RED;
 	inInventory = false;
 	description = "Undfined";
+	is_equipped = false;
 
 }
 
@@ -100,20 +101,23 @@ void Item::pickUp(const df::EventCollision *p_collision_event){
 	df::LogManager &log_manager = df::LogManager::getInstance();
 	df::WorldManager &world_manager = df::WorldManager::getInstance();
 	
-	df::Position list_head_position(2, 9);
+	if (p_collision_event->getObject()->getType() == "Wanderer"){
 
-	for (int i = 0; i < 10; i++){
-		df::ObjectList collision = world_manager.isCollision(this, list_head_position);
-		if (collision.isEmpty()){
-			world_manager.moveObject(this, list_head_position);
-			inInventory = true;
-			return;
-		}
-		else{
-			list_head_position.setY(list_head_position.getY() + 1);
+		df::Position list_head_position(2, 9);
+
+		for (int i = 0; i < 10; i++){
+			df::ObjectList collision = world_manager.isCollision(this, list_head_position);
+			if (collision.isEmpty()){
+				world_manager.moveObject(this, list_head_position);
+				inInventory = true;
+				return;
+			}
+			else{
+				list_head_position.setY(list_head_position.getY() + 1);
+			}
 		}
 	}
-
+	
 }
 
 void Item::drop(const DropEvent *p_drop_event){
@@ -126,4 +130,9 @@ void Item::drop(const DropEvent *p_drop_event){
 
 void Item::apply(const ApplyEvent *p_apply_event){
 	//this shouldn not run
+}
+
+
+void Item::setEquipped(bool new_value){
+	is_equipped = new_value;
 }
