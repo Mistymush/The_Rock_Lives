@@ -101,6 +101,7 @@
     <ClCompile Include="RockLives\rocklives.cpp" />
     <ClCompile Include="RockLives\StatsView.cpp" />
     <ClCompile Include="RockLives\StrengthPotion.cpp" />
+    <ClCompile Include="RockLives\TestWanderer.cpp" />
     <ClCompile Include="RockLives\TestMonsterMove.cpp" />
     <ClCompile Include="RockLives\Wall.cpp" />
     <ClCompile Include="RockLives\Wanderer.cpp" />

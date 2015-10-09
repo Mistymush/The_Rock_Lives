@@ -359,5 +359,8 @@
     <ClCompile Include="RockLives\FoodRation.cpp">
       <Filter>RockLives\Source Files\Items</Filter>
     </ClCompile>
+    <ClCompile Include="RockLives\TestWanderer.cpp">
+      <Filter>RockLives\Source Files\TEST</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

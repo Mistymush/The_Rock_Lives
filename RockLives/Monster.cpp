@@ -19,6 +19,7 @@ Monster::Monster(){
 	df::WorldManager &world_manager = df::WorldManager::getInstance();
 	setType("Monster");
 	setSolidness(df::Solidness::HARD);
+	setAltitude(3);
 	name = "Monster";
 	icon = 'w';
 	curr_health = 1;
@@ -210,6 +211,7 @@ void Monster::draw(){
 }
 
 void Monster::hit(const df::EventCollision *p_c){
+	df::WorldManager &world_manager = df::WorldManager::getInstance();
 	df::LogManager &log_manager = df::LogManager::getInstance();
 	//If Monster on Monster, ignore
 	if ((p_c->getObject()->getType() == "Monster") &&
@@ -222,6 +224,18 @@ void Monster::hit(const df::EventCollision *p_c){
 	//If Monster on Wanderer, do damage
 	if ( (p_c->getHitObject()->getType() == "Wanderer")){
 		log_manager.WriteMessage("Wanderer was hit!");
+	}
+	//If Wanderer attacks monster, subtract weapon attack + strength
+	if ((p_c->getObject()->getType() == "Wanderer")){
+		//If the monster still has health...
+		if (curr_health > 0){
+			setHealth(curr_health - 1);
+			log_manager.WriteMessage("%s was hit!", getName().c_str());
+		}
+		else{
+			//Monster was defeated, had no more health
+			world_manager.markforDelete(this);
+		}
 	}
 	
 	
