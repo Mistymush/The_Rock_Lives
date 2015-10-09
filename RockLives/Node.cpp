@@ -42,7 +42,13 @@ const int &Node::estimate(const df::Position &new_pos) const{
 	posd = df::Position((new_pos.getX() - pos.getX()),(new_pos.getY() - pos.getY()));
 
 	//Euclidian distance
-	d = static_cast<int>(sqrt((posd.getX() * posd.getX()) + (posd.getY()*posd.getY())));
+	//d = static_cast<int>(sqrt((posd.getX() * posd.getX()) + (posd.getY()*posd.getY())));
+
+	// Manhattan distance
+	d=abs(posd.getX())+abs(posd.getY());
+
+	// Chebyshev distance
+	//d=max(abs(xd), abs(yd));
 
 	return(d);
 }
