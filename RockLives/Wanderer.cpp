@@ -4,6 +4,7 @@
 #include "OutputView.h"
 #include "Wall.h"
 #include "Monster.h"
+#include "Level.h"
 //Engine includes
 #include "WorldManager.h"
 #include "GraphicsManager.h"
@@ -144,10 +145,16 @@ void Wanderer::kbd(const df::EventKeyboard *p_keyboard_event) {
 		break;
 
 
-	case df::Keyboard::Q: //quit
+	case df::Keyboard::Q: //change level
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			df::WorldManager &world_manager = df::WorldManager::getInstance();
-			world_manager.markforDelete(this);
+			df::ObjectListIterator li(&world_manager.getAllobjects());
+			for (li.first(); !li.isDone(); li.next()) {
+				if (li.currentObject()->getType() == "Level") {
+					Level *p_l = dynamic_cast <Level *> (li.currentObject());
+					p_l->changeRoom(1);
+				}
+			}
 		}
 		break;
 	}

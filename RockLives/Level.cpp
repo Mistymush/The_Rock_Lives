@@ -24,19 +24,25 @@ Level::Level() {
 	generateLevel();
 }
 
+/* Generates a brand new level layout, creating a character array representing the level and populating the
+*  level based on that character array.
+*/
 void Level::generateLevel() {
+	// The starting and ending x and y positions of the path that will be carved out
 	int start_x = start_pos.getX();
 	int start_y = start_pos.getY();
 	int end_x = end_pos.getX();
 	int end_y = end_pos.getY();
+	// The x and y values that update as the algorithm traverses level grid
 	int x = start_pos.getX();
 	int y = start_pos.getY();
 
-	level_grid = new char*[height];
-	for (int i = 0; i < height; ++i) {
-		level_grid[i] = new char[width];
-		for (int j = 0; j < width; j++) {
-			level_grid[i][j] = 'A';
+	// Fill the level grid with mountain characters
+	level_grid = new char*[height]; // Initialize an the level grid as an array of char arrays
+	for (int i = 0; i < height; ++i) { // For each row of the grid...
+		level_grid[i] = new char[width]; // Initialize an array of chars
+		for (int j = 0; j < width; j++) { // For each column entry in that row...
+			level_grid[i][j] = 'A'; // Set the entry to the 'A' character, for a mountain
 		}
 	}
 
