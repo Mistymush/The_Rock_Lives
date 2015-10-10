@@ -22,10 +22,12 @@ Monster::Monster(){
 	setSolidness(df::Solidness::HARD);
 	setAltitude(3);
 	type = "Monster";
+	//set object type to monster
+	df::Object::setType("Monster");
 	icon = 'm';
 	curr_health = 3;
 	speed = 1;
-	strength = 3;
+	strength = 2;
 	
 	
 }
@@ -215,29 +217,32 @@ void Monster::draw(){
 
 void Monster::hit(const df::EventCollision *p_c){
 	df::WorldManager &world_manager = df::WorldManager::getInstance();
-	df::LogManager &log_manager = df::LogManager::getInstance();
 	OutputView &ov = OutputView::getInstance();
 	Wanderer *wanderer;
 	
 	//If Monster on Wanderer, do damage
 	if ((p_c->getHitObject()->getType() == "Wanderer")){
 		wanderer = dynamic_cast<Wanderer *>(p_c->getHitObject());
-		ov.setOutput("Wanderer was hit!");
-		log_manager.WriteMessage("Wanderer was hit!");
-		//If Wanderer attacks monster, subtract weapon attack + strength
-		int weapon_damage = 0;
-		weapon_damage = wanderer->getStrength() + wanderer->getAttack() + rand()%wanderer->getRange();
-		//If the monster still has health...
-		
-		if (curr_health > 0){
-			setHealth(curr_health - weapon_damage);
-			ov.setOutput(getType() + " was hit!");
-			log_manager.WriteMessage("%s was hit!", getType().c_str());
-		}
-		else{
-			//Monster was defeated, had no more health
-			ov.setOutput(getType() + " was defeated!");
-			world_manager.markforDelete(this);
-		}
+		ov.setOutput("The " + getType() +  " attacks!");
+		wanderer->hurt(getStrength());
+
+	}
+}
+
+/*
+method which damages a monster
+Author: august beers
+*/
+void Monster::hurt(int damage){
+	OutputView &ov = OutputView::getInstance();
+	df::WorldManager &world_manager = df::WorldManager::getInstance();
+	if (curr_health - damage > 0){
+		setHealth(curr_health - damage);
+
+	}
+	else{
+		//Monster was defeated
+		ov.setOutput("The " + getType() + " was slain!");
+		world_manager.markforDelete(this);
 	}
 }

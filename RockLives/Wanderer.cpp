@@ -20,7 +20,7 @@ Wanderer::Wanderer() {
 	setPosition(pos);
 	setAltitude(4);
 
-	setStrength(2);
+	setStrength(5);
 	setMaxHunger(192);
 	current_hunger = 192;
 	
@@ -43,6 +43,12 @@ int Wanderer::eventHandler(const df::Event *p_e) {
 		kbd(p_keyboard_event);
 		return 1;
 	}
+	if (p_e->getType() == df::COLLISION_EVENT){
+		const df::EventCollision *p_collision_event = dynamic_cast<const df::EventCollision *>(p_e);
+		hit(p_collision_event);
+		return 1;
+	}
+	
 
 	return 0;
 }
@@ -160,24 +166,22 @@ void Wanderer::move(int dx, int dy) {
 }
 
 void Wanderer::hit(const df::EventCollision *p_c){
-	df::LogManager &log_manager = df::LogManager::getInstance();
 	OutputView &ov = OutputView::getInstance();
 	Monster *m;
 
 	//If Monster on Wanderer, do damage
-	if ((p_c->getHitObject()->getType() == "Monster")){
-		ov.setOutput("Monster was hit!");
-		log_manager.WriteMessage("Wanderer was hit!");
-		m = dynamic_cast<Monster *>(p_c->getHitObject());
-		//If Wanderer attacks monster, subtract weapon attack + strength
-		//int weapon_damage = 0;
-		//weapon_damage = wanderer->getStrength() + wanderer->getAttack() + rand() % wanderer->getRange();
-		//If the monster still has health...
-			hurt(m->getStrength());
-			ov.setOutput(m->getType() + " was hit!");
-			log_manager.WriteMessage("%s was hit!", m->getType().c_str());
+	if ((p_c->getObject()->getType() == "Monster") && (p_c->getObject()->getType() != "Wanderer")){
+		m = dynamic_cast<Monster *>(p_c->getObject());
+		
+		int weapon_damage = 0;
+		weapon_damage = getStrength() + getAttack() + rand() % getRange();
+		ov.setOutput("You swing at the " + m->getType());
+		m->hurt(weapon_damage);
+		
+
 		
 	}
+
 }
 
 void Wanderer::setVisibleArea() {
@@ -206,6 +210,10 @@ void Wanderer::turn(){
 	}
 
 	EventTurn turn;
+	if (current_hp > 0 && current_hp < max_hp){
+		current_hp++;
+	}
+
 	world_manager.onEvent(&turn);//sends a turn event to the world so the monsters can move
 }
 

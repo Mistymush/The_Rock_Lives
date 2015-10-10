@@ -33,6 +33,7 @@ class Monster : public df::Object{
 		int eventHandler(const df::Event *p_e);
 		void draw();
 		void hit(const df::EventCollision *p_c);
+		void hurt(int damage);
 
 		//name
 		std::string getType(void);

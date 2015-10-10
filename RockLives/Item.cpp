@@ -11,7 +11,7 @@ Default constructor
 */
 Item::Item(){
 
-	setType("Monster");
+	setType("Item");
 	setSolidness(df::Solidness::SOFT);
 	//default object
 	icon = 'x';
