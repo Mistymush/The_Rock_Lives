@@ -13,6 +13,7 @@ private:
 	char** level_grid;
 	df::Position start_pos;
 	df::Position end_pos;
+	df::ObjectList levelObjects;
 
 public:
 	Level();
@@ -22,7 +23,15 @@ public:
 	int getWidth();
 	void setHeight(int new_height);
 	int getHeight();
+	df::ObjectList getLevelObjects();
 	void freeGrid();
+	/* Change to a new randomly generated room, moving the player to the appropriate location.
+	*  Direction is based on which side of the screen the player moved out of before the room change.
+	*  If direction is less than 0, the player should be moved to the right side of the screen in the new room.
+	*  If direction is greater than 0, the player should be moved to the left side of the screen in the new room.
+	*  If direction is equal to 0, the player should be moved to the center of the room.
+	*/
+	void changeRoom(int direction);
 	void draw();
 };
 

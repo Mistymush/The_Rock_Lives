@@ -21,14 +21,6 @@ Level::Level() {
 	start_pos = df::Position(0, height / 2);
 	end_pos = df::Position(getPosition().getX(), width-1);
 
-	level_grid = new char*[height];
-	for (int i = 0; i < height; ++i) {
-		level_grid[i] = new char[width];
-		for (int j = 0; j < width; j++) {
-			level_grid[i][j] = 'A';
-		}
-	}
-
 	generateLevel();
 }
 
@@ -39,6 +31,14 @@ void Level::generateLevel() {
 	int end_y = end_pos.getY();
 	int x = start_pos.getX();
 	int y = start_pos.getY();
+
+	level_grid = new char*[height];
+	for (int i = 0; i < height; ++i) {
+		level_grid[i] = new char[width];
+		for (int j = 0; j < width; j++) {
+			level_grid[i][j] = 'A';
+		}
+	}
 
 	for (int i = 0; i < width; i++) {
 		int half_width = -(rand() % (max_path_width / 2));
@@ -104,6 +104,36 @@ void Level::freeGrid() {
 		delete[] level_grid[i];
 	}
 	delete[] level_grid;
+}
+
+void Level::changeRoom(int direction) {
+	df::WorldManager &world_manager = df::WorldManager::getInstance();
+	df::GraphicsManager &graphics_manager = df::GraphicsManager::getInstance();
+	df::ObjectListIterator li(&levelObjects);
+	df::Position new_hero_pos;
+
+	for (li.first(); !li.isDone(); li.next()) {
+		world_manager.markforDelete(li.currentObject());
+	}
+	df::ObjectList allObjects = world_manager.getAllobjects();
+	df::ObjectListIterator all_iter(&allObjects);
+	for (all_iter.first(); all_iter.isDone(); all_iter.next()) {
+		if (li.currentObject()->getType() == "Wanderer"){
+			Wanderer *p_w = dynamic_cast <Wanderer *> (li.currentObject());
+			if (direction > 0) {
+				new_hero_pos.setX(getPosition().getX);
+			}
+			else if (direction < 0) {
+				new_hero_pos.setX(getPosition().getX + getWidth()-1);
+			}
+			else {
+				new_hero_pos.setX((graphics_manager.getHorizontal()) / 2 + getPosition().getX());
+				new_hero_pos.setY((graphics_manager.getVertical() / 2) - 2);
+			}
+			p_w->setPosition(new_hero_pos);
+		}
+	}
+	generateLevel();
 }
 
 void Level::draw() {
