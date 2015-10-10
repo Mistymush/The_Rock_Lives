@@ -121,10 +121,10 @@ void Level::changeRoom(int direction) {
 		if (li.currentObject()->getType() == "Wanderer"){
 			Wanderer *p_w = dynamic_cast <Wanderer *> (li.currentObject());
 			if (direction > 0) {
-				new_hero_pos.setX(getPosition().getX);
+				new_hero_pos.setX(getPosition().getX());
 			}
 			else if (direction < 0) {
-				new_hero_pos.setX(getPosition().getX + getWidth()-1);
+				new_hero_pos.setX(getPosition().getX() + getWidth()-1);
 			}
 			else {
 				new_hero_pos.setX((graphics_manager.getHorizontal()) / 2 + getPosition().getX());
