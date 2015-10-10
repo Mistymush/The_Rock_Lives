@@ -4,6 +4,8 @@
 #include "Level.h"
 #include "GraphicsManager.h"
 #include "Mountain.h"
+#include "Monster.h"
+#include "Weapon.h"
 
 Level::Level() {
 	setType("Level");
@@ -42,7 +44,19 @@ void Level::generateLevel() {
 		int half_width = -(rand() % (max_path_width / 2));
 		int path_width = abs(half_width) + (rand() % (max_path_width / 2)) + min_path_width;
 		for (int j = 0; j < abs(path_width); j++) {
-			level_grid[y+half_width][x] = ' ';
+			if (j > 0 && j < height) {
+				int item_chance = rand() % 300; // Item spawn rate
+				int monster_chance = rand() % 200; // Monster spawn rate
+				if (item_chance == 0) {
+					level_grid[y + half_width][x] = '/';
+				}
+				else if (monster_chance == 0) {
+					level_grid[y + half_width][x] = 'M';
+				}
+				else {
+					level_grid[y + half_width][x] = ' ';
+				}
+			}
 			half_width++;
 		}
 		x++;
@@ -50,10 +64,19 @@ void Level::generateLevel() {
 
 	for (int i = 0; i < height; ++i) {
 		for (int j = 0; j < width; j++) {
-			switch (level_grid[i][j]) {
-			case ('A') :
+			if (level_grid[i][j] == 'A') {
 				Mountain *m = new Mountain();
-				df::Position p = df::Position(j+getPosition().getX(), i+getPosition().getY());
+				df::Position p = df::Position(j + getPosition().getX(), i + getPosition().getY());
+				m->setPosition(p);
+			}
+			else if (level_grid[i][j] == '/') {
+				Weapon *w = new Weapon(0);
+				df::Position p = df::Position(j + getPosition().getX(), i + getPosition().getY());
+				w->setPosition(p);
+			}
+			else if (level_grid[i][j] == 'M') {
+				Monster *m = new Monster();
+				df::Position p = df::Position(j + getPosition().getX(), i + getPosition().getY());
 				m->setPosition(p);
 			}
 		}

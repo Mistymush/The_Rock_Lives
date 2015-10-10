@@ -1,6 +1,7 @@
 #ifndef __OUTPUT_VIEW_H__
 #define __OUTPUT_VIEW_H__
 
+#include <vector>
 #include "ObjectListIterator.h"
 #include "EventKeyboard.h"
 #include "GraphicsManager.h"
@@ -20,13 +21,13 @@ private:
 
 	df::Color color;
 
-	std::string output;
+	std::vector<string> output;
 
 public:
 	// Get the one and only instance of the OutputView
 	static OutputView &getInstance();
 	void setOutput(std::string new_output);
-	std::string getOutput();
+	std::vector<string> getOutput();
 	void setWidth(int new_width);
 	int getWidth();
 	void setHeight(int new_height);
@@ -37,6 +38,8 @@ public:
 	int getVerticalMargin();
 	void setColor(df::Color new_color);
 	df::Color getColor();
+	void clearOutput();
+	int eventHandler(const df::Event *p_e);
 	void draw();
 };
 

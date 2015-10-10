@@ -2,6 +2,7 @@
 #include <sstream>
 #include <string>
 #include "OutputView.h"
+#include "EventTurn.h"
 
 OutputView::OutputView() {
 	setType("OutputView");
@@ -16,7 +17,7 @@ OutputView::OutputView() {
 
 	setColor(df::RED);
 
-	setOutput("This is a long long long long long long long long long loooooong test output. This is a long random series of sentances made to get the input box to it's limit point, which should be 5 lines, I believe. This is also a test. I'm just trying to get this to stop printing.");
+	//setOutput("This is a long long long long long long long long long loooooong test output. This is a long random series of sentances made to get the input box to it's limit point, which should be 5 lines, I believe. This is also a test. I'm just trying to get this to stop printing.");
 }
 
 OutputView &OutputView::getInstance() {
@@ -65,11 +66,27 @@ df::Color OutputView::getColor() {
 }
 
 void OutputView::setOutput(std::string new_output) {
-	output = new_output;
+	output.push_back(new_output);
 }
 
-std::string OutputView::getOutput() {
+std::vector<string> OutputView::getOutput() {
 	return output;
+}
+
+void OutputView::clearOutput() {
+	std::vector<string>().swap(output);
+}
+
+int OutputView::eventHandler(const df::Event *p_e){
+	//df::LogManager & log_manager = df::LogManager::getInstance();
+	//df::WorldManager &world_manager = df::WorldManager::getInstance();
+
+	if (p_e->getType() == TURN_EVENT){
+		clearOutput();
+		return 1;
+	}
+
+	return 0;
 }
 
 void OutputView::draw() {
@@ -80,32 +97,35 @@ void OutputView::draw() {
 	int x = getPosition().getX(); // This object's x position
 	int y = getPosition().getY(); // This object's y position
 
-	std::istringstream stream(output); // A stream for reading the output string one word at a time
-	std::string word; // A string for holding the current word being drawn
-
 	int i; // Loop counter
 	for (i = 0; i < width; i++) { //Draw the border above the output view using dashes
 		string_pos.setX(x + i);
 		graphics_manager.drawCh(string_pos, '-', color);
 	}
-	// Set the x and y position of the string to the place where text should start being drawn from
-	string_pos.setY(string_pos.getY() + 1 + vertical_margin);
-	string_pos.setX(x + horizontal_margin);
 
-	while (stream >> word) { // While there are still words to be read, store the current word from the stream into the variable "word"
-		int len = word.length(); // The length of the current word.
+	for (std::vector<string>::iterator iter = output.begin(); iter != output.end(); iter++) {
+		std::istringstream stream(*iter); // A stream for reading the output string one word at a time
+		std::string word; // A string for holding the current word being drawn
 
-		if ((len + 1) > line_chars) { // If the length of the current word plus a space is longer than the characters remaining on this line, wrap.
-			string_pos.setY(string_pos.getY() + 1); // Move the string position to the next line down
-			current_line++; // Increment the current line keeper
-			line_chars = width - (2 * horizontal_margin); // Reset the number of available characters for the new line
-			string_pos.setX(x + horizontal_margin); // Set the x position of the string back to the beginning of the line
+		// Set the x and y position of the string to the place where text should start being drawn from
+		string_pos.setY(string_pos.getY() + 1 + vertical_margin);
+		string_pos.setX(x + horizontal_margin);
+
+		while (stream >> word) { // While there are still words to be read, store the current word from the stream into the variable "word"
+			int len = word.length(); // The length of the current word.
+
+			if ((len + 1) > line_chars) { // If the length of the current word plus a space is longer than the characters remaining on this line, wrap.
+				string_pos.setY(string_pos.getY() + 1); // Move the string position to the next line down
+				current_line++; // Increment the current line keeper
+				line_chars = width - (2 * horizontal_margin); // Reset the number of available characters for the new line
+				string_pos.setX(x + horizontal_margin); // Set the x position of the string back to the beginning of the line
+			}
+			if (current_line > (height - vertical_margin)) { // If there are no lines left, stop drawing words
+				return;
+			}
+			graphics_manager.drawString(string_pos, word, df::LEFT_JUSTIFIED, color); // Draw the current word at the string position
+			string_pos.setX(string_pos.getX() + len + 1); // Update the string x position to after the current word plus a space
+			line_chars -= (len + 1); // Reduce the number of available characters on this line by the length of the word plus a space
 		}
-		if (current_line > (height - vertical_margin)) { // If there are no lines left, stop drawing words
-			return;
-		}
-		graphics_manager.drawString(string_pos, word, df::LEFT_JUSTIFIED, color); // Draw the current word at the string position
-		string_pos.setX(string_pos.getX() + len + 1); // Update the string x position to after the current word plus a space
-		line_chars -= (len + 1); // Reduce the number of available characters on this line by the length of the word plus a space
 	}
 }
