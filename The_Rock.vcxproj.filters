@@ -207,6 +207,15 @@
     <ClInclude Include="RockLives\FoodRation.h">
       <Filter>RockLives\Header Files\Items</Filter>
     </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Engine\Header Files\Mangers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Engine\Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Music.h">
+      <Filter>Engine\Header Files\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test.cpp">
@@ -361,6 +370,15 @@
     </ClCompile>
     <ClCompile Include="RockLives\TestWanderer.cpp">
       <Filter>RockLives\Source Files\TEST</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Engine\Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Music.cpp">
+      <Filter>Engine\Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Engine\Source Files\Utility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

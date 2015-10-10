@@ -37,10 +37,12 @@
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="LogManager.h" />
     <ClInclude Include="Manager.h" />
+    <ClInclude Include="Music.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectList.h" />
     <ClInclude Include="ObjectListIterator.h" />
     <ClInclude Include="Position.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Reticle.h" />
     <ClInclude Include="RockLives\ApplyEvent.h" />
     <ClInclude Include="RockLives\Armor.h" />
@@ -61,6 +63,7 @@
     <ClInclude Include="RockLives\Wanderer.h" />
     <ClInclude Include="RockLives\Weapon.h" />
     <ClInclude Include="Saucer.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="Star.h" />
     <ClInclude Include="Test.h" />
     <ClInclude Include="TestObject.h" />
@@ -83,7 +86,9 @@
     <ClCompile Include="GraphicsManager.cpp" />
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="InputManger.cpp" />
+    <ClCompile Include="Music.cpp" />
     <ClCompile Include="ObjectList.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Reticle.cpp" />
     <ClCompile Include="RockLives\ApplyEvent.cpp" />
     <ClCompile Include="RockLives\Armor.cpp" />
@@ -107,6 +112,7 @@
     <ClCompile Include="RockLives\Wanderer.cpp" />
     <ClCompile Include="RockLives\Weapon.cpp" />
     <ClCompile Include="Saucer.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Star.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="GameManager.cpp" />
