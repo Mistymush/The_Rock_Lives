@@ -5,9 +5,12 @@ File whic contains main entry funtion of rock lives
 
 #include <math.h>
 
-
+//Engine includes
 #include "GameManager.h"
 #include "LogManager.h"
+#include "ResourceManager.h"
+
+//Game includes
 #include "InventoryView.h"
 #include "Monster.h"
 #include "StatsView.h"
@@ -39,7 +42,15 @@ int main(int argc, char *argv[]) {
 		return 0;
 	}
 
+	//Load in sounds
+	df::ResourceManager &resource_manager = df::ResourceManager::getInstance();
+	resource_manager.loadSound("sounds/hit_sound.wav" , "hit");
+	resource_manager.loadSound("sounds/healing_sound.wav" , "heal");
+	resource_manager.loadSound("sounds/pickup_sound.wav" , "pickup");
+	resource_manager.loadSound("sounds/game_over.wav" , "game_over");
 
+	//Load in background music
+	resource_manager.loadMusic("sounds/rock_lives_bgm.wav" , "game_music");
 
 	//Instantiate objects
 	populateGameWorld();

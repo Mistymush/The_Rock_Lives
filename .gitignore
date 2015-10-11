@@ -43,9 +43,6 @@ Temporary Items
 .apdisk
 *.opensdf
 
-#Log Files
-*.log
-
 #Solution files
 # User-specific files
 *.suo

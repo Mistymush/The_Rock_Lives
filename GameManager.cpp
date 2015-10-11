@@ -7,6 +7,7 @@ File containing definitions of game manager methods
 
 //Project includes
 #include "GameManager.h"
+#include "ResourceManager.h"
 
 using namespace df;
 
@@ -51,6 +52,10 @@ int GameManager::startUp(){
 	df::GraphicsManager &graphics_manager = df::GraphicsManager::getInstance();
 	startUp = graphics_manager.startUp();
 
+	//Start up the resource manager
+	df::ResourceManager &resource_manager = df::ResourceManager::getInstance();
+	startUp = resource_manager.startUp();
+
 	game_over = false;
 
 	Manager::startUp();
@@ -71,6 +76,10 @@ void GameManager::shutDown(){
 	//Shut down graphics manager
 	df::GraphicsManager &graphics_manager = df::GraphicsManager::getInstance();
 	graphics_manager.shutDown();
+
+	//Shut down resource manager
+	df::ResourceManager &resource_manager = df::ResourceManager::getInstance();
+	resource_manager.shutDown();
 
 	Manager::shutDown();
 
