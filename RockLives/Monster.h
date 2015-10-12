@@ -11,8 +11,7 @@
 #include "ObjectList.h"
 #include "Position.h"
 #include "Wanderer.h"
-
-
+//Game includes
 
 class Monster : public df::Object{
 	private:
@@ -24,8 +23,8 @@ class Monster : public df::Object{
 		int strength;
 		df::ObjectList inventory;
 		df::Position wanderer_pos;
+		Wanderer *wanderer;
 		
-		Wanderer *p_wanderer;
 
 	public:
 		Monster();

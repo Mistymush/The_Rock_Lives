@@ -55,8 +55,6 @@ int main(int argc, char *argv[]) {
 	//Instantiate objects
 	populateGameWorld();
 
-
-	
 	//Run the game
 	game_manager.run();
 
@@ -69,10 +67,7 @@ void populateGameWorld(){
 	OutputView &ov = OutputView::getInstance();
 	
 	
-	//create a new monster
-	Monster *p_m = new Monster();
-	p_m->setPosition(df::Position(68, 12));
-	p_m->draw();
+
 
 	Wanderer *wanderer = new Wanderer();
 	//create an inventory view
@@ -88,7 +83,6 @@ void populateGameWorld(){
 	new HealthPotion(df::Position(53, 10));
 	new StrengthPotion(df::Position(54, 10));
 	new FoodRation(df::Position(55, 10));
-	new Armor(df::Position(56, 10));
 
 	
 	

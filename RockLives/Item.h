@@ -29,9 +29,6 @@ private:
 	//A short description of this item, (17 char max)
 	std::string description;
 
-	//is  this item quiped to the wanderer
-	bool is_equiped;
-
 public:
 
 	//Construct an item
@@ -57,7 +54,6 @@ public:
 	virtual void apply(const ApplyEvent *p_apply_event);
 
 	void setEquipped(bool new_value);
-	bool getEquipped();
 };
 
 #endif // !_ITEM_

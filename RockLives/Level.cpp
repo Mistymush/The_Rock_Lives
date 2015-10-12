@@ -1,8 +1,11 @@
+//System includes
 #include <iostream>
 #include <sstream>
 #include <string>
-#include "Level.h"
+//Engine includes
 #include "GraphicsManager.h"
+//Game includes
+#include "Level.h"
 #include "Mountain.h"
 #include "Monster.h"
 #include "Weapon.h"
@@ -46,13 +49,14 @@ void Level::generateLevel() {
 		}
 	}
 
+	// Start traversing the level_grid using x and y, carving out a randomly wide path as you go
 	for (int i = 0; i < width; i++) {
-		int half_width = -(rand() % (max_path_width / 2));
-		int path_width = abs(half_width) + (rand() % (max_path_width / 2)) + min_path_width;
-		for (int j = 0; j < abs(path_width); j++) {
-			if (j > 0 && j < height) {
+		int half_width = -(rand() % (max_path_width / 2)); // Randomize the amount of path carved out above the x,y location
+		int path_width = abs(half_width) + (rand() % (max_path_width / 2)) + min_path_width; // Randomize the amount of path carved out below the x,y location
+		for (int j = 0; j < path_width; j++) {
+			if (j > 0 && j < height) { // Don't carve the path of place an item on the vertical boundaries
 				int item_chance = rand() % 300; // Item spawn rate
-				int monster_chance = rand() % 200; // Monster spawn rate
+				int monster_chance = rand() % 200; // Monster spawn rate 
 				if (item_chance == 0) {
 					level_grid[y + half_width][x] = '/';
 				}
@@ -63,27 +67,31 @@ void Level::generateLevel() {
 					level_grid[y + half_width][x] = ' ';
 				}
 			}
-			half_width++;
+			half_width++; // Carve one block further down next iteration
 		}
-		x++;
+		x++; // Carve one block further to the right next iteration
 	}
 
+	// Traverse the level_grid and spawn objects based on the character in each coordinate on the grid
 	for (int i = 0; i < height; ++i) {
 		for (int j = 0; j < width; j++) {
 			if (level_grid[i][j] == 'A') {
 				Mountain *m = new Mountain();
 				df::Position p = df::Position(j + getPosition().getX(), i + getPosition().getY());
 				m->setPosition(p);
+				levelObjects.insert(m);
 			}
 			else if (level_grid[i][j] == '/') {
 				Weapon *w = new Weapon(0);
 				df::Position p = df::Position(j + getPosition().getX(), i + getPosition().getY());
 				w->setPosition(p);
+				levelObjects.insert(w);
 			}
 			else if (level_grid[i][j] == 'M') {
-				Monster *m = new Monster();
-				df::Position p = df::Position(j + getPosition().getX(), i + getPosition().getY());
-				m->setPosition(p);
+				//Monster *m = new Monster();
+				//df::Position p = df::Position(j + getPosition().getX(), i + getPosition().getY());
+				//m->setPosition(p);
+				//levelObjects.insert(m);
 			}
 		}
 	}
@@ -121,13 +129,14 @@ void Level::changeRoom(int direction) {
 	for (li.first(); !li.isDone(); li.next()) {
 		world_manager.markforDelete(li.currentObject());
 	}
+	levelObjects.clear();
 	df::ObjectList allObjects = world_manager.getAllobjects();
 	df::ObjectListIterator all_iter(&allObjects);
 	for (all_iter.first(); all_iter.isDone(); all_iter.next()) {
 		if (li.currentObject()->getType() == "Wanderer"){
 			Wanderer *p_w = dynamic_cast <Wanderer *> (li.currentObject());
 			if (direction > 0) {
-				new_hero_pos.setX(getPosition().getX());
+				new_hero_pos.setX(0);//getPosition().getX());
 			}
 			else if (direction < 0) {
 				new_hero_pos.setX(getPosition().getX() + getWidth()-1);

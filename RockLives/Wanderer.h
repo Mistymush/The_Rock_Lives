@@ -1,20 +1,10 @@
 #ifndef __WANDERER_H__
 #define __WANDERER_H__
 
-//Engine includes
-#include "GraphicsManager.h"
-#include "GameManager.h"
 #include "ObjectListIterator.h"
 #include "EventKeyboard.h"
+#include "EventCollision.h"
 #include "Color.h"
-
-
-//Game includes
-#include "EventTurn.h"
-#include "OutputView.h"
-#include "Wall.h"
-#include "Level.h"
-
 
 class Wanderer : public df::Object {
 
@@ -46,13 +36,6 @@ private:
 	void hit(const df::EventCollision *p_c);
 
 public:
-
-	//interface with wanderer inventory
-	df::ObjectList getInventory();
-	int addItem(df::Object *item);
-	int removeItem(df::Object *remove_item);
-	
-
 	//add health to the wandere
 	void addHp(int new_hp);
 	void feed(int new_hunger);
@@ -81,7 +64,7 @@ public:
 	int getRange();
 	void setRange(int new_range);
 
-	
+	df::ObjectList getInventory();
 	char getIcon();
 	int eventHandler(const df::Event *p_e);
 	void draw();
