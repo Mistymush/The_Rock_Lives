@@ -88,10 +88,10 @@ void Level::generateLevel() {
 				levelObjects.insert(w);
 			}
 			else if (level_grid[i][j] == 'M') {
-				//Monster *m = new Monster();
-				//df::Position p = df::Position(j + getPosition().getX(), i + getPosition().getY());
-				//m->setPosition(p);
-				//levelObjects.insert(m);
+				Monster *m = new Monster();
+				df::Position p = df::Position(j + getPosition().getX(), i + getPosition().getY());
+				m->setPosition(p);
+				levelObjects.insert(m);
 			}
 		}
 	}
