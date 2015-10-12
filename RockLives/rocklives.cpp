@@ -67,10 +67,7 @@ void populateGameWorld(){
 	OutputView &ov = OutputView::getInstance();
 	
 	
-	//create a new monster
-	Monster *p_m = new Monster();
-	p_m->setPosition(df::Position(68, 12));
-	p_m->draw();
+
 
 	Wanderer *wanderer = new Wanderer();
 	//create an inventory view

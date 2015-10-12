@@ -52,7 +52,7 @@ void Level::generateLevel() {
 		for (int j = 0; j < abs(path_width); j++) {
 			if (j > 0 && j < height) {
 				int item_chance = rand() % 300; // Item spawn rate
-				int monster_chance = rand() % 200; // Monster spawn rate
+				int monster_chance = rand() % 200; // Monster spawn rate 
 				if (item_chance == 0) {
 					level_grid[y + half_width][x] = '/';
 				}
@@ -81,9 +81,9 @@ void Level::generateLevel() {
 				w->setPosition(p);
 			}
 			else if (level_grid[i][j] == 'M') {
-				Monster *m = new Monster();
-				df::Position p = df::Position(j + getPosition().getX(), i + getPosition().getY());
-				m->setPosition(p);
+				//Monster *m = new Monster();
+				//df::Position p = df::Position(j + getPosition().getX(), i + getPosition().getY());
+				//m->setPosition(p);
 			}
 		}
 	}

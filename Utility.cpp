@@ -63,14 +63,14 @@ bool df::Utility::positionsIntersect(Position p1, Position p2){
 //Should return a string of direction digits
 //Author: Marco Duran
 std::string df::Utility::pathFind(const int &x_start, const int &y_start, const int &x_finish, const int &y_finish){
-	static priority_queue<Node> pq[2];
-	static int pqi; //priority queue index
-	static Node *p_node_1;
-	static Node *p_node_2;
-	static int i, j, x, y, xdx, ydy;
-	static char c;
+	priority_queue<Node> pq[2];
+	int pqi; //priority queue index
+	Node *p_node_1;
+	Node *p_node_2;
+	int i, j, x, y, xdx, ydy;
+	char c;
 	pqi = 0;
-
+	
 	//reset the node maps
 	for (y = 0; y < vert_world; y++){
 		for (x = 0; x < horiz_world; x++){
