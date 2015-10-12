@@ -13,10 +13,6 @@
 
 const int horiz_world = 99;//amount of characters that can fit horizontally across the screen
 const int vert_world = 24;//amount of characters that can fit 
-static int node_map[horiz_world][vert_world];
-static int closed_node_map[horiz_world][vert_world];//map of already tried nodes
-static int open_node_map[horiz_world][vert_world];//map of not yet tried nodes
-static int dir_node_map[horiz_world][vert_world];//map of directions
 const int dir = 8; //number of possible directions the monster can go from anywhere
 enum Direction{
 	RIGHT = 0,
@@ -68,7 +64,7 @@ class Node{
 
 		//Determine the priority
 		friend bool operator<(const Node &a, const Node &b){
-			return a.getPriority() > b.getPriority();
+			return a.getPriority()+a.getDistance() > b.getPriority()+b.getDistance();
 		}
 
 

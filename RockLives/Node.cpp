@@ -36,7 +36,7 @@ void Node::updatePriority(const int &x_dest, const int &y_dest){
 
 //Give more priority to going straight
 void Node::changeDist(const int &i){
-	dist_traveled += (dir == 4 ? (i % 2 == 0 ? 10 : 14) : 10);
+	dist_traveled += (i % 2 == 0 ? 10 : 14);
 }
 
 //Estimation function for the remaining distance to goal
@@ -47,10 +47,10 @@ const int &Node::estimate(const int &x_dest, const int &y_dest) const{
 	yd = y_dest - y_pos;
 
 	//Euclidian distance
-	d = static_cast<int>(sqrt(xd*xd+yd*yd));
+	//d = static_cast<int>(sqrt(xd*xd+yd*yd));
 
 	// Manhattan distance
-	//d=abs(xd)+abs(yd);
+	d=abs(xd)+abs(yd);
 
 	// Chebyshev distance
 	//d=max(abs(xd), abs(yd));

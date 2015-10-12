@@ -63,39 +63,48 @@ bool df::Utility::positionsIntersect(Position p1, Position p2){
 //Should return a string of direction digits
 //Author: Marco Duran
 std::string df::Utility::pathFind(const int &x_start, const int &y_start, const int &x_finish, const int &y_finish){
-	static priority_queue<Node> pq[2];
-	static int pqi; //priority queue index
+	priority_queue<Node> pq[2];
+	int node_map[horiz_world][vert_world];
+	//int closed_node_map[horiz_world][vert_world];//map of already tried nodes
+	int open_node_map[horiz_world][vert_world];//map of not yet tried nodes
+	int dir_node_map[horiz_world][vert_world];//map of directions
+	int pqi; //priority queue index
 	static Node *p_node_1;
 	static Node *p_node_2;
-	static int i, j, x, y, xdx, ydy;
-	static char c;
+	int i, j, x, y, xdx, ydy;
+	char c;
 	pqi = 0;
+	x = 0;
+	y = 0;
 
 	//reset the node maps
+	
 	for (y = 0; y < vert_world; y++){
 		for (x = 0; x < horiz_world; x++){
-			closed_node_map[x][y] = 0;
-			open_node_map[x][y] = 0;
+			//closed_node_map[x][y] = 0;
+			open_node_map[x][y] = 1;
 		}
 	}
+	
+	
 
 	//create the start node and push into list of open nodes
 	p_node_1 = new Node(x_start, y_start, 0, 0);
 	p_node_1->updatePriority(x_finish, y_finish);
 	pq[pqi].push(*p_node_1);
-	open_node_map[x][y] = p_node_1->getPriority(); //mark it on the open nodes map
+	open_node_map[x_start][y_start] = p_node_1->getPriority(); //mark it on the open nodes map
 
 	//A* search
 	while (!pq[pqi].empty()){
 		//get the current node with the highest priority
 		//from the list of open nodes
-		p_node_1 = new Node(pq[pqi].top().getXPosition(), pq[pqi].top().getYPosition(), pq[pqi].top().getDistance(), pq[pqi].top().getPriority());
+		p_node_1 = &pq[pqi].top();// new Node(pq[pqi].top().getXPosition(), pq[pqi].top().getYPosition(), pq[pqi].top().getDistance(), pq[pqi].top().getPriority());
 		x = p_node_1->getXPosition();
 		y = p_node_1->getYPosition();
 		pq[pqi].pop(); //remove the node from the open list
 		open_node_map[x][y] = 0;
 		//mark it on closed nodes
-		closed_node_map[x][y] = 1;
+		//closed_node_map[x][y] = 1;
 
 		//Quit searching when the goal state is reached
 		//if((*p_pos).estimate(posFinish) == 0)
@@ -111,7 +120,7 @@ std::string df::Utility::pathFind(const int &x_start, const int &y_start, const 
 				y += dy[j];
 			}
 			//garbage collection
-			delete p_node_1;
+			//delete p_node_1;
 			//empty the leftover nodes
 			while (!pq[pqi].empty())
 				pq[pqi].pop();
@@ -127,17 +136,19 @@ std::string df::Utility::pathFind(const int &x_start, const int &y_start, const 
 			if (!(xdx < 0 || xdx > horiz_world - 1
 				|| ydy < 0 || ydy > vert_world - 1
 				|| node_map[xdx][ydy] == 1
-				|| closed_node_map[xdx][ydy] == 1)){
+				|| open_node_map[xdx][ydy] == 0)){
 
 				//generate a child node
 				p_node_2 = new Node(xdx,ydy, p_node_1->getDistance(),
 					p_node_1->getPriority());
 				p_node_2->changeDist(i);
 				p_node_2->updatePriority(x_finish, y_finish);
-
+				//checks to see if there is an empty spot on the open node map
+				//if (open_node_map[xdx][ydy] != NULL)
+					open_node_map[xdx][ydy] = 0;
 				//if it is not in the open list then
 				if (open_node_map[xdx][ydy] == 0){
-					open_node_map[xdx][ydy] = p_node_2->getPriority();
+					//open_node_map[xdx][ydy] = p_node_2->getPriority();
 					pq[pqi].push(*p_node_2);
 					//mark its parent node direction
 					dir_node_map[xdx][ydy] = (i + dir / 2) % dir;
@@ -174,7 +185,7 @@ std::string df::Utility::pathFind(const int &x_start, const int &y_start, const 
 					delete p_node_2; //garbage collection
 			}
 		}
-		delete p_node_1; //garbage collection
+		//delete p_node_1; //garbage collection
 	}
 	return ""; //no route found
 }
