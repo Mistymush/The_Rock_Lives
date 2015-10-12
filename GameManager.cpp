@@ -56,6 +56,10 @@ int GameManager::startUp(){
 	df::ResourceManager &resource_manager = df::ResourceManager::getInstance();
 	startUp = resource_manager.startUp();
 
+	df::InputManager &input_manager = df::InputManager::getInstance();
+	startUp = input_manager.startUp();
+
+
 	game_over = false;
 
 	Manager::startUp();

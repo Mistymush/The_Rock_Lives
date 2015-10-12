@@ -1,14 +1,6 @@
-//Game includes
-#include "EventTurn.h"
 #include "Wanderer.h"
-#include "OutputView.h"
-#include "Wall.h"
 #include "Monster.h"
-#include "Level.h"
-//Engine includes
-#include "WorldManager.h"
-#include "GraphicsManager.h"
-#include "GameManager.h"
+#include "Item.h"
 
 Wanderer::Wanderer() {
 
@@ -25,7 +17,7 @@ Wanderer::Wanderer() {
 	setMaxHunger(192);
 	current_hunger = 192;
 	
-
+	defence = 0;
 	setMaxHp(10);
 	current_hp = max_hp;
 	inventory = df::ObjectList();
@@ -166,7 +158,7 @@ void Wanderer::move(int dx, int dy) {
 	df::WorldManager &world_manager = df::WorldManager::getInstance();
 	df::GraphicsManager &graphics_manager = df::GraphicsManager::getInstance();
 	if ((new_pos.getY() >= 0) && (new_pos.getY() < graphics_manager.getVertical() - 5)
-		&& (new_pos.getX() >= 22) && (new_pos.getX() < graphics_manager.getHorizontal() + 7)) {
+		&& (new_pos.getX() >= 21) && (new_pos.getX() < graphics_manager.getHorizontal() + 7)) {
 		world_manager.moveObject(this, new_pos);
 		turn();//execute a turn after you have moved
 	}
@@ -364,7 +356,7 @@ int Wanderer::getAttack(){
 	return weapon_attack;
 }
 void Wanderer::setAttack(int new_attack){
-	if (new_attack > 0){
+	if (new_attack >= 0){
 		weapon_attack = new_attack;
 	}
 }
@@ -376,3 +368,39 @@ void Wanderer::setRange(int new_range){
 		weapon_range = new_range;
 	}
 }
+
+/*
+add item to the wandere's inventory
+*/
+int Wanderer::addItem(df::Object *item){
+	OutputView &output_view = OutputView::getInstance();
+	if (inventory.getCount() < 10){
+		if (!inventory.insert(item)){
+			return 0;
+
+		}
+		else{
+			return -1;
+		}
+	}
+	else{
+		output_view.setOutput("Inventory is full");
+		return -1;
+	}
+}
+
+
+/*
+remove item from the wanderer's inventory
+*/
+int Wanderer::removeItem(df::Object *remove_item){
+
+	if (!inventory.remove(remove_item)){
+		return 0;
+	}
+	else{
+		return -1;
+	}
+
+}
+
