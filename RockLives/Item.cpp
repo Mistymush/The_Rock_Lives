@@ -67,12 +67,6 @@ void Item::draw(){
 	df::GraphicsManager &graphics_manager = df::GraphicsManager::getInstance();
 	graphics_manager.drawCh(Object::getPosition(), icon, color);
 	if (inInventory){
-		df::Position tmp0 = Object::getPosition();
-		tmp0.setX(Object::getPosition().getX() + 1);
-		if (is_equipped){
-			graphics_manager.drawCh(tmp0, 'e', df::Color::GREEN);
-		}
-		
 		df::Position tmp = Object::getPosition();
 		tmp.setX(Object::getPosition().getX() + 2);
 		graphics_manager.drawString(tmp, description, df::LEFT_JUSTIFIED, color);
@@ -128,7 +122,6 @@ void Item::pickUp(const df::EventCollision *p_collision_event){
 
 void Item::drop(const DropEvent *p_drop_event){
 	inInventory = false;
-	
 	DropEvent event = *p_drop_event;
 	Wanderer *current_wanderer = event.getCurrentWaderer();
 	df::Object::setPosition(current_wanderer->getPosition());
@@ -142,8 +135,4 @@ void Item::apply(const ApplyEvent *p_apply_event){
 
 void Item::setEquipped(bool new_value){
 	is_equipped = new_value;
-}
-
-bool Item::getEquipped(){
-	return is_equipped;
 }
