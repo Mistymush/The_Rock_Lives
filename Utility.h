@@ -29,7 +29,7 @@ namespace df{
 
 		//A-star
 		//Should return a string of direction digits
-		std::string pathFind(const df::Position &posStart, const df::Position &posFinish);
+		std::string pathFind(const int &x_start, const int &y_start, const int &x_finish, const int &y_finish);
 	};
 
 

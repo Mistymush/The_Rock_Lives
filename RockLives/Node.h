@@ -13,7 +13,7 @@
 
 const int horiz_world = 99;//amount of characters that can fit horizontally across the screen
 const int vert_world = 24;//amount of characters that can fit 
-static int map[horiz_world][vert_world];
+static int node_map[horiz_world][vert_world];
 static int closed_node_map[horiz_world][vert_world];//map of already tried nodes
 static int open_node_map[horiz_world][vert_world];//map of not yet tried nodes
 static int dir_node_map[horiz_world][vert_world];//map of directions
@@ -28,23 +28,15 @@ enum Direction{
 	DOWN,
 	DOWNRIGHT,
 };
-static df::Position dpos[dir] = { 
-	df::Position(1,0),//right
-	df::Position(1,1),//up-right
-	df::Position(0, 1),//up
-	df::Position(-1, 1),//up-left
-	df::Position(-1,0),//left
-	df::Position(-1,-1),//down-left
-	df::Position(0,-1),//down
-	df::Position(1,-1)//down-right
-};
-
+static int dx[dir] = { 1, 1, 0, -1, -1, -1, 0, 1 };
+static int dy[dir] = { 0, 1, 1, 1, 0, -1, -1, -1 };
 
 class Node{
 	
 	private:
 		//Current position 
-		df::Position pos;
+		int x_pos;
+		int y_pos;
 		//total distance traveled to reach node
 		int dist_traveled;
 		//priority level
@@ -52,26 +44,27 @@ class Node{
 
 	public:
 		//constructor
-		Node(df::Position pos, int dist, int pri);
+		Node(int xPos, int yPos, int dist, int pri);
 
 		//getters
 		//Position 
-		df::Position getPosition();
+		int getXPosition() const;
+		int getYPosition() const;
 		//Distance
-		int getDistance();
+		int getDistance() const;
 		//Priority
 		int getPriority() const;
 
 		//end getters
 
 		//Method to update the priority
-		void updatePriority(const df::Position &new_pos);
+		void updatePriority(const int &x_dest, const int &y_dest);
 
 		//Give more priority to going straight
 		void changeDist(const int &i);
 
 		//Estimation function for the remaining distance to goal
-		const int &estimate(const df::Position &new_pos) const;
+		const int &estimate(const int &x_dest, const int &y_dest) const;
 
 		//Determine the priority
 		friend bool operator<(const Node &a, const Node &b){

@@ -200,7 +200,7 @@ int Monster::eventHandler(const df::Event *p_e){
 			}
 			li->next();
 		}
-		dir = atoi((u.pathFind(pos, wanderer_pos).substr(0,1)).c_str());
+		dir = atoi((u.pathFind(pos.getX(), pos.getY(), wanderer_pos.getX(), wanderer_pos.getY()).substr(0,1)).c_str());
 		//dir = atoi((u.pathFind(pos, wanderer_pos)).c_str());
 		move(dir);
 		return 1;
