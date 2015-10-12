@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
 
 	//Load in background music
 	resource_manager.loadMusic("sounds/rock_lives_bgm.wav" , "game_music");
-
+	
 	//Instantiate objects
 	populateGameWorld();
 
@@ -65,10 +65,9 @@ int main(int argc, char *argv[]) {
 
 void populateGameWorld(){
 	OutputView &ov = OutputView::getInstance();
-	
-	
-
-
+	df::ResourceManager &resource_manager = df::ResourceManager::getInstance();
+	df::Music *music = resource_manager.getMusic("game_music");
+	music->play();
 	Wanderer *wanderer = new Wanderer();
 	//create an inventory view
 	new InventoryView(wanderer);

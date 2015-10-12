@@ -9,6 +9,7 @@
 #include "WorldManager.h"
 #include "GraphicsManager.h"
 #include "GameManager.h"
+#include "ResourceManager.h"
 
 Wanderer::Wanderer() {
 
@@ -36,6 +37,8 @@ Wanderer::Wanderer() {
 	setVisibleArea();
 	setAttack(0);
 	setRange(0);
+
+	musicPlaying = true;
 }
 
 int Wanderer::eventHandler(const df::Event *p_e) {
@@ -157,6 +160,20 @@ void Wanderer::kbd(const df::EventKeyboard *p_keyboard_event) {
 			}
 		}
 		break;
+
+	case df::Keyboard::M: //Toggle Music
+		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED){
+			df::ResourceManager &resource_manager = df::ResourceManager::getInstance();
+			df::Music *music = resource_manager.getMusic("game_music");
+			if (musicPlaying){
+				musicPlaying = false;
+				music->stop();
+			}
+			else if (!musicPlaying){
+				musicPlaying = true;
+				music->play();
+			}
+		}
 	}
 }
 
@@ -173,6 +190,7 @@ void Wanderer::move(int dx, int dy) {
 }
 
 void Wanderer::hit(const df::EventCollision *p_c){
+	df::ResourceManager &resource_manager = df::ResourceManager::getInstance();
 	OutputView &ov = OutputView::getInstance();
 	Monster *m;
 
@@ -184,8 +202,11 @@ void Wanderer::hit(const df::EventCollision *p_c){
 		weapon_damage = getStrength() + getAttack() + rand() % getRange();
 		ov.setOutput("You swing at the " + m->getType());
 		m->hurt(weapon_damage);
-		
 
+		//play sound 
+		df::Sound *s =  resource_manager.getSound("hit");
+		s->play();
+		
 		
 	}
 
@@ -228,9 +249,14 @@ void Wanderer::hurt(int damage){
 	OutputView &output_view = OutputView::getInstance();
 	df::WorldManager &world_manager = df::WorldManager::getInstance();
 	df::GameManager &game_manager = df::GameManager::getInstance();
+	df::ResourceManager &resource_manager = df::ResourceManager::getInstance();
 	if (damage > 0){
 		current_hp = current_hp - damage;
 		if (current_hp <= 0){
+			df::Music *music = resource_manager.getMusic("game_music");
+			music->stop();
+			df::Sound *sound = resource_manager.getSound("game_over");
+			sound->play();
 			output_view.setOutput("Game Over! press space to quit.");
 			world_manager.markforDelete(this);
 			
@@ -262,15 +288,19 @@ Function which adds hunger points to the wanderer
 Author: August Beers
 */
 void Wanderer::feed(int new_hunger) {
+	df::ResourceManager &resource_manager = df::ResourceManager::getInstance();
+	df::Sound *s = resource_manager.getSound("heal");
 	if (new_hunger < 0){
 		return;
 	}
 
 	if (new_hunger <= max_hunger - current_hunger){
 		current_hunger = current_hunger + new_hunger;
+		s->play();
 	}
 	else{
 		current_hunger = max_hunger;
+		s->play();
 	}
 }
 

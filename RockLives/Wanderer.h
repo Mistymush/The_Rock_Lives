@@ -30,6 +30,8 @@ private:
 	int level; // The Wanderer's current level
 	int sight_radius;
 
+	bool musicPlaying;
+
 	void kbd(const df::EventKeyboard *p_keyboard_event);
 	void move(int dx, int dy);
 	void turn();
