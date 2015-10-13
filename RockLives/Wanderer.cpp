@@ -258,10 +258,11 @@ void Wanderer::turn(){
 	}
 
 	EventTurn turn;
-	if (current_hp > 0 && current_hp < max_hp){
+	//Just for balance can add, if you want to regen every turn
+	/*if (current_hp > 0 && current_hp < max_hp){
 		current_hp++;
 	}
-
+	*/
 	world_manager.onEvent(&turn);//sends a turn event to the world so the monsters can move
 }
 
@@ -310,17 +311,16 @@ Author: August Beers
 void Wanderer::feed(int new_hunger) {
 	df::ResourceManager &resource_manager = df::ResourceManager::getInstance();
 	df::Sound *s = resource_manager.getSound("heal");
+	s->play();
 	if (new_hunger < 0){
 		return;
 	}
 
 	if (new_hunger <= max_hunger - current_hunger){
 		current_hunger = current_hunger + new_hunger;
-		s->play();
 	}
 	else{
 		current_hunger = max_hunger;
-		s->play();
 	}
 }
 
@@ -383,16 +383,30 @@ void Wanderer::setLevel(int new_level) {
 //Author: Marco Duran
 void Wanderer::levelUp(){
 	df::LogManager &log_manager = df::LogManager::getInstance();
+	OutputView &ov = OutputView::getInstance();
 	//change max experience
 	if (max_exp > 0)
-		max_exp = 5 * static_cast<long>(sqrt(max_exp));
+		max_exp = max_exp + 5 * static_cast<long>(sqrt(max_exp));
 	else{
 		log_manager.WriteMessage("Apparently you had a negative or zero level cap");
 		return;
 	}
 
+	//change maximum health
+	if (max_hp > 0){
+		max_hp = max_hp + 2 * static_cast<int>(sqrt(max_hp));
+		//Also increase your health a bit
+		current_hp = current_hp + static_cast<int>(max_hp / 3);
+	}
+	else{
+		log_manager.WriteMessage("You should be dead...");
+		return;
+	}
+
 	//increase the level of the character
 	level++;
+	
+	ov.setOutput("Level Up!");
 }
 
 void  Wanderer::setDefence(int new_defence){

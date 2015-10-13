@@ -17,12 +17,14 @@ Armor::Armor(df::Position position){
 
 }
 
+Armor::Armor(){}
+
 Armor::~Armor(){
 
 }
 
 /*
-apply potion to the wanderer
+apply armor to the wanderer
 */
 void Armor::apply(const ApplyEvent *p_apply_event){
 	ApplyEvent event = *p_apply_event;
@@ -35,14 +37,14 @@ void Armor::apply(const ApplyEvent *p_apply_event){
 			return;
 		}
 		this->setEquipped(true);
-		std::string output = "Wanderer defence increased";
+		std::string output = "Wanderer defense increased";
 		ov.setOutput(output);
 		current_wanderer->setDefence(value);
 	}
 	else{
 		this->setEquipped(false);
 		current_wanderer->setDefence(0);
-		ov.setOutput("Wanderer defence decreased");
+		ov.setOutput("Wanderer defense decreased");
 	}
 	
 }
