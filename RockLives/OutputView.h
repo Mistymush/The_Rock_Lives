@@ -39,7 +39,6 @@ public:
 	void setColor(df::Color new_color);
 	df::Color getColor();
 	void clearOutput();
-	int eventHandler(const df::Event *p_e);
 	void draw();
 };
 

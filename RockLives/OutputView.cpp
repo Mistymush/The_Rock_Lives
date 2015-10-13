@@ -66,7 +66,7 @@ df::Color OutputView::getColor() {
 }
 
 void OutputView::setOutput(std::string new_output) {
-	output.push_back(new_output);
+	output.insert(output.begin(), new_output);
 }
 
 std::vector<string> OutputView::getOutput() {
@@ -75,18 +75,6 @@ std::vector<string> OutputView::getOutput() {
 
 void OutputView::clearOutput() {
 	std::vector<string>().swap(output);
-}
-
-int OutputView::eventHandler(const df::Event *p_e){
-	//df::LogManager & log_manager = df::LogManager::getInstance();
-	//df::WorldManager &world_manager = df::WorldManager::getInstance();
-
-	if (p_e->getType() == TURN_EVENT){
-		clearOutput();
-		return 1;
-	}
-
-	return 0;
 }
 
 void OutputView::draw() {
