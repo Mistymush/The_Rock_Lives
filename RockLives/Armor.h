@@ -19,7 +19,6 @@ private:
 public:
 	//Initialize armor with its inventory tag
 	Armor(df::Position position);
-	Armor();
 	~Armor();
 
 	void apply(const ApplyEvent *p_apply_event);

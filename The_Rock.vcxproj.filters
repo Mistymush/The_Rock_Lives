@@ -64,18 +64,6 @@
     <Filter Include="RockLives\Source Files\TEST">
       <UniqueIdentifier>{7aebf977-2eb6-4d00-848a-09f21b0750d3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="RockLives\Header Files\Items\Weapons">
-      <UniqueIdentifier>{5a303373-b7b2-4d48-8a42-f65c3a4979fb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="RockLives\Header Files\Items\Armor">
-      <UniqueIdentifier>{e9244244-d41d-4509-bad8-f2c357d0841a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="RockLives\Source Files\Items\Weapon">
-      <UniqueIdentifier>{4495956b-c034-4123-bbc4-5c114630713f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="RockLives\Source Files\Items\Armor">
-      <UniqueIdentifier>{8a6023f6-159c-41e4-9423-902b494e3ff9}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Test.h">
@@ -225,17 +213,11 @@
     <ClInclude Include="RockLives\LevelGoal.h">
       <Filter>RockLives\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RockLives\Weapon.h">
-      <Filter>RockLives\Header Files\Items\Weapons</Filter>
-    </ClInclude>
     <ClInclude Include="RockLives\Armor.h">
-      <Filter>RockLives\Header Files\Items\Armor</Filter>
+      <Filter>RockLives\Header Files\Items</Filter>
     </ClInclude>
-    <ClInclude Include="RockLives\Tunic.h">
-      <Filter>RockLives\Header Files\Items\Armor</Filter>
-    </ClInclude>
-    <ClInclude Include="RockLives\Chestguard.h">
-      <Filter>RockLives\Header Files\Items\Armor</Filter>
+    <ClInclude Include="RockLives\Weapon.h">
+      <Filter>RockLives\Header Files\Items</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -399,18 +381,10 @@
       <Filter>RockLives\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RockLives\Armor.cpp">
-      <Filter>RockLives\Source Files\Items\Armor</Filter>
+      <Filter>RockLives\Source Files\Items</Filter>
     </ClCompile>
     <ClCompile Include="RockLives\Weapon.cpp">
-      <Filter>RockLives\Source Files\Items\Weapon</Filter>
+      <Filter>RockLives\Source Files\Items</Filter>
     </ClCompile>
-    <ClCompile Include="RockLives\Tunic.cpp">
-      <Filter>RockLives\Source Files\Items\Armor</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="RockLives\Chestguard.cpp">
-      <Filter>RockLives\Source Files\Items\Armor</Filter>
-    </None>
   </ItemGroup>
 </Project>

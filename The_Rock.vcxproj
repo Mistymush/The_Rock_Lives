@@ -46,7 +46,6 @@
     <ClInclude Include="Reticle.h" />
     <ClInclude Include="RockLives\ApplyEvent.h" />
     <ClInclude Include="RockLives\Armor.h" />
-    <ClInclude Include="RockLives\Chestguard.h" />
     <ClInclude Include="RockLives\DropEvent.h" />
     <ClInclude Include="RockLives\FoodRation.h" />
     <ClInclude Include="RockLives\HealthPotion.h" />
@@ -61,7 +60,6 @@
     <ClInclude Include="RockLives\OutputView.h" />
     <ClInclude Include="RockLives\StatsView.h" />
     <ClInclude Include="RockLives\StrengthPotion.h" />
-    <ClInclude Include="RockLives\Tunic.h" />
     <ClInclude Include="RockLives\Wall.h" />
     <ClInclude Include="RockLives\Wanderer.h" />
     <ClInclude Include="RockLives\Weapon.h" />
@@ -112,7 +110,6 @@
     <ClCompile Include="RockLives\StrengthPotion.cpp" />
     <ClCompile Include="RockLives\TestWanderer.cpp" />
     <ClCompile Include="RockLives\TestMonsterMove.cpp" />
-    <ClCompile Include="RockLives\Tunic.cpp" />
     <ClCompile Include="RockLives\Wall.cpp" />
     <ClCompile Include="RockLives\Wanderer.cpp" />
     <ClCompile Include="RockLives\Weapon.cpp" />
@@ -130,9 +127,6 @@
     <ClCompile Include="TestObject.cpp" />
     <ClCompile Include="Utility.cpp" />
     <ClCompile Include="WorldManager.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="RockLives\Chestguard.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F7384CBE-77E2-474B-B788-DD587D16272E}</ProjectGuid>

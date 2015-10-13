@@ -6,18 +6,25 @@ File which defines the method bodys of the armor class
 
 Armor::Armor(df::Position position){
 
-	Item::setIcon('a');
-	Item::setColor(df::RED);
-	Item::setDescription("Suit of Armor");
-
-	value = 2;
-	this->setEquipped(false);
-	df::Object::setPosition(position);
 	
+	Item::setColor(df::RED);
 
+	df::Object::setPosition(position);
+
+	
+	char armorArray[10] = { 't', 't', 't', 't', 't', 'a', 'a', 'a', 'c', 'c' };
+	std::string descriptionArray[10] = {"Tunic","Tunic","Tunic","Tunic","Tunic","Suit of Armor","Suit of Armor","Suit of Armor","Chestguard","Chestguard"};
+	int valueArray[10] = { 1, 1, 1, 1, 1, 2, 2, 2, 5, 5 };
+
+	int floor = 0, ceiling = 9, range = (ceiling - floor);//range for the random number 
+	int rand_range = floor + int((range * rand()) / (RAND_MAX + 1.0));
+	int arrayValue = rand_range;
+
+	Item::setIcon(armorArray[arrayValue]);
+	Item::setDescription(descriptionArray[arrayValue]);
+	value = valueArray[arrayValue];
+	this->setEquipped(false);
 }
-
-Armor::Armor(){}
 
 Armor::~Armor(){
 
