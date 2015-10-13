@@ -24,6 +24,7 @@ class Monster : public df::Object{
 		df::ObjectList inventory;
 		df::Position wanderer_pos;
 		Wanderer *wanderer;
+		bool seen;
 		
 
 	public:
@@ -34,6 +35,7 @@ class Monster : public df::Object{
 		void draw();
 		void hit(const df::EventCollision *p_c);
 		void hurt(int damage);
+		void setSeen(bool is_seen);
 
 		//name
 		std::string getType(void);

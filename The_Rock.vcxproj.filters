@@ -216,6 +216,9 @@
     <ClInclude Include="Music.h">
       <Filter>Engine\Header Files\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="RockLives\LevelGoal.h">
+      <Filter>RockLives\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test.cpp">
@@ -379,6 +382,9 @@
     </ClCompile>
     <ClCompile Include="Sound.cpp">
       <Filter>Engine\Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="RockLives\LevelGoal.cpp">
+      <Filter>RockLives\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

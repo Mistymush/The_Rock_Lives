@@ -49,6 +49,7 @@
     <ClInclude Include="RockLives\DropEvent.h" />
     <ClInclude Include="RockLives\FoodRation.h" />
     <ClInclude Include="RockLives\HealthPotion.h" />
+    <ClInclude Include="RockLives\LevelGoal.h" />
     <ClInclude Include="RockLives\Node.h" />
     <ClInclude Include="RockLives\EventTurn.h" />
     <ClInclude Include="RockLives\InventoryView.h" />
@@ -95,6 +96,7 @@
     <ClCompile Include="RockLives\DropEvent.cpp" />
     <ClCompile Include="RockLives\FoodRation.cpp" />
     <ClCompile Include="RockLives\HealthPotion.cpp" />
+    <ClCompile Include="RockLives\LevelGoal.cpp" />
     <ClCompile Include="RockLives\Node.cpp" />
     <ClCompile Include="RockLives\EventTurn.cpp" />
     <ClCompile Include="RockLives\InventoryView.cpp" />

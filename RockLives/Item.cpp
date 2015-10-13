@@ -20,7 +20,7 @@ Item::Item(){
 	inInventory = false;
 	description = "Undfined";
 	is_equipped = false;
-
+	setSeen(false);
 }
 
 /*
@@ -40,6 +40,10 @@ void Item::apply(){
 
 void Item::move(){
 
+}
+
+void Item::setSeen(bool is_seen) {
+	seen = is_seen;
 }
 
 //see if someone is trying to pick up this item
@@ -64,18 +68,20 @@ int Item::eventHandler(const df::Event *p_e){
 }
 
 void Item::draw(){
-	df::GraphicsManager &graphics_manager = df::GraphicsManager::getInstance();
-	graphics_manager.drawCh(Object::getPosition(), icon, color);
-	if (inInventory){
-		df::Position tmp = Object::getPosition();
-		if (is_equipped){
-			df::Position tmp2 = Object::getPosition();
-			tmp2.setX(Object::getPosition().getX() + 1);
-			graphics_manager.drawCh(tmp2, 'e',  df::GREEN);
+	if (seen || inInventory) {
+		df::GraphicsManager &graphics_manager = df::GraphicsManager::getInstance();
+		graphics_manager.drawCh(Object::getPosition(), icon, color);
+		if (inInventory){
+			df::Position tmp = Object::getPosition();
+			if (is_equipped){
+				df::Position tmp2 = Object::getPosition();
+				tmp2.setX(Object::getPosition().getX() + 1);
+				graphics_manager.drawCh(tmp2, 'e', df::GREEN);
+			}
+
+			tmp.setX(Object::getPosition().getX() + 2);
+			graphics_manager.drawString(tmp, description, df::LEFT_JUSTIFIED, color);
 		}
-		
-		tmp.setX(Object::getPosition().getX() + 2);
-		graphics_manager.drawString(tmp, description, df::LEFT_JUSTIFIED, color);
 	}
 }
 

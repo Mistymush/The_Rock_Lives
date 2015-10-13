@@ -10,6 +10,7 @@
 #include "Monster.h"
 #include "Weapon.h"
 #include "Wanderer.h"
+#include "LevelGoal.h"
 
 Level::Level() {
 	setType("Level");
@@ -23,7 +24,7 @@ Level::Level() {
 	min_path_width = 3;
 
 	start_pos = df::Position(0, height / 2);
-	end_pos = df::Position(getPosition().getX(), width-1);
+	end_pos = df::Position(getPosition().getX(), height / 2);
 
 	level_grid = new char*[height]; // Initialize an the level grid as an array of char arrays
 	for (int i = 0; i < height; ++i) { // For each row of the grid...
@@ -61,7 +62,10 @@ void Level::generateLevel() {
 				if (y + half_width > 0 && y + half_width < height) {
 					int item_chance = rand() % 300; // Item spawn rate
 					int monster_chance = rand() % 200; // Monster spawn rate 
-					if (item_chance == 0) {
+					if (y + half_width == end_y && x == end_x) {
+						level_grid[y + half_width][x] = '>';
+					}
+				    else if (item_chance == 0) {
 						level_grid[y + half_width][x] = '/';
 					}
 					else if (monster_chance == 0) {
@@ -86,13 +90,19 @@ void Level::generateLevel() {
 				m->setPosition(p);
 				levelObjects.insert(m);
 			}
+			else if (level_grid[i][j] == '>') {
+				LevelGoal *lg = new LevelGoal(this);
+				df::Position p = df::Position(j + getPosition().getX(), i + getPosition().getY());
+				lg->setPosition(p);
+				levelObjects.insert(lg);
+			}
 			else if (level_grid[i][j] == '/') {
 				Weapon *w = new Weapon(0);
 				df::Position p = df::Position(j + getPosition().getX(), i + getPosition().getY());
 				w->setPosition(p);
 				levelObjects.insert(w);
 			}
-			else if (level_grid[i][j] == 'M') {
+			else if (level_grid[i][j] == 'M' && j < width && j > 5) { // 5 is spaces to the right from the left side of the room; prevents monsters from spawning next to Wanderer
 				Monster *m = new Monster();
 				df::Position p = df::Position(j + getPosition().getX(), i + getPosition().getY());
 				m->setPosition(p);

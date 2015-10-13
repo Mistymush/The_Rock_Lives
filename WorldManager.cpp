@@ -104,7 +104,7 @@ void WorldManager:: update(){
 	ObjectList p_dl = deletions;
 	df::ObjectListIterator ld =  df::ObjectListIterator(&p_dl);
 	for (ld.first(); !ld.isDone(); ld.next()){
-		updates.remove(ld.currentObject());		
+		updates.remove(ld.currentObject());
 	}
 	deletions.clear();
 

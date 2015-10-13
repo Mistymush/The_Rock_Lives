@@ -26,6 +26,9 @@ private:
 	//is this item in the inventory
 	bool inInventory;
 
+	//has the item been seen by the Wanderer?
+	bool seen;
+
 	//A short description of this item, (17 char max)
 	std::string description;
 
@@ -46,6 +49,7 @@ public:
 	void setIcon(char x);
 	void setDescription(std::string tag);
 	void setColor(df::Color new_color);
+	void setSeen(bool is_seen);
 
 	void pickUp(const df::EventCollision *p_collision_event);
 

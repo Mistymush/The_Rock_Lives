@@ -10,6 +10,8 @@
 #include "GraphicsManager.h"
 #include "GameManager.h"
 #include "ResourceManager.h"
+#include "Item.h"
+#include "LevelGoal.h"
 
 Wanderer::Wanderer() {
 
@@ -227,10 +229,18 @@ void Wanderer::setVisibleArea() {
 	df::ObjectList ol = world_manager.getAllobjects();
 	df::ObjectListIterator li(&ol);
 	for (li.first(); !li.isDone(); li.next()) {
-		if (li.currentObject()->getType() == "Mountain") {
-			if ((pow(li.currentObject()->getPosition().getX() - getPosition().getX(), 2) + pow(li.currentObject()->getPosition().getY() - getPosition().getY(), 2)) <= (sight_radius ^ 2)) {
-				Wall *p_w = dynamic_cast <Wall *> (li.currentObject());
+		if ((pow(li.currentObject()->getPosition().getX() - getPosition().getX(), 2) + pow(li.currentObject()->getPosition().getY() - getPosition().getY(), 2)) <= (sight_radius ^ 2)) {
+			if (Wall *p_w = dynamic_cast <Wall *> (li.currentObject())) {
 				p_w->setSeen(true);
+			}
+			else if (Item *p_i = dynamic_cast <Item *> (li.currentObject())) {
+				p_i->setSeen(true);
+			}
+			else if (Monster *p_m = dynamic_cast <Monster *> (li.currentObject())) {
+				p_m->setSeen(true);
+			}
+			else if (LevelGoal *p_lg = dynamic_cast <LevelGoal *> (li.currentObject())) {
+				p_m->setSeen(true);
 			}
 		}
 	}

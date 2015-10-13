@@ -28,7 +28,7 @@ Monster::Monster(){
 	curr_health = 3;
 	speed = 1;
 	strength = 2;
-	
+	setSeen(false);
 	
 }
 //Author: Marco Duran
@@ -96,6 +96,10 @@ df::Position Monster::getPosition(){
 //Sets the position of the monster
 void Monster::setPosition(df::Position new_position){
 	pos = new_position;
+}
+
+void Monster::setSeen(bool is_seen) {
+	seen = is_seen;
 }
 
 void Monster::move(int new_dir){
@@ -222,9 +226,10 @@ int Monster::eventHandler(const df::Event *p_e){
 }
 //draws the monster to the screen
 void Monster::draw(){
-	df::GraphicsManager &graphics_manager = df::GraphicsManager::getInstance();
-	graphics_manager.drawCh(getPosition(), getIcon(), df::GREEN);
-
+	if (seen) {
+		df::GraphicsManager &graphics_manager = df::GraphicsManager::getInstance();
+		graphics_manager.drawCh(getPosition(), getIcon(), df::GREEN);
+	}
 }
 
 void Monster::hit(const df::EventCollision *p_c){
