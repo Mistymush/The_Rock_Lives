@@ -11,6 +11,7 @@ LevelGoal::LevelGoal(Level *level_pointer){
 	setType("LevelGoal");
 	level = level_pointer;
 	setSolidness(df::SOFT);
+	seen = false;
 }
 
 void LevelGoal::setIcon(char new_icon) {
@@ -37,8 +38,8 @@ int LevelGoal::eventHandler(const df::Event *p_e){
 }
 
 void LevelGoal::draw() {
-	//if (seen) {
+	if (seen) {
 		df::GraphicsManager &graphics_manager = df::GraphicsManager::getInstance();
 		graphics_manager.drawCh(getPosition(), icon, color);
-	//}
+	}
 }

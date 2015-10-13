@@ -240,7 +240,7 @@ void Wanderer::setVisibleArea() {
 				p_m->setSeen(true);
 			}
 			else if (LevelGoal *p_lg = dynamic_cast <LevelGoal *> (li.currentObject())) {
-				p_m->setSeen(true);
+				p_lg->setSeen(true);
 			}
 		}
 	}
