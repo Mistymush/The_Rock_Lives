@@ -68,6 +68,12 @@ void Item::draw(){
 	graphics_manager.drawCh(Object::getPosition(), icon, color);
 	if (inInventory){
 		df::Position tmp = Object::getPosition();
+		if (is_equipped){
+			df::Position tmp2 = Object::getPosition();
+			tmp2.setX(Object::getPosition().getX() + 1);
+			graphics_manager.drawCh(tmp2, 'e',  df::GREEN);
+		}
+		
 		tmp.setX(Object::getPosition().getX() + 2);
 		graphics_manager.drawString(tmp, description, df::LEFT_JUSTIFIED, color);
 	}
@@ -135,4 +141,8 @@ void Item::apply(const ApplyEvent *p_apply_event){
 
 void Item::setEquipped(bool new_value){
 	is_equipped = new_value;
+}
+
+bool Item::getEquipped(){
+	return is_equipped;
 }

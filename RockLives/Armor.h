@@ -8,6 +8,7 @@ Author: August Beers
 
 
 #include "Item.h"
+#include "OutputView.h"
 
 class Armor : public Item {
 

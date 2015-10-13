@@ -40,8 +40,7 @@ Draw method
 void StatsView::draw(){
 	df::GraphicsManager &graphics_manager = df::GraphicsManager::getInstance();
 
-	df::Position position(0, 0);
-	graphics_manager.drawString(position, "Wanderer Stats", df::LEFT_JUSTIFIED, df::RED);
+
 
 	df::Position tmp_position(20, 0);
 	for (int i = 0; i < 5 ; i++){
@@ -56,25 +55,33 @@ void StatsView::draw(){
 	std::string strength;
 	std::string max_hunger;
 	std::string max_hp;
+	std::string level;
 	std::ostringstream hp_convert;
 	std::ostringstream hunger_convert;
 	std::ostringstream strength_convert;
 	std::ostringstream max_hunger_convert;
 	std::ostringstream max_hp_convert;
-
+	std::ostringstream level_convert;
 
 	hp_convert << my_wanderer->getHp();
 	hunger_convert << my_wanderer->getHunger();
 	strength_convert << my_wanderer->getStrength();
 	max_hunger_convert << my_wanderer->getMaxHunger();
 	max_hp_convert << my_wanderer->getMaxHp();
-
+	level_convert << my_wanderer->getLevel();
 
 	hp = hp_convert.str();
 	hunger = hunger_convert.str();
 	strength = strength_convert.str();
 	max_hunger = max_hunger_convert.str();
 	max_hp = max_hp_convert.str();
+	level = level_convert.str();
+
+
+	df::Position position(0, 0);
+	graphics_manager.drawString(position, "Wanderer Level: ", df::LEFT_JUSTIFIED, df::RED);
+	position.setX(position.getX() + 17);
+	graphics_manager.drawString(position, level, df::LEFT_JUSTIFIED, df::RED);
 
 	df::Position stats(0, 1);
 	df::Position stats_output(11, 1);

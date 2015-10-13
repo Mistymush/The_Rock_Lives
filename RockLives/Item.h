@@ -54,6 +54,7 @@ public:
 	virtual void apply(const ApplyEvent *p_apply_event);
 
 	void setEquipped(bool new_value);
+	bool getEquipped();
 };
 
 #endif // !_ITEM_

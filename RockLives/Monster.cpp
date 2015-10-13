@@ -221,7 +221,7 @@ void Monster::hit(const df::EventCollision *p_c){
 	Wanderer *wanderer;
 	
 	//If Monster on Wanderer, do damage
-	if ((p_c->getHitObject()->getType() == "Wanderer")){
+	if ((p_c->getHitObject()->getType() == "Wanderer") && curr_health > 0){
 		wanderer = dynamic_cast<Wanderer *>(p_c->getHitObject());
 		ov.setOutput("The " + getType() +  " attacks!");
 		wanderer->hurt(getStrength());
@@ -242,6 +242,7 @@ void Monster::hurt(int damage){
 	}
 	else{
 		//Monster was defeated
+		setHealth(0);
 		ov.setOutput("The " + getType() + " was slain!");
 		world_manager.markforDelete(this);
 	}

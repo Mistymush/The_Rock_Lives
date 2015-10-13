@@ -29,6 +29,7 @@ Wanderer::Wanderer() {
 
 	setMaxHp(10);
 	current_hp = max_hp;
+	defence = 0;
 	inventory = df::ObjectList();
 
 	setExp(0);
@@ -195,12 +196,12 @@ void Wanderer::hit(const df::EventCollision *p_c){
 	Monster *m;
 
 	//If Monster on Wanderer, do damage
-	if ((p_c->getObject()->getType() == "Monster") && (p_c->getObject()->getType() != "Wanderer")){
-		m = dynamic_cast<Monster *>(p_c->getObject());
-		
+	
+	if ((p_c->getHitObject()->getType() == "Monster")){
+		m = dynamic_cast<Monster *>(p_c->getHitObject());
 		int weapon_damage = 0;
-		weapon_damage = getStrength() + getAttack() + rand() % getRange();
-		ov.setOutput("You swing at the " + m->getType());
+		weapon_damage = getStrength() + getAttack();
+		ov.setOutput("You swing at the Monster!");
 		m->hurt(weapon_damage);
 
 		//play sound 
@@ -394,7 +395,7 @@ int Wanderer::getAttack(){
 	return weapon_attack;
 }
 void Wanderer::setAttack(int new_attack){
-	if (new_attack > 0){
+	if (new_attack >= 0){
 		weapon_attack = new_attack;
 	}
 }
@@ -402,7 +403,7 @@ int Wanderer::getRange(){
 	return weapon_range;
 }
 void Wanderer::setRange(int new_range){
-	if (new_range > 0){
+	if (new_range >= 0){
 		weapon_range = new_range;
 	}
 }

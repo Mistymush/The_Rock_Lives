@@ -52,6 +52,10 @@ int GameManager::startUp(){
 	df::GraphicsManager &graphics_manager = df::GraphicsManager::getInstance();
 	startUp = graphics_manager.startUp();
 
+	//start the input manager
+	df::InputManager &input_manager = df::InputManager::getInstance();
+	input_manager.startUp();
+
 	//Start up the resource manager
 	df::ResourceManager &resource_manager = df::ResourceManager::getInstance();
 	startUp = resource_manager.startUp();
@@ -76,6 +80,10 @@ void GameManager::shutDown(){
 	//Shut down graphics manager
 	df::GraphicsManager &graphics_manager = df::GraphicsManager::getInstance();
 	graphics_manager.shutDown();
+
+	//start the input manager
+	df::InputManager &input_manager = df::InputManager::getInstance();
+	input_manager.shutDown();
 
 	//Shut down resource manager
 	df::ResourceManager &resource_manager = df::ResourceManager::getInstance();

@@ -7,8 +7,10 @@ Author: August Beers
 #ifndef _WEAPON_
 #define _WEAPON_
 
+#include <sstream>
 
 #include "Item.h"
+#include "OutputView.h"
 
 class Weapon : public Item {
 

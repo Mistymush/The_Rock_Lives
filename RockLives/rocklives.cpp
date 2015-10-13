@@ -82,7 +82,7 @@ void populateGameWorld(){
 	new HealthPotion(df::Position(53, 10));
 	new StrengthPotion(df::Position(54, 10));
 	new FoodRation(df::Position(55, 10));
-
+	new Armor(df::Position(56, 10));
 	
 	
 	
