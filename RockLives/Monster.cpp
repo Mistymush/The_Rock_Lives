@@ -31,9 +31,21 @@ Monster::Monster(){
 	
 	
 }
-
+//Author: Marco Duran
 Monster::~Monster(){
+	df::WorldManager &world_manager = df::WorldManager::getInstance();
 //Give the wanderer experience
+	df::ObjectList allObjects = world_manager.getAllobjects();
+	df::ObjectListIterator li(&allObjects);
+	Wanderer *p_w;
+	while (!li.isDone()){//Find the wanderer
+		if (li.currentObject()->getType() == "Wanderer"){
+			p_w = dynamic_cast<Wanderer *>(li.currentObject());
+			p_w->setExp(10);
+		}
+		li.next();
+	}
+	
 //If polish is done, drop item in inventory
 }
 
@@ -244,6 +256,17 @@ void Monster::hurt(int damage){
 		//Monster was defeated
 		setHealth(0);
 		ov.setOutput("The " + getType() + " was slain!");
+		//Give the wanderer experience
+		df::ObjectList allObjects = world_manager.getAllobjects();
+		df::ObjectListIterator li(&allObjects);
+		Wanderer *p_w;
+		while (!li.isDone()){//Find the wanderer
+			if (li.currentObject()->getType() == "Wanderer"){
+				p_w = dynamic_cast<Wanderer *>(li.currentObject());
+				p_w->setExp(10);
+			}
+			li.next();
+		}
 		world_manager.markforDelete(this);
 	}
 }

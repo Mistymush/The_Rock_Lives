@@ -26,7 +26,8 @@ private:
 	df::ObjectList inventory; // The inventory of items the Wanderer is carrying
 	char icon; // Character icon that represents the Wanderer
 	df::Color color; // Color to draw the character icon
-	int exp; // The Wanderer's current amount of experience
+	long curr_exp; // The Wanderer's current amount of experience
+	long max_exp; //The experience cap until the next level, gets modified in level up.
 	int level; // The Wanderer's current level
 	int sight_radius;
 
@@ -36,6 +37,8 @@ private:
 	void move(int dx, int dy);
 	void turn();
 	void hit(const df::EventCollision *p_c);
+	//increases the wanderer's level and changes max_experience by a linear function
+	void levelUp(void);
 
 public:
 	//add health to the wandere
@@ -54,8 +57,8 @@ public:
 	int getHp();
 	void setMaxHp(int new_max_hp);
 	int getMaxHp();
-	void setExp(int new_exp);
-	int getExp();
+	void setExp(long new_exp);
+	long getExp();
 	void setLevel(int new_level);
 	int getLevel();
 	void setDefence(int new_defence);

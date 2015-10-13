@@ -82,7 +82,7 @@ Position Object::getPosition() const{
 int Object::eventHandler(const df::Event *p_e){
 
 	LogManager &log_manager = LogManager::getInstance();
-	log_manager.WriteMessage(p_e->getType().c_str());
+	//log_manager.WriteMessage(p_e->getType().c_str());
 	if (p_e->getType() == df::COLLISION_EVENT){
 		const df::EventCollision *p_collision_event =
 			static_cast <const df::EventCollision *> (p_e);

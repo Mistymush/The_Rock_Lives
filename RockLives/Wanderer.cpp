@@ -32,7 +32,8 @@ Wanderer::Wanderer() {
 	defence = 0;
 	inventory = df::ObjectList();
 
-	setExp(0);
+	curr_exp = 0;
+	max_exp = 5 * static_cast<long>(sqrt(10));
 	setLevel(1);
 	setSightRadius(50);
 	setVisibleArea();
@@ -194,13 +195,21 @@ void Wanderer::hit(const df::EventCollision *p_c){
 	df::ResourceManager &resource_manager = df::ResourceManager::getInstance();
 	OutputView &ov = OutputView::getInstance();
 	Monster *m;
+	int weapon_damage = 0;
+
+	int floor = 1, ceiling = getStrength() + 1, range = (ceiling - floor);//range for the random number 
+	int rand_range = floor + int((range * rand()) / (RAND_MAX + 1.0));
 
 	//If Monster on Wanderer, do damage
 	
 	if ((p_c->getHitObject()->getType() == "Monster")){
 		m = dynamic_cast<Monster *>(p_c->getHitObject());
-		int weapon_damage = 0;
-		weapon_damage = getStrength() + getAttack();
+		if (getRange() == 0){
+			weapon_damage = getStrength() + getAttack();
+		}
+		else{
+			weapon_damage = getStrength() + getAttack() + rand_range % getRange();
+		}
 		ov.setOutput("You swing at the Monster!");
 		m->hurt(weapon_damage);
 
@@ -339,17 +348,41 @@ void Wanderer::setMaxHp(int new_max_hp) {
 int Wanderer::getMaxHp() {
 	return max_hp;
 }
-
-void Wanderer::setExp(int new_exp) {
-	exp = new_exp;
+//Author: Marco Duran and August Beers
+void Wanderer::setExp(long new_exp) {
+	//if the wanderers current exp is greater than the exp cap, add experience and level up
+	if (curr_exp + new_exp >= max_exp){
+		levelUp();
+		curr_exp = curr_exp + new_exp;
+	}
+	//otherwise just add experience
+	else{
+		curr_exp = curr_exp + new_exp;
+	}
 }
 
-int Wanderer::getExp() {
-	return exp;
+long Wanderer::getExp() {
+	return curr_exp;
 }
 
 void Wanderer::setLevel(int new_level) {
 	level = new_level;
+}
+
+//increases the wanderer's level and changes max_experience by a linear function
+//Author: Marco Duran
+void Wanderer::levelUp(){
+	df::LogManager &log_manager = df::LogManager::getInstance();
+	//change max experience
+	if (max_exp > 0)
+		max_exp = 5 * static_cast<long>(sqrt(max_exp));
+	else{
+		log_manager.WriteMessage("Apparently you had a negative or zero level cap");
+		return;
+	}
+
+	//increase the level of the character
+	level++;
 }
 
 void  Wanderer::setDefence(int new_defence){
