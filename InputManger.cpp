@@ -32,7 +32,7 @@ int InputManager::startUp(){
 
 	sf::RenderWindow *render_window = graphics_manager.getWindow();
 
-	render_window->setKeyRepeatEnabled(false);
+	render_window->setKeyRepeatEnabled(true);
 
 	Manager::startUp();
 	return 0;

@@ -33,20 +33,7 @@ Monster::Monster(){
 }
 //Author: Marco Duran
 Monster::~Monster(){
-	df::WorldManager &world_manager = df::WorldManager::getInstance();
-//Give the wanderer experience
-	df::ObjectList allObjects = world_manager.getAllobjects();
-	df::ObjectListIterator li(&allObjects);
-	Wanderer *p_w;
-	while (!li.isDone()){//Find the wanderer
-		if (li.currentObject()->getType() == "Wanderer"){
-			p_w = dynamic_cast<Wanderer *>(li.currentObject());
-			p_w->setExp(10);
-		}
-		li.next();
-	}
-	
-//If polish is done, drop item in inventory
+		
 }
 
 //Gets the name of the monster
@@ -194,7 +181,7 @@ int Monster::eventHandler(const df::Event *p_e){
 	df::LogManager & log_manager = df::LogManager::getInstance();
 	df::WorldManager &world_manager = df::WorldManager::getInstance();
 	OutputView &ov = OutputView::getInstance();
-	log_manager.WriteMessage(p_e->getType().c_str());
+	
 	df::Utility u;
 	int dir = 0;
 	
