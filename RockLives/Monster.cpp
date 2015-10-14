@@ -17,17 +17,83 @@ Author: @Marco Duran
 
 
 Monster::Monster(){
-	df::WorldManager &world_manager = df::WorldManager::getInstance();
-	setType("Monster");
+	/*Stats for each monster type
+	Goo:
+		Icon = o,
+		Health = 2,
+		Strength = 1
+		Experience worth = 10 exp
+		Probability of appearing = 9/20 or 45%
+
+	Serpent:
+		Icon = s,
+		Health = 3,
+		Strength = 2
+		Experience worth = 15 exp
+		Probability of appearing = 7/20 or 35%
+
+	Wolf:
+		Icon = w,
+		Health = 4,
+		Strength = 3
+		Experience worth = 25 exp
+		Probability of appearing = 3/20 or 15%
+
+	Bear:
+		Icon = B,
+		Health = 7,
+		Strength = 4
+		Experience worth = 40 exp
+		Probability of appearing = 1/20 or 5%
+	*/
+
+	int monsterExpArray[20] =
+	{ 10, 10, 10, 10, 10,
+	  10, 10, 10, 10, 15,
+	  15, 15, 15, 15, 15,
+	  15, 25, 25, 25, 40 };
+
+	char monsterIconArray[20] =
+	{ 'o', 'o', 'o', 'o', 'o',
+	  'o', 'o', 'o', 'o', 's',
+	  's', 's', 's', 's', 's',
+	  's', 'w', 'w', 'w', 'B' };
+
+	std::string monsterTypeArray[20] = 
+	{ "Goo", "Goo", "Goo", "Goo",
+	  "Goo", "Goo", "Goo", "Goo",
+	  "Goo", "Serpent" ,"Serpent", "Serpent",
+	  "Serpent", "Serpent", "Serpent", "Serpent",
+	  "Wolf", "Wolf", "Wolf", "Bear" };
+
+	int monsterHealthArray[20] =
+	{ 2, 2, 2, 2,
+	  2, 2, 2, 2,
+	  2, 3, 3, 3,
+	  3, 3, 3, 3,
+	  4, 4, 4, 7 };
+
+
+	int monsterStrengthArray[20] = 
+	{ 1, 1, 1, 1,
+	  1, 1, 1, 1,
+	  1, 2, 2, 2,
+	  2, 2, 2, 2,
+	  3, 3, 3, 4};
+
+	int floor = 0, ceiling = 19, range = (ceiling - floor);//range for the random number 
+	int rand_range = floor + int((range * rand()) / (RAND_MAX + 1.0));
+	int arrayValue = rand_range;
+
 	setSolidness(df::Solidness::HARD);
 	setAltitude(3);
-	type = "Monster";
+	type = monsterTypeArray[arrayValue];
 	//set object type to monster
 	df::Object::setType("Monster");
-	icon = 'm';
-	curr_health = 3;
-	speed = 1;
-	strength = 2;
+	icon = monsterIconArray[arrayValue];
+	curr_health = monsterHealthArray[arrayValue];
+	exp = monsterExpArray[arrayValue];
+	strength = monsterStrengthArray[arrayValue];
 	setSeen(false);
 	
 }
@@ -60,13 +126,13 @@ int Monster::getHealth(){
 void Monster::setHealth(int new_health){
 	curr_health = new_health;
 }
-//Gets the speed of the monster
-int Monster::getSpeed(){
-	return speed;
+//Gets the experience worth of the monster
+int Monster::getExp(){
+	return exp;
 }
-//Sets the speed of the monster
-void Monster::setSpeed(int new_speed){
-	speed = new_speed;
+//Sets the experience worth of the monster
+void Monster::setExp(int new_exp){
+	exp = new_exp;
 }
 //Gets the strength of the monster
 int Monster::getStrength(){

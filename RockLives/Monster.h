@@ -19,7 +19,7 @@ class Monster : public df::Object{
 		std::string type;
 		char icon;
 		int curr_health;
-		int speed;
+		int exp;
 		int strength;
 		df::ObjectList inventory;
 		df::Position wanderer_pos;
@@ -47,8 +47,8 @@ class Monster : public df::Object{
 		int getHealth();
 		void setHealth(int new_health);
 		//speed
-		int getSpeed();
-		void setSpeed(int new_speed);
+		int getExp();
+		void setExp(int new_exp);
 		//strength
 		int getStrength();
 		void setStrength(int new_strength);

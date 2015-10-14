@@ -4,6 +4,7 @@ Author: August Beers
 */
 
 #include "InventoryView.h"
+#include "ResourceManager.h"
 #include "Color.h"
 
 /*
@@ -132,7 +133,8 @@ Selt an item to apply
 */
 void InventoryView::apply(){
 	df::WorldManager &world_manager = df::WorldManager::getInstance();
-
+	//df::ResourceManager &resource_manager = df::ResourceManager::getInstance();
+	
 	df::Position tmp = df::Object::getPosition();
 	tmp.setX(tmp.getX() + 2);
 	df::ObjectList item = world_manager.isCollision(this, tmp);
