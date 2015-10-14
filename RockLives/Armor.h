@@ -10,6 +10,8 @@ Author: August Beers
 #include "Item.h"
 #include "OutputView.h"
 
+#include <sstream>
+
 class Armor : public Item {
 
 private:

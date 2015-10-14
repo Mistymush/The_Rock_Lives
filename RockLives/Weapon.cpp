@@ -25,7 +25,7 @@ Weapon::Weapon(int y){
 
 	this->setEquipped(false);
 	df::Object::setPosition(df::Position(y, 10));
-	
+	df::Object::setType("Weapon");
 
 }
 

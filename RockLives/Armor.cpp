@@ -10,7 +10,7 @@ Armor::Armor(df::Position position){
 	Item::setColor(df::RED);
 
 	df::Object::setPosition(position);
-
+	df::Object::setType("Armor");
 	
 	char armorArray[10] = { 't', 't', 't', 't', 't', 'a', 'a', 'a', 'c', 'c' };
 	std::string descriptionArray[10] = {"Tunic","Tunic","Tunic","Tunic","Tunic","Suit of Armor","Suit of Armor","Suit of Armor","Chestguard","Chestguard"};
@@ -44,14 +44,20 @@ void Armor::apply(const ApplyEvent *p_apply_event){
 			return;
 		}
 		this->setEquipped(true);
-		std::string output = "Wanderer defense increased";
+
+		std::string defenceS;
+		std::ostringstream defence_convert;
+		defence_convert << value;
+		defenceS = defence_convert.str();
+
+		std::string output = "Wanderer defense = " + defenceS;
 		ov.setOutput(output);
 		current_wanderer->setDefence(value);
 	}
 	else{
 		this->setEquipped(false);
 		current_wanderer->setDefence(0);
-		ov.setOutput("Wanderer defense decreased");
+		ov.setOutput("Wanderer defense = 0");
 	}
 	
 }

@@ -12,6 +12,8 @@ Author: August Beers
 #include "WorldManager.h"
 #include "DropEvent.h"
 #include "ApplyEvent.h"
+#include "OutputView.h"
+#include "Level.h"
 
 class Item : public df::Object {
 
