@@ -24,7 +24,7 @@ Level::Level() {
 	min_path_width = 3;
 
 	start_pos = df::Position(0, height / 2);
-	end_pos = df::Position(getPosition().getX(), height / 2);
+	end_pos = df::Position(getPosition().getX() + width - 8, height / 2);
 
 	level_grid = new char*[height]; // Initialize an the level grid as an array of char arrays
 	for (int i = 0; i < height; ++i) { // For each row of the grid...
@@ -135,16 +135,40 @@ void Level::freeGrid() {
 	delete[] level_grid;
 }
 
+void Level::addToRoom(Object *p_o) {
+	levelObjects.insert(p_o);
+}
+
 void Level::changeRoom(int direction) {
 	df::WorldManager &world_manager = df::WorldManager::getInstance();
 	df::GraphicsManager &graphics_manager = df::GraphicsManager::getInstance();
 	df::ObjectListIterator li(&levelObjects);
 	df::Position new_hero_pos;
+	df::ObjectList remove_from_room;
 
 	for (li.first(); !li.isDone(); li.next()) {
-		world_manager.markforDelete(li.currentObject());
+		if (Item *p_i = dynamic_cast <Item *> (li.currentObject())) { // If an object in the room is an item...
+			if (p_i->getInInventory()) { // Check if it's in the Wanderer's inventory. If it is...
+				remove_from_room.insert(li.currentObject()); // Remove it from the room object list so it isn't destroyed at room switch.
+			}
+			else { // If it's not in the Wanderer's inventory...
+				world_manager.markforDelete(li.currentObject()); // Destroy it with the room.
+			}
+		}
+		else { // If it isn't an item, destroy it with the room.
+			world_manager.markforDelete(li.currentObject());
+		}
 	}
+
+	// Remove any items from the room list that must persist until the next room (Items in inventory, basically)
+	df::ObjectListIterator rm_iter(&remove_from_room);
+	for (rm_iter.first(); !rm_iter.isDone(); rm_iter.next()) {
+		levelObjects.remove(rm_iter.currentObject());
+	}
+
+	remove_from_room.clear();
 	levelObjects.clear();
+
 	df::ObjectList allObjects = world_manager.getAllobjects();
 	df::ObjectListIterator all_iter(&allObjects);
 	for (all_iter.first(); !all_iter.isDone(); all_iter.next()) {

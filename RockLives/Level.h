@@ -25,6 +25,7 @@ public:
 	int getHeight();
 	df::ObjectList getLevelObjects();
 	void freeGrid();
+	void addToRoom(Object *p_o);
 	/* Change to a new randomly generated room, moving the player to the appropriate location.
 	*  Direction is based on which side of the screen the player moved out of before the room change.
 	*  If direction is less than 0, the player should be moved to the right side of the screen in the new room.
