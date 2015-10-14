@@ -45,7 +45,7 @@ int GraphicsManager::startUp(){
 
 	p_window =
 		new sf::RenderWindow(sf::VideoMode(window_horizontal_pixels, window_vertical_pixels),
-		"Tittle - The Rock", WINDOW_STYLE_DEFAULTa | WINDOW_STYLE_DEFAULTb);
+		"Rock Lives", WINDOW_STYLE_DEFAULTa | WINDOW_STYLE_DEFAULTb);
 
 	if (p_window == NULL){
 	log_manager.WriteMessage("Error! failed to initialize render window, graphics start up failed");

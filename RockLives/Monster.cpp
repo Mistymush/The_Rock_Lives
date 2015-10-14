@@ -262,12 +262,12 @@ int Monster::eventHandler(const df::Event *p_e){
 		
 		const EventTurn *p_turn_event = dynamic_cast<const EventTurn *>(p_e);
 		df::ObjectList allObjects = world_manager.getAllobjects();
-		df::ObjectListIterator *li = new df::ObjectListIterator(&allObjects);
-		while (!li->isDone()){
-			if (li->currentObject()->getType() == "Wanderer"){
-				wanderer_pos = li->currentObject()->getPosition();
+		df::ObjectListIterator li = df::ObjectListIterator(&allObjects);
+		while (!li.isDone()){
+			if (li.currentObject()->getType() == "Wanderer"){
+				wanderer_pos = li.currentObject()->getPosition();
 			}
-			li->next();
+			li.next();
 		}
 		dir = atoi((u.pathFind(pos.getX(), pos.getY(), wanderer_pos.getX(), wanderer_pos.getY()).substr(0,1)).c_str());
 		move(dir);

@@ -77,7 +77,7 @@ void InputManager::getInput(){
 			 
 
 			/*Break from game loop if In testing*/
-			if (new_event->getKey() == df::Keyboard::SPACE ){
+			if (new_event->getKey() == df::Keyboard::Q){
 				game_manager.setGameOver(true);
 			}
 

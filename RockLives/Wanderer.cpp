@@ -150,6 +150,11 @@ void Wanderer::kbd(const df::EventKeyboard *p_keyboard_event) {
 			setVisibleArea();
 		}
 		break;
+	case df::Keyboard::SPACE:  //move down with arrow key
+		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
+			turn();//execute a turn after you have moved
+		}
+		break;
 
 
 	case df::Keyboard::Q: //change level
@@ -247,23 +252,26 @@ void Wanderer::setVisibleArea() {
 }
 
 void Wanderer::turn(){
+	static int turnCount = 0;
+	turnCount++;
 	df::WorldManager &world_manager = df::WorldManager::getInstance();
 	if (current_hunger > 0){
 		current_hunger--;
 		
 	}  
-	else {
+	else if (turnCount % 3 == 0) {
+
 		hurt(1);
 		
 	}
 
-	EventTurn turn;
-	//Just for balance can add, if you want to regen every turn
-	/*if (current_hp > 0 && current_hp < max_hp){
+	EventTurn e_turn;
+	
+	if (turnCount % 10 == 0 && current_hp > 0 && current_hp < max_hp){
 		current_hp++;
 	}
-	*/
-	world_manager.onEvent(&turn);//sends a turn event to the world so the monsters can move
+	
+	world_manager.onEvent(&e_turn);//sends a turn event to the world so the monsters can move
 }
 
 void Wanderer::hurt(int damage){
@@ -278,7 +286,7 @@ void Wanderer::hurt(int damage){
 			music->stop();
 			df::Sound *sound = resource_manager.getSound("game_over");
 			sound->play();
-			output_view.setOutput("Game Over! press space to quit.");
+			output_view.setOutput("Game Over! press q to quit.");
 			world_manager.markforDelete(this);
 			
 		}

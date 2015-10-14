@@ -153,12 +153,12 @@ void Item::drop(const DropEvent *p_drop_event){
 	}
 
 	df::ObjectList allObjects = world_manager.getAllobjects();
-	df::ObjectListIterator *li = new df::ObjectListIterator(&allObjects);
-	while (!li->isDone()){
-		if (Level *p_l = dynamic_cast<Level *>(li->currentObject())){
-			// add pl to list
+	df::ObjectListIterator li(&allObjects);
+	while (!li.isDone()){
+		if (Level *p_l = dynamic_cast<Level *>(li.currentObject())){
+			p_l->addToRoom(this);
 		}
-		li->next();
+		li.next();
 	}
 	
 	df::Object::setPosition(event.getCurrentWaderer()->getPosition());
