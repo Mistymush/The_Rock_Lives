@@ -321,7 +321,7 @@ void Monster::hurt(int damage){
 		while (!li.isDone()){//Find the wanderer
 			if (li.currentObject()->getType() == "Wanderer"){
 				p_w = dynamic_cast<Wanderer *>(li.currentObject());
-				p_w->setExp(10);
+				p_w->setExp(exp);
 			}
 			li.next();
 		}
