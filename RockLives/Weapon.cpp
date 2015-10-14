@@ -43,7 +43,7 @@ void Weapon::apply(const ApplyEvent *p_apply_event){
 
 	if (!this->getEquipped()){
 		if (current_wanderer->getAttack() > 0){
-			ov.setOutput("The Wanderer may only weild one weapon at a time. Re-apply to unequip");
+			ov.setOutput("The Wanderer may only wield one weapon at a time. Re-apply to unequip");
 			return;
 		}
 		this->setEquipped(true);

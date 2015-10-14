@@ -27,22 +27,22 @@ Monster::Monster(){
 
 	Serpent:
 		Icon = s,
-		Health = 3,
+		Health = 6,
 		Strength = 2
 		Experience worth = 15 exp
 		Probability of appearing = 7/20 or 35%
 
 	Wolf:
 		Icon = w,
-		Health = 4,
+		Health = 17,
 		Strength = 3
 		Experience worth = 25 exp
 		Probability of appearing = 3/20 or 15%
 
 	Bear:
 		Icon = B,
-		Health = 7,
-		Strength = 4
+		Health = 30,
+		Strength = 6
 		Experience worth = 40 exp
 		Probability of appearing = 1/20 or 5%
 	*/
@@ -69,9 +69,9 @@ Monster::Monster(){
 	int monsterHealthArray[20] =
 	{ 2, 2, 2, 2,
 	  2, 2, 2, 2,
-	  2, 3, 3, 3,
-	  3, 3, 3, 3,
-	  4, 4, 4, 7 };
+	  2, 6, 6, 6,
+	  6, 6, 6, 6,
+	  17, 17, 17, 30 };
 
 
 	int monsterStrengthArray[20] = 
@@ -79,7 +79,7 @@ Monster::Monster(){
 	  1, 1, 1, 1,
 	  1, 2, 2, 2,
 	  2, 2, 2, 2,
-	  3, 3, 3, 4};
+	  3, 3, 3, 6};
 
 	int floor = 0, ceiling = 19, range = (ceiling - floor);//range for the random number 
 	int rand_range = floor + int((range * rand()) / (RAND_MAX + 1.0));
@@ -270,7 +270,6 @@ int Monster::eventHandler(const df::Event *p_e){
 			li->next();
 		}
 		dir = atoi((u.pathFind(pos.getX(), pos.getY(), wanderer_pos.getX(), wanderer_pos.getY()).substr(0,1)).c_str());
-		//dir = atoi((u.pathFind(pos.getX(),pos.getY(), wanderer_pos.getX(), wanderer_pos.getY())).c_str());
 		move(dir);
 		return 1;
 	}
