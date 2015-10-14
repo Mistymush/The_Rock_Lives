@@ -19,6 +19,8 @@
 Level::Level() {
 	setType("Level");
 
+	level_number = 0;
+
 	setPosition(df::Position(21, 0));
 
 	setWidth(92);
@@ -41,6 +43,7 @@ Level::Level() {
 *  level based on that character array.
 */
 void Level::generateLevel() {
+	level_number++;
 	// The starting and ending x and y positions of the path that will be carved out
 	int start_x = start_pos.getX();
 	int start_y = start_pos.getY();
@@ -69,7 +72,7 @@ void Level::generateLevel() {
 					int potion_chance = rand() % 300; // Potion spawn rate
 					int food_chance = rand() % 300; // Food spawn rate
 					int monster_chance = rand() % 200; // Monster spawn rate
-					if (y + half_width == start_y + 2 && x == start_x + 4) {
+					if (y + half_width == start_y + 2 && x == start_x + 4 && level_number == 1) {
 						level_grid[y + half_width][x] = 'F';
 					}
 					else if (y + half_width == end_y && x == end_x) {
@@ -167,6 +170,10 @@ void Level::setHeight(int new_height) {
 
 int Level::getHeight() {
 	return height;
+}
+
+int Level::getLevelNumber() {
+	return level_number;
 }
 
 void Level::freeGrid() {
