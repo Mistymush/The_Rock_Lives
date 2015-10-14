@@ -10,7 +10,7 @@ LevelGoal::LevelGoal(Level *level_pointer){
 	setColor(df::YELLOW);
 	setType("LevelGoal");
 	level = level_pointer;
-	setSolidness(df::SOFT);
+	//setSolidness(df::SOFT);
 	seen = false;
 }
 
