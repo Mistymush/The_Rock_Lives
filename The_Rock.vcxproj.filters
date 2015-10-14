@@ -219,6 +219,9 @@
     <ClInclude Include="RockLives\Weapon.h">
       <Filter>RockLives\Header Files\Items</Filter>
     </ClInclude>
+    <ClInclude Include="RockLives\DaddyLongLegs.h">
+      <Filter>RockLives\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test.cpp">
@@ -385,6 +388,9 @@
     </ClCompile>
     <ClCompile Include="RockLives\Weapon.cpp">
       <Filter>RockLives\Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="RockLives\DaddyLongLegs.cpp">
+      <Filter>RockLives\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

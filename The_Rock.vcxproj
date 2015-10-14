@@ -46,6 +46,7 @@
     <ClInclude Include="Reticle.h" />
     <ClInclude Include="RockLives\ApplyEvent.h" />
     <ClInclude Include="RockLives\Armor.h" />
+    <ClInclude Include="RockLives\DaddyLongLegs.h" />
     <ClInclude Include="RockLives\DropEvent.h" />
     <ClInclude Include="RockLives\FoodRation.h" />
     <ClInclude Include="RockLives\HealthPotion.h" />
@@ -93,6 +94,7 @@
     <ClCompile Include="Reticle.cpp" />
     <ClCompile Include="RockLives\ApplyEvent.cpp" />
     <ClCompile Include="RockLives\Armor.cpp" />
+    <ClCompile Include="RockLives\DaddyLongLegs.cpp" />
     <ClCompile Include="RockLives\DropEvent.cpp" />
     <ClCompile Include="RockLives\FoodRation.cpp" />
     <ClCompile Include="RockLives\HealthPotion.cpp" />
