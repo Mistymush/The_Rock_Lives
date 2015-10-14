@@ -8,6 +8,7 @@ class Level : public df::Object{
 private:
 	int width;
 	int height;
+	int level_number;
 	int max_path_width;
 	int min_path_width;
 	char** level_grid;
@@ -23,6 +24,7 @@ public:
 	int getWidth();
 	void setHeight(int new_height);
 	int getHeight();
+	int getLevelNumber();
 	df::ObjectList getLevelObjects();
 	void freeGrid();
 	void addToRoom(Object *p_o);
