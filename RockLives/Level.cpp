@@ -11,6 +11,10 @@
 #include "Weapon.h"
 #include "Wanderer.h"
 #include "LevelGoal.h"
+#include "FoodRation.h"
+#include "HealthPotion.h"
+#include "StrengthPotion.h"
+#include "Armor.h"
 
 Level::Level() {
 	setType("Level");
@@ -23,8 +27,8 @@ Level::Level() {
 	max_path_width = 12;
 	min_path_width = 3;
 
-	start_pos = df::Position(0, height / 2);
-	end_pos = df::Position(getPosition().getX() + width - 8, height / 2);
+	start_pos = df::Position(0, (height / 2));
+	end_pos = df::Position(width - 1, (height / 2)+2);
 
 	level_grid = new char*[height]; // Initialize an the level grid as an array of char arrays
 	for (int i = 0; i < height; ++i) { // For each row of the grid...
@@ -60,13 +64,28 @@ void Level::generateLevel() {
 		for (int j = 0; j < path_width; j++) {
 			if (j > 0 && j < height) { // Don't carve the path of place an item on the vertical boundaries
 				if (y + half_width > 0 && y + half_width < height) {
-					int item_chance = rand() % 300; // Item spawn rate
-					int monster_chance = rand() % 200; // Monster spawn rate 
-					if (y + half_width == end_y && x == end_x) {
+					int item_chance = rand() % 300; // Weapon spawn rate
+					int armor_chance = rand() % 300; // Armor spawn rate
+					int potion_chance = rand() % 300; // Potion spawn rate
+					int food_chance = rand() % 300; // Food spawn rate
+					int monster_chance = rand() % 200; // Monster spawn rate
+					if (y + half_width == start_y + 2 && x == start_x + 4) {
+						level_grid[y + half_width][x] = 'F';
+					}
+					else if (y + half_width == end_y && x == end_x) {
 						level_grid[y + half_width][x] = '>';
 					}
-				    else if (item_chance == 0) {
+					else if (item_chance == 0) {
 						level_grid[y + half_width][x] = '/';
+					}
+					else if (armor_chance == 0) {
+						level_grid[y + half_width][x] = 't';
+					}
+					else if (potion_chance == 0) {
+						level_grid[y + half_width][x] = '!';
+					}
+					else if (food_chance == 0) {
+						level_grid[y + half_width][x] = 'F';
 					}
 					else if (monster_chance == 0) {
 						level_grid[y + half_width][x] = 'M';
@@ -101,6 +120,28 @@ void Level::generateLevel() {
 				df::Position p = df::Position(j + getPosition().getX(), i + getPosition().getY());
 				w->setPosition(p);
 				levelObjects.insert(w);
+			}
+			else if (level_grid[i][j] == 't') {
+				df::Position p = df::Position(j + getPosition().getX(), i + getPosition().getY());
+				Armor *a = new Armor(p);
+				levelObjects.insert(a);
+			}
+			else if (level_grid[i][j] == '!') {
+				int which_potion = rand() % 4;
+				df::Position p = df::Position(j + getPosition().getX(), i + getPosition().getY());
+				if (which_potion = 0) {
+					StrengthPotion *sp = new StrengthPotion(p);
+					levelObjects.insert(sp);
+				}
+				else {
+					HealthPotion *hp = new HealthPotion(p);
+					levelObjects.insert(hp);
+				}
+			}
+			else if (level_grid[i][j] == 'F') {
+				df::Position p = df::Position(j + getPosition().getX(), i + getPosition().getY());
+				FoodRation *fr = new FoodRation(p);
+				levelObjects.insert(fr);
 			}
 			else if (level_grid[i][j] == 'M' && j < width && j > 5) { // 5 is spaces to the right from the left side of the room; prevents monsters from spawning next to Wanderer
 				Monster *m = new Monster();
@@ -174,17 +215,8 @@ void Level::changeRoom(int direction) {
 	for (all_iter.first(); !all_iter.isDone(); all_iter.next()) {
 		if (all_iter.currentObject()->getType() == "Wanderer"){
 			Object *p_o = all_iter.currentObject();
-			if (1){}
-			if (direction > 0) {
-				new_hero_pos.setX(getPosition().getX());
-			}
-			else if (direction < 0) {
-				new_hero_pos.setX(getPosition().getX() + getWidth()-1);
-			}
-			else {
-				new_hero_pos.setX((graphics_manager.getHorizontal()) / 2 + getPosition().getX());
-			}
-			new_hero_pos.setY((graphics_manager.getVertical() / 2) - 2);
+			new_hero_pos.setX(this->getPosition().getX());
+			new_hero_pos.setY(start_pos.getY()+2);
 			p_o->setPosition(new_hero_pos);
 		}
 	}
