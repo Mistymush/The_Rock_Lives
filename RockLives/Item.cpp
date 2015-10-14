@@ -134,6 +134,8 @@ void Item::pickUp(const df::EventCollision *p_collision_event){
 
 void Item::drop(const DropEvent *p_drop_event){
 	inInventory = false;
+	setEquipped(false);
+	
 	DropEvent event = *p_drop_event;
 	Wanderer *current_wanderer = event.getCurrentWaderer();
 	df::Object::setPosition(current_wanderer->getPosition());
@@ -151,4 +153,8 @@ void Item::setEquipped(bool new_value){
 
 bool Item::getEquipped(){
 	return is_equipped;
+}
+
+bool Item::getInInventory(){
+	return inInventory;
 }

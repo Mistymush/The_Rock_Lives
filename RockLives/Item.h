@@ -59,6 +59,8 @@ public:
 
 	void setEquipped(bool new_value);
 	bool getEquipped();
+
+	bool getInInventory();
 };
 
 #endif // !_ITEM_
