@@ -11,7 +11,6 @@ Default constructor
 */
 Item::Item(){
 
-	setType("Item");
 	setSolidness(df::Solidness::SOFT);
 	//default object
 	icon = 'x';
@@ -133,12 +132,36 @@ void Item::pickUp(const df::EventCollision *p_collision_event){
 }
 
 void Item::drop(const DropEvent *p_drop_event){
-	inInventory = false;
-	setEquipped(false);
-	
 	DropEvent event = *p_drop_event;
-	Wanderer *current_wanderer = event.getCurrentWaderer();
-	df::Object::setPosition(current_wanderer->getPosition());
+	OutputView &ov = OutputView::getInstance();
+	df::WorldManager &world_manager = df::WorldManager::getInstance();
+
+	inInventory = false;
+	if (is_equipped){
+		if (this->getType() == "Weapon"){
+			setEquipped(false);
+			event.getCurrentWaderer()->setAttack(0);
+			event.getCurrentWaderer()->setRange(0);
+			ov.setOutput("Wanderer attack = 0");
+		}
+
+		else if (this->getType() == "Armor"){
+			setEquipped(false);
+			event.getCurrentWaderer()->setDefence(0);
+			ov.setOutput("Wanderer defence = 0");
+		}
+	}
+
+	df::ObjectList allObjects = world_manager.getAllobjects();
+	df::ObjectListIterator *li = new df::ObjectListIterator(&allObjects);
+	while (!li->isDone()){
+		if (Level *p_l = dynamic_cast<Level *>(li->currentObject())){
+			// add pl to list
+		}
+		li->next();
+	}
+	
+	df::Object::setPosition(event.getCurrentWaderer()->getPosition());
 		
 }
 

@@ -83,6 +83,8 @@ void populateGameWorld(){
 	new StrengthPotion(df::Position(54, 10));
 	new FoodRation(df::Position(55, 10));
 	new Armor(df::Position(56, 10));
+
+	ov.setOutput("Welcome Wanderer to the mountains of seg-fault! Many like you have entered this place but few have returned unscathed. Use the num pad or arrow keys to explore.");
 	
 	
 	
